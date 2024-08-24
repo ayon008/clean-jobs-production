@@ -1,9 +1,9 @@
+import Dot from "@/ui/Dot";
+
 const loading = () => {
     return (
-        <div className="pt-40">
-            <div className="w-[400px] h-[400px] flex justify-center items-center bg-red-500">
-
-            </div>
+        <div className="flex items-center justify-center pt-40 pb-20 px-10">
+            <Dot width={'w-[400px]'}/>
         </div>
     );
 };
