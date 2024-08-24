@@ -81,7 +81,7 @@ const Page = () => {
                         validation={{ required: 'City is required' }}
                     />
 
-                    <FormButton width={'w-3/4'} disabled={isSubmitting} />
+                    <FormButton width={'w-3/4'} label={'Search'} disabled={isSubmitting} />
                 </form>
             </div>
         </div>
