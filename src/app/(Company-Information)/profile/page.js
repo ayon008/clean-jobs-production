@@ -1,10 +1,17 @@
 'use client'
 import { usStates } from "@/js/states";
+import GetUserData from "@/lib/getUserData";
+import InputField from "@/Shared/InputField";
 import PageTitle from "@/Shared/PageTitle";
 import CustomFileInput from "@/ui/InputButton";
 import { useState } from "react";
 
 const Page = () => {
+
+    const { userData } = GetUserData();
+    console.log(userData);
+
+
 
     const [count, setCount] = useState(0);
     const [arr, setArr] = useState([]);
@@ -71,30 +78,28 @@ const Page = () => {
 
     return (
         <div className="py-40 2xl:pt-60 px-10">
-            <PageTitle heading={'Profile'} subHeading={'Lorem ipsum dolor sit amet cons ectetur. Id aenean in a est.'} />
+
+            <PageTitle
+                heading={'Profile'}
+                subHeading={'Lorem ipsum dolor sit amet cons ectetur. Id aenean in a est.'}
+            />
+
             <form className="mt-20">
                 <div className="flex items-start gap-20">
                     <div className="w-1/2 flex flex-col gap-y-10">
-                        <div className="form-control relative w-full">
-                            <label className="label absolute bg-white left-[2%] -top-[50%]">
-                                <span className="label-text text-primary font-normal text-base poppins">Company Name</span>
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="Enter your company name"
-                                className="input input-bordered rounded-[10px] bg-white border border-[#5C6272]"
-                            />
-                        </div>
-                        <div className="form-control relative w-full">
-                            <label className="label absolute bg-white left-[2%] -top-[50%]">
-                                <span className="label-text text-primary font-normal text-base poppins">Company Mail</span>
-                            </label>
-                            <input
-                                type="email"
-                                placeholder="Enter your business email address"
-                                className="input input-bordered rounded-[10px] bg-white border border-[#5C6272]"
-                            />
-                        </div>
+
+                        <InputField
+                            label={'Company Name'}
+                            placeholder={'Enter your company name'}
+                            type={'text'}
+                        />
+
+                        <InputField
+                            label={'Company Mail'}
+                            placeholder={'Enter your business email address'}
+                            type={'email'}
+                        />
+
                         <div className="form-control relative">
                             <label className="label absolute bg-white left-[2%] -top-[50%]">
                                 <span className="label-text text-primary font-normal text-base poppins">Company Website</span>
