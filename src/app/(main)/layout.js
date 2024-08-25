@@ -1,5 +1,5 @@
 import { Inter, Nunito, Poppins } from 'next/font/google'
-import './globals.css'
+import '../globals.css'
 import AuthProvider from '@/Providers/AuthProvider'
 import Navbar from '@/Shared/Navbar'
 import QueryProvider from '@/Providers/QueryProvider'

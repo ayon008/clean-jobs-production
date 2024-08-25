@@ -21,19 +21,26 @@ const Page = () => {
             email: userInfo?.email || '',
             companyWebsite: userInfo?.companyWebsite || '',
             serviceState: userInfo?.serviceState || '',
-            serviceCity: userInfo?.serviceCity || [''],
+            serviceCity: userInfo?.serviceCity || '',
+            serviceCity1: userInfo?.serviceCity1 || '',
+            serviceCity2: userInfo?.serviceCity2 || '',
+            serviceCity3: userInfo?.serviceCity3 || '',
             yearsInBusiness: userInfo?.yearsInBusiness || '',
             numberOfEmployees: userInfo?.numberOfEmployees || '',
             mainContact: userInfo?.mainContact || '',
             phoneNumber: userInfo?.phoneNumber || '',
-            socialMedia: userInfo?.socialMedia || [''],
-            companyDetails: userInfo?.companyDetails || ''
+            socialMedia: userInfo?.socialMedia || '',
+            socialMedia1: userInfo?.socialMedia1 || '',
+            socialMedia2: userInfo?.socialMedia2 || '',
+            socialMedia3: userInfo?.socialMedia3 || '',
+            companyDetails: userInfo?.companyDetails || '',
+            companyLogo: userInfo?.companyLogo || '',
         }
     });
 
     // States for dynamic fields
-    const [socialCount, setSocialCount] = useState(userInfo?.socialMedia?.length || 1);
-    const [serviceCityCount, setServiceCityCount] = useState(userInfo?.serviceCityCount || 1);
+    const [socialCount, setSocialCount] = useState(userInfo?.socialCount || 0);
+    const [serviceCityCount, setServiceCityCount] = useState(userInfo?.serviceCityCount || 0);
 
     // Update form default values if userInfo changes
     useEffect(() => {
@@ -43,14 +50,22 @@ const Page = () => {
             companyWebsite: userInfo?.companyWebsite || '',
             serviceState: userInfo?.serviceState || '',
             serviceCity: userInfo?.serviceCity || '',
+            serviceCity1: userInfo?.serviceCity1 || '',
+            serviceCity2: userInfo?.serviceCity2 || '',
+            serviceCity3: userInfo?.serviceCity3 || '',
             yearsInBusiness: userInfo?.yearsInBusiness || '',
             numberOfEmployees: userInfo?.numberOfEmployees || '',
             mainContact: userInfo?.mainContact || '',
             phoneNumber: userInfo?.phoneNumber || '',
-            socialMedia: userInfo?.socialMedia || [''],
-            companyDetails: userInfo?.companyDetails || ''
+            socialMedia: userInfo?.socialMedia || '',
+            socialMedia1: userInfo?.socialMedia1 || '',
+            socialMedia2: userInfo?.socialMedia2 || '',
+            socialMedia3: userInfo?.socialMedia3 || '',
+            companyDetails: userInfo?.companyDetails || '',
+            companyLogo: userInfo?.companyLogo || '',
         });
     }, [userInfo, reset]);
+
 
     const handleAddField = (type) => {
         if (type === 'social') {
@@ -110,8 +125,8 @@ const Page = () => {
                                 label={'Select a logo to upload'}
                                 bg={'bg-white'}
                                 width={'w-full'}
-                                name={'Company Logo'}
-                                {...register('Company Logo')}
+                                name={'companyLogo'}
+                                {...register('companyLogo')}
                             />
                         </div>
 

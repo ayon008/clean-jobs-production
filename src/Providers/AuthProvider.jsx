@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
     const auth = getAuth(app);
 
     const [user, setUser] = useState(null);
+    const [uid, setUid] = useState(null);
     const [loader, setLoader] = useState(true);
 
     const signUp = (email, password) => {
@@ -46,12 +47,15 @@ const AuthProvider = ({ children }) => {
                         console.log(token);
                         localStorage.setItem('token', token);
                         localStorage.setItem('uid', JSON.stringify(uid));
+                        setUid(localStorage.getItem('uid'));
                     })
             }
             else {
                 setUser(null);
                 setLoader(false);
                 localStorage.removeItem('token');
+                localStorage.removeItem('uid');
+                setUid(null);
             }
         })
         return () => subscribe();
