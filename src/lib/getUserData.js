@@ -1,11 +1,12 @@
 'use client'
+import useAuth from '@/Hooks/useAuth';
 import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
 
 const GetUserData = () => {
     const axiosPublic = useAxiosPublic();
-    const uid = JSON.parse(localStorage.getItem('uid'));
-
+    const { user } = useAuth();
+    const uid = user?.uid;
     const { isLoading, isError, error, data: userInfo } = useQuery({
         queryKey: ['userData', uid], // Include `uid` in queryKey to refetch if `uid` changes
         queryFn: async () => {

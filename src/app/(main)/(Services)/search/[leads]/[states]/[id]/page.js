@@ -13,7 +13,6 @@ import getLeadData from "@/lib/getLeadList";
 
 export async function generateStaticParams() {
     const leadTypes = ["exclusive-leads", "layups", "opportunities"];
-
     const params = await Promise.all(
         leadTypes.map(async (type) => {
             const leads = await getLeadData(type);

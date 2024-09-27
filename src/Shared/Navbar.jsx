@@ -16,7 +16,7 @@ const Navbar = () => {
 
     // User Info
     const { user, logOut } = useAuth();
-    const uid = JSON.parse(localStorage.getItem('uid'));
+    const uid = user?.uid;
     const pathName = usePathname();
     const userName = user?.displayName;
     const firstLetter = user?.displayName[0];

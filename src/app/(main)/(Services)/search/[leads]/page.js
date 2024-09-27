@@ -3,14 +3,6 @@ import getLeadData from "@/lib/getLeadList";
 import SearchState from "@/Shared/SearchState";
 import Link from "next/link";
 
-export async function generateStaticParams() {
-    return [
-        { leads: 'exclusive-leads' },
-        { leads: 'layups' },
-        { leads: 'opportunities' }
-    ];
-}
-
 const LeadPage = async ({ params }) => {
     const { leads } = params;
     let data = [];
@@ -23,7 +15,7 @@ const LeadPage = async ({ params }) => {
     }
 
     const filteredData = (state) => {
-        return data.filter(d => d.job_details.location.state === state).length;
+        return data?.filter(d => d.job_details.location.state === state)?.length;
     };
 
     return (

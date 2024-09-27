@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import app from "@/js/firebase.init";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
+import Cookies from "js-cookie";
 
 export const AuthContext = createContext();
 
@@ -10,7 +11,6 @@ const AuthProvider = ({ children }) => {
     const auth = getAuth(app);
 
     const [user, setUser] = useState(null);
-    const [uid, setUid] = useState(null);
     const [loader, setLoader] = useState(true);
 
     const signUp = (email, password) => {
@@ -44,18 +44,13 @@ const AuthProvider = ({ children }) => {
                     .then(res => {
                         console.log(res);
                         const { token } = res?.data;
-                        console.log(token);
-                        localStorage.setItem('token', token);
-                        localStorage.setItem('uid', JSON.stringify(uid));
-                        setUid(localStorage.getItem('uid'));
+                        Cookies.set('userToken', token)
                     })
             }
             else {
                 setUser(null);
                 setLoader(false);
-                localStorage.removeItem('token');
-                localStorage.removeItem('uid');
-                setUid(null);
+                Cookies.remove('userToken')
             }
         })
         return () => subscribe();

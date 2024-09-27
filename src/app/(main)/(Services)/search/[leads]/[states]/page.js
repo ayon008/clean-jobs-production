@@ -1,39 +1,6 @@
 import getLeadByState from "@/lib/getLeadByState";
-import getLeadData from "@/lib/getLeadList";
-import uniqueArr from "@/js/uniqueArr";
 import LeadsByCity from "@/ui/LeadsByCity";
 
-
-export async function generateStaticParams() {
-    const [exclusive, layups, opportunities] = await Promise.all([
-        getLeadData("exclusive-leads"),
-        getLeadData("layups"),
-        getLeadData("opportunities")
-    ]);
-
-    // Helper function to map data to params
-    const mapDataToParams = (data, leadType) => {
-        return data.map(item => ({
-            leads: leadType,
-            states: item.job_details.location.state
-        }));
-    };
-
-    // Generate params for each lead type
-    const exclusiveParams = mapDataToParams(exclusive, 'exclusive-leads');
-    const layupsParams = mapDataToParams(layups, 'layups');
-    const opportunitiesParams = mapDataToParams(opportunities, 'opportunities');
-
-
-    const allParams = uniqueArr([
-        ...exclusiveParams,
-        ...layupsParams,
-        ...opportunitiesParams
-    ])
-
-    // Return all params
-    return allParams;
-}
 
 function capitalizeFirstLetter(string) {
     if (!string) return '';

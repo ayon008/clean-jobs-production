@@ -65,6 +65,15 @@
 }
 
 
+.dashboard {
+    display: grid !important;
+    grid-template-columns: 2fr 1fr !important;
+}
+
+.box-shadow {
+    box-shadow: 0px 40px 32px -24px rgba(15, 15, 15, 0.12) !important;
+}
+
 .custom-file-input::-webkit-file-upload-button {
     background-color: #246532;
     /* Change to your desired color */
