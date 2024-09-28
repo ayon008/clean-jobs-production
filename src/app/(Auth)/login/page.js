@@ -3,47 +3,83 @@ import useAuth from '@/Hooks/useAuth';
 import Logo from '@/Shared/Logo';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
 
-const Page = () => {
+const Page = ({ searchParams }) => {
+    const message = searchParams?.message;
     const router = useRouter();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-
     const { signIn } = useAuth();
+    const [pathname, setPathname] = useState('/');
+    const [showPassword, setShowPassword] = useState(false);
 
-    const onSubmit = data => {
+    useEffect(() => {
+        const pathname = searchParams?.redirect;
+        if (pathname) {
+            const redirect = pathname?.split("/")[1];
+            setPathname(redirect)
+        }
+        else {
+            setPathname('/');
+        }
+    }, [searchParams?.redirect])
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(prev => !prev);
+    };
+
+
+    const onSubmit = (data) => {
         const email = data.email;
         const password = data.password;
+
+        // Show the loading spinner
+        Swal.fire({
+            title: 'Signing In...',
+            text: 'Please wait',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+        });
+
         signIn(email, password)
-            .then(res => {
+            .then((res) => {
                 const user = res.user;
-                console.log(user);
                 Swal.fire({
                     position: "center",
                     icon: "success",
-                    title: "Signed In",
+                    title: "Signed In Successfully",
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                reset();
-                router.push('/');
+                router.push(`/${pathname}`);
             })
-            .catch(err => {
-                // Handle error
+            .catch((err) => {
+                // If there is an error, show an error message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Sign In Failed',
+                    text: err.message || 'An error occurred during sign-in',
+                });
                 console.error(err);
             });
     };
 
+
     return (
         <div className='h-screen flex items-center justify-center bg-white md:px-0 px-6'>
-            <div className='w-full max-w-md bg-white rounded-[20px] border border-[#E0E0E0]'>
+            <div className='w-full max-w-md bg-gray-100 rounded-[20px] border border-[#E0E0E0]'>
                 <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+                    <h3 className='text-center text-red-500'>{message}</h3>
                     <div className='w-3/4'>
                         <Logo />
                     </div>
-                    <h2 className='text-base font-normal mt-6 mb-10 nunito'>Welcome back. Please enter your details</h2>
+                    <h2 className='text-base font-normal nunito'>Welcome back. Please enter your details</h2>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-[#5C6272] font-normal text-base nunito">Email/User name</span>
@@ -60,12 +96,30 @@ const Page = () => {
                         <label className="label">
                             <span className="label-text text-[#5C6272] font-normal text-base nunito">Password</span>
                         </label>
-                        <input
-                            type="password"
-                            placeholder="password"
-                            className="input input-bordered rounded-[10px] bg-[#FAFAFB] border border-[#5C6272]"
-                            {...register('password', { required: 'Password is required' })}
-                        />
+                        <div className='relative'>
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                placeholder="password"
+                                className="input input-bordered rounded-[10px] bg-[#FAFAFB] border border-[#5C6272] w-full"
+                                {...register('password', { required: 'Password is required' })}
+                            />
+                            {
+                                !showPassword &&
+                                <FaEye
+                                    className='text-[#999999] absolute right-4 top-1/2 bottom-1/2 cursor-pointer'
+                                    onClick={togglePasswordVisibility}
+                                    style={{ transform: "translateY(-50%)" }}
+                                />
+                            }
+                            {
+                                showPassword &&
+                                <FaEyeSlash
+                                    className='text-[#999999] absolute right-4 top-1/2 bottom-1/2 cursor-pointer'
+                                    onClick={togglePasswordVisibility}
+                                    style={{ transform: "translateY(-50%)" }}
+                                />
+                            }
+                        </div>
                         {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
                         <label className="label">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>

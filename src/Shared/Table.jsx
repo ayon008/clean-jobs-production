@@ -10,7 +10,7 @@ const Table = ({ tableHead, data, states }) => {
         <div className="overflow-x-auto mt-10">
             <table className="table">
                 {/* head */}
-                <TableHead tableHead={tableHead}/>
+                <TableHead tableHead={tableHead} />
                 <tbody>
                     {
                         data.map(d => {
@@ -23,13 +23,13 @@ const Table = ({ tableHead, data, states }) => {
                                 <tr key={d._id}>
                                     <td>
                                         <div className="flex items-center gap-3 ">
-                                            <div className="avatar">
+                                            {/* <div className="avatar">
                                                 <div className="mask mask-squircle h-12 w-12">
-                                                    {/* <Image
-                                                            src={"https://img.daisyui.com/images/profile/demo/2@94.webp"}
-                                                            alt="Avatar Tailwind CSS Component" /> */}
+                                                    <Image
+                                                        src={"https://img.daisyui.com/images/profile/demo/2@94.webp"}
+                                                        alt="Avatar Tailwind CSS Component" />
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             <div>
                                                 <div className="font-bold">{scope}</div>
                                                 <div className="text-sm opacity-50">{type}</div>

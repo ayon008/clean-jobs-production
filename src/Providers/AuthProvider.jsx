@@ -4,11 +4,13 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 import app from "@/js/firebase.init";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const auth = getAuth(app);
+    const router = useRouter();
 
     const [user, setUser] = useState(null);
     const [loader, setLoader] = useState(true);
@@ -29,6 +31,9 @@ const AuthProvider = ({ children }) => {
 
     const logOut = () => {
         setLoader(true);
+        setUser(null);
+        Cookies.remove('userToken');
+        router.push('/');
         return signOut(auth);
     }
 
@@ -38,19 +43,18 @@ const AuthProvider = ({ children }) => {
         const subscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
                 setUser(currentUser);
-                const uid = currentUser.uid;
                 setLoader(false);
                 axiosPublic.post('/userEmail', { email: currentUser.email })
                     .then(res => {
                         console.log(res);
                         const { token } = res?.data;
-                        Cookies.set('userToken', token)
+                        Cookies.set('userToken', token, { expires: 1 / 24 });
                     })
             }
-            else {
+            else if (!currentUser) {
                 setUser(null);
                 setLoader(false);
-                Cookies.remove('userToken')
+                Cookies.remove('userToken');
             }
         })
         return () => subscribe();

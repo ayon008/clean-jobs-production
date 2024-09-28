@@ -134,14 +134,17 @@ const Navbar = () => {
     });
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        handleScroll();
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
+        if (typeof window !== 'undefined') {
+            const handleScroll = () => {
+                setScrolled(window.scrollY > 50);
+            };
+            handleScroll(); // Ensure the scroll state is set on load
+            window.addEventListener('scroll', handleScroll);
+
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
+        }
     }, []);
 
     return (

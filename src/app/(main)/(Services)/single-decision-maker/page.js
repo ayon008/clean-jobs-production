@@ -7,7 +7,7 @@ import InputField from '@/Shared/InputField';
 import SelectField from '@/Shared/SelectField';
 import FormButton from '@/Shared/FormButton';
 import { useForm } from 'react-hook-form';
-import Loading from '@/app/loading';
+import Loading from '../../loading';
 
 const Page = () => {
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();

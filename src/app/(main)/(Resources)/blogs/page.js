@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import image from '../../../../public/assets/e73b8a25012b43969565404f2fbb8bed.jpg'
-import dp from '../../../../public/assets/Ellipse 146.png'
+import image from '@/../public/assets/e73b8a25012b43969565404f2fbb8bed.jpg'
+import dp from '@/../public/assets/Ellipse 146.png'
 import Link from 'next/link';
 
 const page = () => {

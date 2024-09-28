@@ -1,7 +1,7 @@
 import { FaRegCalendar } from "react-icons/fa";
-import image from '../../../../../public/assets/Ellipse 147.png'
+import image from '@/../../public/assets/Ellipse 147.png'
 import Image from "next/image";
-import blogImage from '../../../../../public/assets/8342ec237bad177a51a4be8427c2e2fe.jpg';
+import blogImage from '@/../public/assets/8342ec237bad177a51a4be8427c2e2fe.jpg';
 
 const page = ({ params }) => {
     console.log(params.id);

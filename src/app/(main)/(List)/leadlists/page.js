@@ -52,7 +52,7 @@ const LeadListTable = ({ leadList }) => (
         <div className="w-fit mx-auto mt-10">
             <button className="bg-primary text-white btn text-lg" disabled>Add another lead list</button>
         </div>
-        <p className="my-10 text-center inter text-3xl font-normal">Sorry, you can't add another lead list. Upgrade to add more.</p>
+        <p className="my-10 text-center inter text-3xl font-normal">Sorry, you can&apos;t add another lead list. Upgrade to add more.</p>
         <Image src={image2} alt="upgrade-to-add-more-lists" className="h-auto mx-auto" />
         <div className="w-fit mx-auto mt-10">
             <ButtonPrimary href="/my-subscription" label="Upgrade Now" />
@@ -62,7 +62,7 @@ const LeadListTable = ({ leadList }) => (
 
 const EmptyState = () => (
     <div className="space-y-10">
-        <h2 className="text-5xl poppins font-black text-center">You don't have any Lead Lists made</h2>
+        <h2 className="text-5xl poppins font-black text-center">You don&apos;t have any Lead Lists made</h2>
         <Image src={image} alt="lead-list" className="mx-auto" />
         <div className="w-fit mx-auto">
             <ButtonPrimary href="leadlists/make-a-list" label="Make a Lead List" />
