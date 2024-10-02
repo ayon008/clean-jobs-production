@@ -41,6 +41,11 @@
     background-size: cover;
 }
 
+.custom-row {
+    display: grid !important;
+    grid-template-rows: 2fr 2fr 1fr !important;
+}
+
 .disabled-link {
     pointer-events: none !important;
 }
