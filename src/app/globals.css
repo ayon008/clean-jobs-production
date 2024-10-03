@@ -122,6 +122,30 @@
     /* background-color: white !important; */
 }
 
+/* Base styles */
+.collapse-title {
+    transition: background-color 0.3s ease;
+    /* Smooth transition */
+}
+
+.collapse-content {
+    transition: background-color 0.3s ease;
+    /* Smooth transition */
+}
+
+/* Change background when checkbox is checked */
+input[type="checkbox"]:checked~.collapse-title {
+    background-color: #F9F9FB;
+    border: none !important;
+    /* Background color for title when checked */
+}
+
+input[type="checkbox"]:checked~.collapse-content {
+    background-color: #F9F9FB;
+    border: none !important;
+    /* Background color for content when checked */
+}
+
 
 /* .nav-overflow {
     max-height: 80vh !important;

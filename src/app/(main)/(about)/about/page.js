@@ -67,7 +67,7 @@ const page = () => {
             <div className="2xl:py-24 xl:py-16 py-10 2xl:px-40 xl:px-28 px-14">
                 <div className="grid grid-cols-2 xl:gap-8 2xl:gap-12">
                     <h1 className="2xl:text-5xl xl:text-4xl text-xl font-medium inter mt-2">Transforming Dreams into <br />Reality</h1>
-                    <p className="text-[#808080] xl:text-base 2xl:text-xl">we are dedicated to turning your vision into a tangible success story. With a deep understanding of your goals and our expertise across various industries, we bring innovative solutions that align with your aspirations. Whether you're a small business or a growing enterprise, we are committed to delivering results that exceed your expectations.</p>
+                    <p className="text-[#808080] xl:text-base 2xl:text-xl">we are dedicated to turning your vision into a tangible success story. With a deep understanding of your goals and our expertise across various industries, we bring innovative solutions that align with your aspirations. Whether you&apos;re a small business or a growing enterprise, we are committed to delivering results that exceed your expectations.</p>
                 </div>
                 <div className="grid grid-cols-2 xl:gap-8 2xl:gap-12 2xl:mt-12 xl:mt-10">
                     <div className="h-full custom-row gap-0">

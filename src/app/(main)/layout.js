@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" >
       <body className={`${inter.variable} ${poppins.variable} ${nunito.variable}`}>
-        <main className='overflow-hidden min-h-screen max-w-[1920px] mx-auto'>
+        <main className='overflow-hidden min-h-screen max-w-[1920px] mx-auto bg-white'>
           <AuthProvider>
             <QueryProvider>
               <Navbar />
