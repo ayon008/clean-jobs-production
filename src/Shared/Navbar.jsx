@@ -205,16 +205,7 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="navbar-end lg:flex md:gap-6 gap-2 w-fit">
-                {
-                    pathName !== '/other-services' ?
-                        navEnds
-                        :
-                        <>
-                            <Link href={'/contact-us'}>
-                                <Button />
-                            </Link>
-                        </>
-                }
+                {navEnds}
             </div>
         </animated.div>
     );

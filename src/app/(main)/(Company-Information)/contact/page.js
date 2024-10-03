@@ -46,7 +46,7 @@ const page = () => {
                 <div className='2xl:py-40 xl:py-28'>
                     <div className='grid grid-cols-2 2xl:pb-8 xl:pb-6 border-b-[#D6D6D6] border-b-[1px]'>
                         <h1 className='2xl:text-5xl xl:text-4xl font-medium inter text-[#0D0D0D]'>Taking Your Goals to <br /> New Heights</h1>
-                        <p className="text-[#808080] xl:text-base 2xl:text-xl">Our mission is to elevate your goals with innovative strategies, cutting-edge solutions, and a relentless commitment to excellence. Whether you're expanding your brand or scaling operations, we're here to take you to new heights of success.</p>
+                        <p className="text-[#808080] xl:text-base 2xl:text-xl">Our mission is to elevate your goals with innovative strategies, cutting-edge solutions, and a relentless commitment to excellence. Whether you&apos;re expanding your brand or scaling operations, we&apos;re here to take you to new heights of success.</p>
                     </div>
                     <div className='2xl:mt-11 xl:mt-9 grid grid-cols-3 gap-6'>
                         <div className='flex flex-col justify-between'>
@@ -140,7 +140,7 @@ const page = () => {
                             <FaEmail />
                             <div className='space-y-[16px]'>
                                 <h1 className='text-xl font-medium text-[#0D0D0D]'>Send Us an Email</h1>
-                                <p className='text-[#808080] text-base'>We'd love to hear from you! Please feel free to reach out to us via mail.</p>
+                                <p className='text-[#808080] text-base'>We&apos;d love to hear from you! Please feel free to reach out to us via mail.</p>
                                 <button className='btn bg-primary text-white rounded-lg'>info@wdesignkit.com</button>
                             </div>
                         </div>
@@ -148,7 +148,7 @@ const page = () => {
                             <FaPhone />
                             <div className='space-y-[16px]'>
                                 <h1 className='text-xl font-medium text-[#0D0D0D]'>Give Us a Call</h1>
-                                <p className='text-[#808080] text-base'>We're here to help! Don't hesitate to reach out to us by phone.</p>
+                                <p className='text-[#808080] text-base'>We&apos;re here to help! Don&apos;t hesitate to reach out to us by phone.</p>
                                 <button className='btn bg-primary text-white rounded-lg'>+1 800-525-54-589</button>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-import { Inter, Nunito, Poppins } from 'next/font/google'
+import { Anton, Inter, Nunito, Poppins } from 'next/font/google'
 import '../globals.css'
 import AuthProvider from '@/Providers/AuthProvider'
 import Navbar from '@/Shared/Navbar'
@@ -14,6 +14,11 @@ export const metadata = {
   title: 'Clean Jobs',
   description: 'Clean,Green,Reliable',
 }
+
+export const anton = Anton({
+  subsets: ['latin'],  // The subsets of the font you want to load
+  weight: '400',       // Specify the weight as a string, not as an array
+});
 
 
 export const poppins = Poppins({
