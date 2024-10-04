@@ -1,13 +1,20 @@
 import React from 'react';
 import { anton } from '../../layout';
 import FaFrontWeb from '@/icons/FaFrontWeb';
-import figmaImage from '../../../../../public/assets/57e09f4566db0a1ac970d15dde355756.png'
-import webImage from '../../../../../public/assets/2f30fd9858f1c6f448b335b02d2da4a0.jpeg'
-import backEnd from '../../../../../public/assets/6341ab570f90e6856a22d36785e40e3a.jpeg'
-import seo from '../../../../../public/assets/b6632a329f59df9325cd9067db020c92.jpeg'
-import telemarketing from '../../../../../public/assets/42f55d3345549aca47bef4b67d70a404.jpeg'
-import people from '../../../../../public/assets/c39594c5017acc3ecabfac7eb3315e8d.jpeg'
+import figmaImage from '@/../public/assets/57e09f4566db0a1ac970d15dde355756.png'
+import webImage from '@/../public/assets/2f30fd9858f1c6f448b335b02d2da4a0.jpeg'
+import backEnd from '@/../public/assets/6341ab570f90e6856a22d36785e40e3a.jpeg'
+import seo from '@/../public/assets/b6632a329f59df9325cd9067db020c92.jpeg'
+import telemarketing from '@/../public/assets/42f55d3345549aca47bef4b67d70a404.jpeg'
+import people from '@/../public/assets/c39594c5017acc3ecabfac7eb3315e8d.jpeg'
 import Image from 'next/image';
+import SectionTitles from '@/ui/SectionTitles';
+import img1 from '@/../public/assets/67808d23a26a33ebca61d4f6d94c1822.png'
+import img2 from '@/../public/assets/9b4078e905ffb67a9fa1ee52151decca.png'
+import img3 from '../../../../../public/assets/c4fff5f6b137dec9009b9e4e2c05c82f.png'
+import capture1 from '@/../public/assets/Capture.PNG'
+import capture2 from '@/../public/assets/Capture2.PNG'
+import capture3 from '@/../public/assets/Capture3.PNG'
 
 const page = () => {
     return (
@@ -278,7 +285,104 @@ const page = () => {
                     </div>
                 </div>
             </div>
-        </div>
+            <div className='2xl:py-40 xl:py-28'>
+                <div className='grid grid-cols-2'>
+                    <h1 className='2xl:text-5xl xl:text-4xl font-medium inter text-[#0D0D0D]'>Our services <br />
+                        <button className='btn bg-primary text-white rounded-xl text-sm mt-4'>Contact Us</button>
+                    </h1>
+                    <p className={`${anton.className} text-[#111] xl:text-base 2xl:text-xl`}>We provides end-to-end solutions for all your needs in setting up a new brand or developing your current one. We are one of the leading IT consulting firms in the world with experience in catapulting your brands to soar to new heights of success.</p>
+                </div>
+                <div className='2xl:mt-12 xl:mt-10 space-y-10'>
+                    <div className='2xl:pb-8 xl:pb-6 border-b-[#D6D6D6] border-b-[1px] flex items-center justify-between'>
+                        <div className='flex gap-[50px]'>
+                            <h1 className={`${anton.className} serial`}>01</h1>
+                            <div>
+                                <h3 className='text-[#0D0D0D] font-bold 2xl:text-2xl xl:text-2xl'>All IT Solution</h3>
+                                <p className={`${anton.className} text-[#808080] text-base mt-2`}>Providing comprehensive IT services, including front-end and <br /> back-end development, SEO, and technical support, tailored to <br /> meet the unique needs of your business</p>
+                            </div>
+                        </div>
+                        <div className='h-full'>
+                            <Image className='w-[333px] h-[133px] rounded-[33px]' src={img1} alt='' />
+                        </div>
+                    </div>
+                    <div className='2xl:pb-8 xl:pb-6 border-b-[#D6D6D6] border-b-[1px] flex items-center justify-between'>
+                        <div className='flex gap-10'>
+                            <h1 className={`${anton.className} serial`}>02</h1>
+                            <div>
+                                <h3 className='text-[#0D0D0D] font-bold 2xl:text-2xl xl:text-2xl'>UI/UX For App & Web</h3>
+                                <p className={`${anton.className} text-[#808080] text-base mt-2`}>Designing user-centric interfaces for both web and mobile <br /> apps, ensuring an intuitive and engaging user experience <br /> across all platforms.</p>
+                            </div>
+                        </div>
+                        <div className='h-full'>
+                            <Image className='w-[333px] h-[133px] rounded-[33px]' src={img2} alt='' />
+                        </div>
+                    </div>
+                    <div className='2xl:pb-8 xl:pb-6 border-b-[#D6D6D6] border-b-[1px] flex items-center justify-between'>
+                        <div className='flex gap-10'>
+                            <h1 className={`${anton.className} serial`}>03</h1>
+                            <div>
+                                <h3 className='text-[#0D0D0D] font-bold 2xl:text-2xl xl:text-2xl'>Tele Marketing</h3>
+                                <p className={`${anton.className} text-[#808080] text-base mt-2`}>Proactively reaching out to potential clients, generating leads,<br /> and driving sales across various sectors through targeted cold <br /> calling</p>
+                            </div>
+                        </div>
+                        <div className='h-full'>
+                            <Image className='w-[333px] h-[133px] object-cover rounded-[33px]' src={img3} alt='' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className=''>
+                <h3 className='text-primary text-center font-bold poppins 2xl:text-[20px] xl:text-lg uppercase'>Case studies</h3>
+                <SectionTitles heading={'Our Case Studies'} />
+                <div className="2xl:mt-12 xl:mt-10">
+                    <div className='grid grid-cols-2 items-center 2xl:gap-14 xl:gap-10'>
+                        <Image src={capture1} className='h-full rounded-[20px]' alt="" />
+                        <div className=''>
+                            <h1 className={`${anton.className} count`}>01</h1>
+                            <h3 className='poppins 2xl:text-3xl xl:text-2xl font-medium'>Forest website design</h3>
+                            <p className='text-[#000] poppins text-base my-7'>
+                                I'm a top online marketer and branding expert. I started my career by launching the popular fitness brand Muscle Prodigy. In just a few short years, I built the brand to millions of social media followers and website visitors. I also created award-winning online products with millions of dollars in online sales. you want.
+                            </p>
+                            <button className='text-green-400 px-10 text-lg font-medium rounded-lg btn btn-outline hover:bg-green-400 hover:text-white hover:border-none'>
+                                <a href="https://afs-foiling.com/" target='_blank'>Details</a>
+                            </button>
+                        </div>
+                    </div>
+                    <div className='grid grid-cols-2 items-center 2xl:gap-14 xl:gap-10 2xl:my-20 xl:my-14'>
+                        <div className=''>
+                            <h1 className={`${anton.className} count`}>02</h1>
+                            <h3 className='poppins 2xl:text-3xl xl:text-2xl font-medium'>Forest website design</h3>
+                            <p className='text-[#000] poppins text-base my-7'>
+                                I'm a top online marketer and branding expert. I started my career by launching the popular fitness brand Muscle Prodigy. In just a few short years, I built the brand to millions of social media followers and website visitors. I also created award-winning online products with millions of dollars in online sales. you want.
+                            </p>
+                            <button className='text-green-400 px-10 text-lg font-medium rounded-lg btn btn-outline hover:bg-green-400 hover:text-white hover:border-none'>
+                                <a href="https://games.afs-foiling.com/" target='_blank'>Details</a>
+                            </button>
+                        </div>
+                        <Image src={capture2} className='h-full rounded-[20px]' alt="" />
+                    </div>
+                    <div className='grid grid-cols-2 items-center 2xl:gap-14 xl:gap-10'>
+                        <Image src={capture3} className='h-full rounded-[20px]' alt="" />
+                        <div className=''>
+                            <h1 className={`${anton.className} count`}>03</h1>
+                            <h3 className='poppins 2xl:text-3xl xl:text-2xl font-medium'>Forest website design</h3>
+                            <p className='text-[#000] poppins text-base my-7'>
+                                I'm a top online marketer and branding expert. I started my career by launching the popular fitness brand Muscle Prodigy. In just a few short years, I built the brand to millions of social media followers and website visitors. I also created award-winning online products with millions of dollars in online sales. you want.
+                            </p>
+                            <button className='text-green-400 px-10 text-lg font-medium rounded-lg btn btn-outline hover:bg-green-400 hover:text-white hover:border-none'>
+                                <a href="https://echo-mall.web.app/" target='_blank'>Details</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div className='w-fit mx-auto'>
+                    <button className="px-3 py-2 btn bg-primary text-white text-xs font-semibold poppins rounded-lg">Contact Us Now</button>
+                </div>
+            </div>
+            <div className="2xl:py-40 xl:py-28">
+
+            </div>
+        </div >
     );
 };
 

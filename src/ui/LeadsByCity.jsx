@@ -18,19 +18,19 @@ const LeadsByCity = ({ data, states }) => {
         : data;
 
     return (
-        <div>
-            <div className="w-1/2 mx-auto mt-9">
-                <div className="flex items-start gap-2">
+        <div className='w-full'>
+            <div className="2xl:w-1/2 xl:w-1/2 w-full mx-auto mt-9">
+                <div className="flex justify-center items-start gap-2 w-full">
                     <input
                         onChange={handleOnChange}
                         id="search"
                         type="text"
                         placeholder="Search cities near you"
-                        className="input input-bordered bg-white w-[75%] h-[60px] rounded-[10px] border border-[#D0D5DD] shadow-lg"
+                        className="input input-bordered bg-white w-3/4 h-[60px] rounded-[10px] border border-[#D0D5DD] shadow-lg"
                     />
                     <button className="btn bg-primary text-white flex items-center h-[60px] w-[20%] rounded-[10px]">
-                        <FaSearch size="1rem" />
-                        <span className="inter text-base font-medium">Search</span>
+                        <FaSearch className="text-xs xl:text-xl 2xl:text-2xl 2xl:block xl:block hidden" />
+                        <span className="inter 2xl:text-base xl:text-base text-sm font-medium">Search</span>
                     </button>
                 </div>
             </div>

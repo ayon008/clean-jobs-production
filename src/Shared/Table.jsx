@@ -46,7 +46,7 @@ const Table = ({ tableHead, data, states }) => {
                                         </div>
                                     </td>
                                     <td>
-                                        <p className="text-[#175CD3] bg-[#EFF8FF]  rounded-[18px] w-fit  inter text-sm font-medium pt-[3px] px-[10px]">Standard Opportunity </p>
+                                        <p className="text-[#175CD3] bg-[#EFF8FF]  rounded-[18px] w-fit  inter text-sm font-medium py-2 px-[10px]">Standard Opportunity </p>
                                     </td>
                                     <td className="">
                                         <p className="  text-[#667085] inter text-base font-normal">{date_posted}</p>

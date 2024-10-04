@@ -101,9 +101,25 @@
     background-size: cover;
 }
 
-/* .text-white {
-    color: white !important;
-} */
+.count {
+    color: #246532;
+    font-size: 54px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.serial {
+    color: #0D0D0D;
+    -webkit-text-stroke-width: 1.1111111640930176;
+    -webkit-text-stroke-color: #C7F2AB;
+    font-size: 66.667px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80px;
+    /* 120% */
+    letter-spacing: -1.333px;
+}
 
 .contact {
     background: linear-gradient(281deg, #7F57F1 0%, #C0A9FF 135.48%);
