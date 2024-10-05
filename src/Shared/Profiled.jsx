@@ -10,10 +10,10 @@ const Profiled = () => {
     const name = user?.displayName;
     return (
         <div className='2xl:mt-14 xl:mt-14 mt-10 relative w-full rounded-xl'>
-            <Image src={profileImage} className='w-full max-h-[192px]' alt='' />
-            <Image src={woman} alt='' className='absolute bottom-0 2xl:left-52 xl:left-[134px]' />
-            <div className='absolute top-1/2 xl:right-28 2xl:right-64 transform -translate-y-1/2'>
-                <h3 className='2xl:text-4xl xl:text-4xl font-bold text-2xl'>{name}</h3>
+            <Image src={profileImage} className='w-full 2xl:max-h-[192px] xl:max-h-[192px] h-[192px]' alt='' />
+            <Image src={woman} alt='' className='absolute bottom-0 2xl:left-52 xl:left-[134px] left-7' />
+            <div className='absolute top-1/2 xl:right-28 2xl:right-64 right-8 transform -translate-y-1/2 2xl:w-fit xl:w-fit w-1/4'>
+                <h3 className='2xl:text-4xl xl:text-4xl font-bold text-2xl 2xl:text-left xl:text-left text-center'>{name}</h3>
                 <p className='text-base font-normal poppins text-center'>Welcome to your dashboard.</p>
             </div>
         </div>

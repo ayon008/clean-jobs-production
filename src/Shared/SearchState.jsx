@@ -34,7 +34,7 @@ const SearchState = ({ leads }) => {
     };
 
     return (
-        <div className="w-1/2 mx-auto">
+        <div className="2xl:w-1/2 xl:w-1/2 w-full mx-auto">
             <div className="flex items-start gap-2">
                 <input
                     id="search"
@@ -42,17 +42,17 @@ const SearchState = ({ leads }) => {
                     value={inputValue}
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
-                    placeholder={`Find ${leads} by state`}
-                    className="input input-bordered bg-white w-[75%] h-[60px] rounded-[10px] border border-[#D0D5DD] shadow-lg"
-                    aria-label={`Search ${leads} by state`}
+                    placeholder={`Find ${leads ? leads : 'leads'} by state`}
+                    className="input input-bordered bg-white w-[75%] h-[60px] rounded-[10px] border border-[rgb(208,213,221)] shadow-lg"
+                    aria-label={`Search ${leads ? leads : 'leads'} by state`}
                 />
                 <button
                     onClick={handleSearchClick}
                     className="btn bg-primary text-white flex items-center h-[60px] w-[20%] rounded-[10px]"
-                    aria-label={`Search ${leads}`}
+                    aria-label={`Search ${leads ? leads : 'leads'}`}
                 >
-                    <FaSearch size={'1rem'} />
-                    <span className="inter text-base font-medium">Search</span>
+                    <FaSearch size={'1rem'} className='2xl:block xl:block hidden' />
+                    <span className="inter 2xl:text-base xl:text-base text-xs font-medium">Search</span>
                 </button>
             </div>
             {inputValue.length > 1 && (

@@ -10,6 +10,8 @@ import { MdOutlineNotifications } from 'react-icons/md';
 import Profiled from '@/Shared/Profiled';
 import DashboardCard from '@/Shared/DashBoardCard';
 import ProfileCard from '@/Shared/ProfileCard';
+import FaStatus from '@/icons/FaStatus';
+import FaNetwork from '@/icons/FaNetwork';
 
 const Page = () => {
     return (
@@ -17,7 +19,7 @@ const Page = () => {
             <div className=''>
                 <Profiled />
                 <div className='2xl:my-32 xl:my-24 my-10'>
-                    <div className='w-full grid grid-cols-2 gap-x-6 gap-y-6'>
+                    <div className='w-full grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-x-6 gap-y-6'>
                         <DashboardCard
                             Icon={FaMessage}
                             title="User Message !"
@@ -31,7 +33,7 @@ const Page = () => {
                             iconMargin="4px"
                         />
                         <DashboardCard
-                            Icon={FaLeads}
+                            Icon={FaNetwork}
                             title="Find Exclusive Lead in Your Area"
                             description="See all the leads around you & grab opportunities"
                             iconMargin="4px"

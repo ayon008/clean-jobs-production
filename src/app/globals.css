@@ -121,6 +121,11 @@
     letter-spacing: -1.333px;
 }
 
+
+input:disabled {
+    background-color: white !important;
+}
+
 .contact {
     background: linear-gradient(281deg, #7F57F1 0%, #C0A9FF 135.48%);
 }
@@ -163,9 +168,9 @@ input[type="checkbox"]:checked~.collapse-content {
 }
 
 
-/* .nav-overflow {
-    max-height: 80vh !important;
-    overflow: auto !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-} */
+@media screen and (max-width: 576px) {
+    .dashboard {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+    }
+}

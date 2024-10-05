@@ -1,6 +1,6 @@
 'use client'
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { confirmPasswordReset, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import app from "@/js/firebase.init";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import Cookies from "js-cookie";
@@ -28,6 +28,30 @@ const AuthProvider = ({ children }) => {
             displayName: name
         });
     }
+    const changePassword = async (email) => {
+        if (!email) {
+            console.error("Email is required for password reset");
+            return;
+        }
+        try {
+            await sendPasswordResetEmail(auth, email);
+            console.log("Password reset email sent successfully.");
+        } catch (error) {
+            console.error("Password Reset Error:", error);
+            throw error;
+        }
+    };
+    const verifyPassword = async (actionCode, newPassword) => {
+        try {
+            await confirmPasswordReset(auth, actionCode, newPassword);
+            console.log('Password reset successful');
+            // Optionally redirect or update UI
+        } catch (error) {
+            // Handle errors
+            console.error('Error resetting password:', error.message);
+            // Optionally notify the user of the error
+        }
+    };
 
     const logOut = () => {
         setLoader(true);
@@ -67,6 +91,8 @@ const AuthProvider = ({ children }) => {
         updateUserProfile,
         loader,
         user,
+        changePassword,
+        verifyPassword,
     }
 
     return (

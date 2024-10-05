@@ -15,7 +15,7 @@ const page = () => {
             <div className=''>
                 <Profiled />
                 <div className='2xl:my-32 xl:my-24 my-10'>
-                    <div className='w-full grid grid-cols-2 gap-x-6 gap-y-6'>
+                    <div className='w-full grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-x-6 gap-y-6'>
                         <DashboardCard
                             Icon={FaMessage}
                             title="User Message !"

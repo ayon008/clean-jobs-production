@@ -35,7 +35,8 @@ const Register = () => {
                 companyName,
                 email,
                 serviceState,
-                cities
+                serviceCity1: cities[0],
+                serviceCity2: cities[1]
             });
 
             if (response.data.insertedId) {
@@ -50,14 +51,10 @@ const Register = () => {
                 reset();
             }
         } catch (error) {
-            
             Swal.fire({
                 icon: 'error',
                 title: 'Registration Failed',
-                text:
-                    error?.response?.data?.message ||
-                    error.code === 'auth/email-already-in-use' && 'Email is already been used' ||
-                    'An error occurred. Please try again.',
+                text: err.code?.split('auth/')[1] || 'An error occurred during sign-up',
             });
         }
     };

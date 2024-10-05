@@ -14,29 +14,15 @@ const Page = ({ searchParams }) => {
     const router = useRouter();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { signIn } = useAuth();
-    const [pathname, setPathname] = useState('/');
     const [showPassword, setShowPassword] = useState(false);
-
-    useEffect(() => {
-        const pathname = searchParams?.redirect;
-        if (pathname) {
-            const redirect = pathname?.split("/")[1];
-            setPathname(redirect)
-        }
-        else {
-            setPathname('/');
-        }
-    }, [searchParams?.redirect])
 
     const togglePasswordVisibility = () => {
         setShowPassword(prev => !prev);
     };
 
-
     const onSubmit = (data) => {
         const email = data.email;
         const password = data.password;
-
         // Show the loading spinner
         Swal.fire({
             title: 'Signing In...',
@@ -49,7 +35,6 @@ const Page = ({ searchParams }) => {
 
         signIn(email, password)
             .then((res) => {
-                const user = res.user;
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -57,16 +42,16 @@ const Page = ({ searchParams }) => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                router.push(`/${pathname}`);
+                reset();
+                router.push(`/`);
             })
             .catch((err) => {
                 // If there is an error, show an error message
                 Swal.fire({
                     icon: 'error',
                     title: 'Sign In Failed',
-                    text: err.message || 'An error occurred during sign-in',
+                    text: err.code?.split('auth/')[1] || 'An error occurred during sign-in',
                 });
-                console.error(err);
             });
     };
 
@@ -122,7 +107,7 @@ const Page = ({ searchParams }) => {
                         </div>
                         {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
                         <label className="label">
-                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                            <Link href="/login/resetPassword" className="label-text-alt link link-hover">Forgot password?</Link>
                         </label>
                     </div>
                     <div className="form-control w-full mx-auto">

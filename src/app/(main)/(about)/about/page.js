@@ -11,49 +11,58 @@ import ryan from '@/../public/assets/354198829_3532949156925131_7111049050546887
 import Footer from "@/Shared/Footer";
 import SectionTitles from "@/ui/SectionTitles";
 import { FaStar } from "react-icons/fa";
-import rev1 from '../../../../../public/assets/close-up-young-successful-man-smiling-camera-standing-casual-outfit-against-blue-background 1.svg'
-import rev2 from '../../../../../public/assets/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-wearing-casual-clothes.svg'
+import rev1 from '@/../public/assets/close-up-young-successful-man-smiling-camera-standing-casual-outfit-against-blue-background 1.svg'
+import rev2 from '@/../public/assets/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-wearing-casual-clothes.svg'
+import aboutImage1 from '../../.././../../public/assets/Group 13778.svg'
+
 
 const page = () => {
     return (
         <div className="pt-[80px]">
-            <div className="relative">
-                <Image className="w-full" src={aboutImage} alt="about-us" />
-                <div className="absolute transform -translate-y-1/2 top-1/2 left-1/2 -translate-x-1/2">
-                    <h2 className="2xl:text-6xl xl:text-5xl text-2xl font-medium text-white text-center">The Path to Success</h2>
-                    <p className="text-sm font-medium text-center text-white">About Us</p>
+            <div className="relative 2xl:h-auto xl:h-auto h-[430px] z-10">
+                <Image className="w-full 2xl:block xl:block hidden" src={aboutImage} alt="about-us" />
+                <Image className="w-full 2xl:hidden xl:hidden block h-full object-cover z-20" src={aboutImage1} alt="about-us" />
+                <div className="absolute transform -translate-y-1/2 top-1/2 left-1/2 -translate-x-1/2 z-40">
+                    <h2 className="2xl:text-6xl xl:text-5xl text-3xl font-medium 2xl:text-white xl:text-white text-black text-center poppins">The Path to Success</h2>
+                    <p className="text-sm 2xl:text-white xl:text-white text-black font-medium text-center inter">About Us</p>
                 </div>
             </div>
-            <div className="2xl:py-24 xl:py-16 py-10 2xl:px-40 xl:px-28 px-14">
-                <div className="grid grid-cols-2 xl:gap-8 2xl:gap-12">
+            <div className="2xl:py-24 xl:py-16 py-10 2xl:px-40 xl:px-28 px-10">
+                <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 xl:gap-8 2xl:gap-12">
                     <div className="flex flex-col h-full justify-between">
                         <div>
-                            <h5 className="text-primary xl:text-sm 2xl:text-lg font-medium">Why choose us</h5>
-                            <h1 className="2xl:text-5xl xl:text-4xl text-xl font-medium inter mt-2">Creative and Unique <br /> Solutions</h1>
+                            <h5 className="text-primary text-sm xl:text-sm 2xl:text-lg 2xl:font-medium xl:font-medium font-semibold">Why choose us</h5>
+                            <h1 className="2xl:text-5xl xl:text-4xl text-3xl 2xl:font-medium xl:font-medium font-semibold inter mt-2 poppins">Creative and Unique <br /> Solutions</h1>
                         </div>
-                        <div className="flex items-start gap-5 py-6 border-b-2 border-[#D6D6D6] mt-6">
-                            <FaTelemarketting />
+                        <div className="flex 2xl:flex-row xl:flex-row flex-col items-start gap-5 py-6 border-b-2 border-[#D6D6D6] mt-6">
+                            <div>
+                                <FaTelemarketting />
+                            </div>
                             <div className="mt-1">
-                                <h3 className="xl:text-2xl 2xl:text-3xl text-black font-medium inter">Telemarketing</h3>
-                                <p className="ml-[2px] text-[#808080] xl:text-base 2xl:text-xl font-normal inter">Our expert team delivers tailored telemarketing solutions, ensuring high-quality leads and increased sales.</p>
+                                <h3 className="xl:text-2xl 2xl:text-3xl text-2xl text-black font-medium inter">Telemarketing</h3>
+                                <p className="ml-[2px] text-[#808080] xl:text-base text-base 2xl:text-xl font-normal inter 2xl:mt-0 xl:mt-0 mt-4">Our expert team delivers tailored telemarketing solutions, ensuring high-quality leads and increased sales.</p>
                             </div>
                         </div>
-                        <div className="flex items-start gap-5 py-6 border-b-2 border-[#D6D6D6]">
-                            <FaLeads />
+                        <div className="flex 2xl:flex-row xl:flex-row flex-col items-start gap-5 py-6 border-b-2 border-[#D6D6D6]">
+                            <div>
+                                <FaLeads />
+                            </div>
                             <div className="mt-1">
-                                <h3 className="xl:text-2xl 2xl:text-3xl text-black font-medium inter">Lead Generation</h3>
-                                <p className="ml-[2px] text-[#808080] xl:text-base 2xl:text-xl font-normal inter">Our expert team delivers tailored telemarketing solutions, ensuring high-quality leads and increased sales.</p>
+                                <h3 className="xl:text-2xl 2xl:text-3xl text-2xl text-black font-medium inter">Lead Generation</h3>
+                                <p className="ml-[2px] text-[#808080] xl:text-base text-base 2xl:text-xl font-normal inter 2xl:mt-0 xl:mt-0 mt-4">Our expert team delivers tailored telemarketing solutions, ensuring high-quality leads and increased sales.</p>
                             </div>
                         </div>
-                        <div className="flex items-start gap-5 py-6 border-b-2 border-[#D6D6D6]">
-                            <FaWeb />
+                        <div className="flex 2xl:flex-row xl:flex-row flex-col items-start gap-5 py-6 border-b-2 border-[#D6D6D6]">
+                            <div>
+                                <FaWeb />
+                            </div>
                             <div className="mt-1">
-                                <h3 className="xl:text-2xl 2xl:text-3xl text-black font-medium inter">Your online presence solution</h3>
-                                <p className="ml-[2px] text-[#808080] xl:text-base 2xl:text-xl font-normal inter">From web design to SEO, our full-service web solutions help your business thrive online.</p>
+                                <h3 className="xl:text-2xl 2xl:text-3xl text-2xl text-black font-medium inter">Your online presence solution</h3>
+                                <p className="ml-[2px] text-[#808080] xl:text-base text-base 2xl:text-xl font-normal inter 2xl:mt-0 xl:mt-0 mt-4">From web design to SEO, our full-service web solutions help your business thrive online.</p>
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col h-full">
+                    <div className="flex flex-col h-full 2xl:mt-0 xl:mt-0 mt-6">
                         <div>
                             <Image src={video} className="w-full h-auto" alt="" />
                         </div>
@@ -64,12 +73,12 @@ const page = () => {
                 </div>
             </div>
 
-            <div className="2xl:py-24 xl:py-16 py-10 2xl:px-40 xl:px-28 px-14">
-                <div className="grid grid-cols-2 xl:gap-8 2xl:gap-12">
-                    <h1 className="2xl:text-5xl xl:text-4xl text-xl font-medium inter mt-2">Transforming Dreams into <br />Reality</h1>
-                    <p className="text-[#808080] xl:text-base 2xl:text-xl">we are dedicated to turning your vision into a tangible success story. With a deep understanding of your goals and our expertise across various industries, we bring innovative solutions that align with your aspirations. Whether you&apos;re a small business or a growing enterprise, we are committed to delivering results that exceed your expectations.</p>
+            <div className="2xl:py-24 xl:py-16 py-10 2xl:px-40 xl:px-28 px-10">
+                <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 xl:gap-8 2xl:gap-12">
+                    <h1 className="xl:text-2xl 2xl:text-3xl text-2xl text-black font-medium inter">Transforming Dreams into <br />Reality</h1>
+                    <p className="text-[#808080] xl:text-base 2xl:text-xl text-base 2xl:mt-0 xl:mt-0 mt-6">We are dedicated to turning your vision into a tangible success story. With a deep understanding of your goals and our expertise across various industries, we bring innovative solutions that align with your aspirations. Whether you&apos;re a small business or a growing enterprise, we are committed to delivering results that exceed your expectations.</p>
                 </div>
-                <div className="grid grid-cols-2 xl:gap-8 2xl:gap-12 2xl:mt-12 xl:mt-10">
+                <div className="grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 xl:gap-8 2xl:gap-12 2xl:mt-12 xl:mt-10 mt-6">
                     <div className="h-full custom-row gap-0">
                         <div className="w-full h-full">
                             <div className="flex items-start h-full">
@@ -80,8 +89,8 @@ const page = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="xl:text-2xl 2xl:text-3xl text-black font-medium inter">Tailored Solutions</h3>
-                                    <p className="ml-[2px] mt-1 text-[#808080] xl:text-base 2xl:text-xl font-normal inter">We customize our approach to meet your unique needs</p>
+                                    <h3 className="xl:text-2xl text-2xl 2xl:text-3xl text-black font-medium inter">Tailored Solutions</h3>
+                                    <p className="ml-[2px] mt-1 text-[#808080] xl:text-base 2xl:text-xl text-base font-normal inter">We customize our approach to meet your unique needs</p>
                                 </div>
                             </div>
                         </div>
@@ -94,8 +103,8 @@ const page = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <h3 className="xl:text-2xl 2xl:text-3xl text-black font-medium inter">Innovative Strategies</h3>
-                                    <p className="ml-[2px] mt-1 text-[#808080] xl:text-base 2xl:text-xl font-normal inter">We create cutting-edge solutions to drive your business forward.</p>
+                                    <h3 className="xl:text-2xl text-2xl 2xl:text-3xl text-black font-medium inter">Innovative Strategies</h3>
+                                    <p className="ml-[2px] mt-1 text-[#808080] xl:text-base text-base 2xl:text-xl font-normal inter">We create cutting-edge solutions to drive your business forward.</p>
                                 </div>
                             </div>
                         </div>
@@ -111,70 +120,71 @@ const page = () => {
                                     </svg>
                                 </div>
                                 <div className="ml-1">
-                                    <h3 className="xl:text-2xl 2xl:text-3xl text-black font-medium inter">Dedicated Support</h3>
-                                    <p className=" mt-1 text-[#808080] xl:text-base 2xl:text-xl font-normal inter">Our team works closely with you every step of the way</p>
+                                    <h3 className="xl:text-2xl text-2xl 2xl:text-3xl text-black font-medium inter">Dedicated Support</h3>
+                                    <p className=" mt-1 text-[#808080] xl:text-base 2xl:text-xl text-base font-normal inter">Our team works closely with you every step of the way</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <Image src={image2} className="rounded-[30px] w-full" alt="" />
+                    <Image src={image2} className="rounded-[30px] w-full 2xl:mt-0 xl:mt-0 mt-10" alt="" />
                 </div>
             </div>
 
-            <div className="2xl:py-24 xl:py-16 py-10 2xl:px-40 xl:px-28 px-14">
-                <div className="grid grid-cols-4 2xl:gap-8 xl:gap-4">
+            <div className="2xl:py-24 xl:py-16 py-10 2xl:px-40 xl:px-28 px-10">
+                <div className="grid 2xl:grid-cols-4 xl:grid-cols-4 grid-cols-2 2xl:gap-8 xl:gap-4 gap-4">
                     <div className="col-span-2">
                         <div className="flex items-center gap-5">
-                            <hr className="w-[50px] h-[1px] bg-[#808080]" />
-                            <p className="text-[#808080] 2xl:text-xl xl:text-lg"> Meet our company family</p>
+                            <hr className="w-[50px] h-[1px] bg-[#808080] 2xl:block xl:block hidden" />
+                            <p className="text-[#808080] 2xl:text-xl xl:text-lg 2xl:font-normal xl:font-normal font-bold text-lg"> Meet our company family</p>
                         </div>
-                        <h1 className="2xl:text-6xl xl:text-5xl inter font-medium">Our skilled team will support you.</h1>
+                        <h1 className="2xl:text-6xl xl:text-5xl text-4xl poppins 2xl:my-0 xl:my-0 my-4 inter 2xl:font-medium xl:font-medium font-semibold">Our skilled team will support you.</h1>
                     </div>
                     <div>
                         <Image src={ryan} alt="" />
-                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2">Ryan Afzal</h2>
+                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Ryan Afzal</h2>
                         <p className="text-[#808080]">CEO and Head of telemarketing service</p>
                     </div>
                     <div>
                         <Image src={ryan} alt="" />
-                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2">Ryan Afzal</h2>
+                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Ryan Afzal</h2>
                         <p className="text-[#808080]">CEO and Head of telemarketing service</p>
                     </div>
                     <div>
                         <Image src={ryan} alt="" />
-                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2">Ryan Afzal</h2>
+                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Ryan Afzal</h2>
                         <p className="text-[#808080]">CEO and Head of telemarketing service</p>
                     </div>
                     <div>
                         <Image src={ryan} alt="" />
-                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2">Ryan Afzal</h2>
+                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Ryan Afzal</h2>
                         <p className="text-[#808080]">CEO and Head of telemarketing service</p>
                     </div>
                     <div>
                         <Image src={ryan} alt="" />
-                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2">Ryan Afzal</h2>
+                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Ryan Afzal</h2>
                         <p className="text-[#808080]">CEO and Head of telemarketing service</p>
                     </div>
                     <div>
                         <Image src={ryan} alt="" />
-                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2">Ryan Afzal</h2>
+                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Ryan Afzal</h2>
                         <p className="text-[#808080]">CEO and Head of telemarketing service</p>
                     </div>
                 </div>
             </div>
 
-            <div className="2xl:py-24 xl:py-16 py-10 2xl:px-40 xl:px-28 px-14">
-                <div className="grid grid-cols-5">
-                    <div className="col-span-2 h-full flex flex-col justify-between">
-                        <h1 className="text-[#0D0D0D] font-semibold 2xl:text-5xl xl:text-4xl">Need More <br /> Help?</h1>
-                        <p className="text-[#808080] 2xl:text-xl xl:text-lg font-semibold mt-auto">Couldn’t not find what you were looking for?<br /> write to us at <a className="text-black" href="mailTo:example@example.info">example@example.info</a>
+            <div className="2xl:py-24 xl:py-16 py-10 2xl:px-40 xl:px-28 px-10">
+                <div className="grid 2xl:grid-cols-5 xl:grid-cols-5 grid-cols-1">
+                    <div className="2xl:col-span-2 xl:col-span-2 h-full flex flex-col justify-between">
+                        <h1 className="text-[#0D0D0D] 2xl:text-left xl:text-left text-center font-semibold 2xl:mb-0 xl:mb-0 mb-6 2xl:text-5xl xl:text-4xl text-3xl">Need More <br className="2xl:block xl:block hidden" /> Help?</h1>
+                        <p className="text-[#808080] 2xl:text-xl xl:text-lg text-lg font-semibold mt-auto 2xl:block xl:block hidden">Couldn’t not find what you were looking for?<br /> write to us at <a className="text-black" href="mailTo:example@example.info">example@example.info</a>
                         </p>
+                        <p className="text-[#808080] 2xl:text-xl xl:text-lg text-lg font-semibold text-center mb-6 2xl:hidden xl:hidden block">We`re happy to answer your questions</p>
                     </div>
                     <div className="col-span-3 h-full rounded-[10px] border border-[#D6D6D6]">
                         <div className="pt-10 pb-6 border-b-[#D6D6D6] border-b-[1px]">
-                            <div className="flex 2xl:gap-10 xl:gap-8 items-start px-5">
+                            <div className="flex 2xl:gap-10 xl:gap-8 gap-4  items-start px-5">
                                 <div className="mt-6">
-                                    <h1 className="2xl:text-4xl xl:text-4xl font-semibold poppins">01</h1>
+                                    <h1 className="2xl:text-4xl xl:text-4xl text-3xl font-semibold poppins">01</h1>
                                 </div>
                                 <div>
                                     <h1 className="text-[#0D0D0D] 2xl:text-xl xl:text-lg font-medium">What telemarketing services do you provide?</h1>
@@ -183,9 +193,9 @@ const page = () => {
                             </div>
                         </div>
                         <div className="py-6 border-b-[#D6D6D6] border-b-[1px]">
-                            <div className="flex 2xl:gap-10 xl:gap-8 items-start px-5">
+                            <div className="flex 2xl:gap-10 xl:gap-8 gap-4 items-start px-5">
                                 <div className="mt-6">
-                                    <h1 className="2xl:text-4xl xl:text-4xl font-semibold poppins">02</h1>
+                                    <h1 className="2xl:text-4xl xl:text-4xl text-3xl font-semibold poppins">02</h1>
                                 </div>
                                 <div>
                                     <h1 className="text-[#0D0D0D] 2xl:text-xl xl:text-lg font-medium">How do you generate leads for my business?</h1>
@@ -194,9 +204,9 @@ const page = () => {
                             </div>
                         </div>
                         <div className="pt-6 pb-10 border-b-[#D6D6D6] border-b-[1px]">
-                            <div className="flex 2xl:gap-10 xl:gap-8 items-start px-5">
+                            <div className="flex 2xl:gap-10 xl:gap-8 gap-4 items-start px-5">
                                 <div className="mt-6">
-                                    <h1 className="2xl:text-4xl xl:text-4xl font-semibold poppins">03</h1>
+                                    <h1 className="2xl:text-4xl xl:text-4xl text-3xl font-semibold poppins">03</h1>
                                 </div>
                                 <div>
                                     <h1 className="text-[#0D0D0D] 2xl:text-xl xl:text-lg font-medium">What type of web solutions do you offer?</h1>
@@ -207,10 +217,10 @@ const page = () => {
                     </div>
                 </div>
             </div>
-            <div className="2xl:py-24 xl:py-16 py-10 2xl:px-40 xl:px-28 px-14">
+            <div className="2xl:py-24 xl:py-16 py-10 2xl:px-40 xl:px-28 px-10">
                 <SectionTitles heading={'Experiences Shared by Our Clients'} subHeading={'Our team provided unparalleled support throughout every project. Their expertise and dedication were evident from day one, helping customers navigate complex challenges.'} />
-                <div className="2xl:mt-12 xl:mt-10 flex items-start 2xl:gap-8 xl:gap-6">
-                    <div className="2xl:p-8 xl:p-6 2xl:space-y-8 xl:space-y-6 border border-[#D6D6D6]">
+                <div className="2xl:mt-12 xl:mt-10 mt-6 flex 2xl:flex-row xl:flex-row flex-col items-start 2xl:gap-8 xl:gap-6 gap-4">
+                    <div className="2xl:p-8 xl:p-6 p-4 2xl:space-y-8 xl:space-y-6 space-y-4 border border-[#D6D6D6]">
                         <div className="flex items-center justify-center">
                             {
                                 Array.from({ length: 5 }, (_, i) => i + 1).map(i => (
@@ -220,14 +230,14 @@ const page = () => {
                         </div>
                         <p className="text-[#808080] 2xl:text-lg xl:text-base text-center">Their lead generation services are top-tier! We saw a huge boost in qualified leads, and the integration with our CRM was seamless. If you need reliable, high-quality leads, Clean Jobs is the way to go.</p>
                         <div className="flex items-start justify-center gap-2">
-                            <Image src={rev1} alt=""/>
+                            <Image src={rev1} alt="" />
                             <div>
                                 <h3 className="2xl:text-lg xl:text-lg text-black font-semibold">Artemisia Udinese</h3>
                                 <p className="text-[#808080] 2xl:text-xs xl:text-xs">Marketing Specialist</p>
                             </div>
                         </div>
                     </div>
-                    <div className="2xl:p-8 xl:p-6 2xl:space-y-8 xl:space-y-6 border border-[#D6D6D6]">
+                    <div className="2xl:p-8 xl:p-6 p-4 2xl:space-y-8 xl:space-y-6 space-y-4 border border-[#D6D6D6]">
                         <div className="flex items-center justify-center">
                             {
                                 Array.from({ length: 5 }, (_, i) => i + 1).map(i => (
@@ -237,7 +247,7 @@ const page = () => {
                         </div>
                         <p className="text-[#808080] 2xl:text-lg xl:text-base text-center">Working with them has been a game-changer. Their web solutions helped us build an online presence that drives sales, and their telemarketing service added a personal touch that boosted customer engagement.</p>
                         <div className="flex items-start justify-center gap-2">
-                            <Image src={rev2} alt=""/>
+                            <Image src={rev2} alt="" />
                             <div>
                                 <h3 className="2xl:text-lg xl:text-lg text-black font-semibold">Artemisia Udinese</h3>
                                 <p className="text-[#808080] 2xl:text-xs xl:text-xs">Marketing Specialist</p>

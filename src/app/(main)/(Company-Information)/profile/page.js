@@ -1,90 +1,137 @@
 'use client'
 import { useForm } from "react-hook-form";
 import { usStates } from "@/js/states";
-import GetUserData from "@/lib/getUserData";
 import FormButton from "@/Shared/FormButton";
 import InputField from "@/Shared/InputField";
 import PageTitle from "@/Shared/PageTitle";
 import SelectField from "@/Shared/SelectField";
 import CustomFileInput from "@/ui/InputButton";
 import { useState, useEffect } from "react";
+import GetUserData from "@/lib/getUserData";
+import useAxiosSecure from "@/Hooks/useAxiosSecure";
+import useAuth from "@/Hooks/useAuth";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 const Page = () => {
     // Fetch user data
-    const { userInfo } = GetUserData();
+    const { isLoading, userInfo, refetch } = GetUserData();
+    const axiosSecure = useAxiosSecure();
+    const { user } = useAuth();
     console.log(userInfo);
 
     // Initialize form with default values
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
-            companyName: userInfo?.companyName || '',
-            email: userInfo?.email || '',
+            companyName: userInfo?.companyName || user?.displayName,
+            email: user?.email,
             companyWebsite: userInfo?.companyWebsite || '',
             serviceState: userInfo?.serviceState || '',
-            serviceCity: userInfo?.serviceCity || '',
             serviceCity1: userInfo?.serviceCity1 || '',
             serviceCity2: userInfo?.serviceCity2 || '',
             serviceCity3: userInfo?.serviceCity3 || '',
+            serviceCity4: userInfo?.serviceCity4 || '',
             yearsInBusiness: userInfo?.yearsInBusiness || '',
             numberOfEmployees: userInfo?.numberOfEmployees || '',
             mainContact: userInfo?.mainContact || '',
             phoneNumber: userInfo?.phoneNumber || '',
-            socialMedia: userInfo?.socialMedia || '',
-            socialMedia1: userInfo?.socialMedia1 || '',
-            socialMedia2: userInfo?.socialMedia2 || '',
-            socialMedia3: userInfo?.socialMedia3 || '',
+            socialMedia1: userInfo?.socialMedias1 || '',
+            socialMedia2: userInfo?.socialMedias2 || '',
+            socialMedia3: userInfo?.socialMedias3 || '',
+            socialMedia4: userInfo?.socialMedias4 || '',
             companyDetails: userInfo?.companyDetails || '',
             companyLogo: userInfo?.companyLogo || '',
         }
     });
 
     // States for dynamic fields
-    const [socialCount, setSocialCount] = useState(userInfo?.socialCount || 0);
-    const [serviceCityCount, setServiceCityCount] = useState(userInfo?.serviceCityCount || 0);
+    const [socialCount, setSocialCount] = useState(0);
+    const [serviceCityCount, setServiceCityCount] = useState(0);
 
     // Update form default values if userInfo changes
     useEffect(() => {
         reset({
-            companyName: userInfo?.companyName || '',
-            email: userInfo?.email || '',
+            companyName: userInfo?.companyName || user?.displayName,
+            email: userInfo?.email || user?.email,
             companyWebsite: userInfo?.companyWebsite || '',
             serviceState: userInfo?.serviceState || '',
-            serviceCity: userInfo?.serviceCity || '',
             serviceCity1: userInfo?.serviceCity1 || '',
             serviceCity2: userInfo?.serviceCity2 || '',
             serviceCity3: userInfo?.serviceCity3 || '',
+            serviceCity4: userInfo?.serviceCity4 || '',
             yearsInBusiness: userInfo?.yearsInBusiness || '',
             numberOfEmployees: userInfo?.numberOfEmployees || '',
             mainContact: userInfo?.mainContact || '',
             phoneNumber: userInfo?.phoneNumber || '',
-            socialMedia: userInfo?.socialMedia || '',
-            socialMedia1: userInfo?.socialMedia1 || '',
-            socialMedia2: userInfo?.socialMedia2 || '',
-            socialMedia3: userInfo?.socialMedia3 || '',
+            socialMedia1: userInfo?.socialMedias1 || '',
+            socialMedia2: userInfo?.socialMedias2 || '',
+            socialMedia3: userInfo?.socialMedias3 || '',
+            socialMedia4: userInfo?.socialMedias4 || '',
             companyDetails: userInfo?.companyDetails || '',
             companyLogo: userInfo?.companyLogo || '',
         });
-    }, [userInfo, reset]);
-
+    }, [userInfo, user, reset]);
 
     const handleAddField = (type) => {
         if (type === 'social') {
-            setSocialCount(prevCount => prevCount + 1);
+            if (socialCount < 3) {
+                setSocialCount(prevCount => prevCount + 1);
+            }
         } else if (type === 'city') {
-            setServiceCityCount(prevCount => prevCount + 1);
+            if (serviceCityCount < 3) {
+                setServiceCityCount(prevCount => prevCount + 1);
+            }
+        }
+    };
+    console.log(socialCount);
+
+
+    const onSubmit = async (data) => {
+        console.log(data);
+
+        try {
+            // Show loading alert
+            Swal.fire({
+                title: 'Updating user...',
+                text: 'Please wait while we update your information.',
+                icon: 'info',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    Swal.showLoading(); // Display loading spinner
+                },
+            });
+            console.log(data);
+
+            // Make the patch request with axiosSecure
+            const response = await axiosSecure.patch(`/user/${userInfo?._id}`, data)
+            // On success, show success alert
+            Swal.fire({
+                title: 'Success!',
+                text: 'Your information has been successfully updated.',
+                icon: 'success',
+                timer: 3000, // Auto close after 3 seconds
+                showConfirmButton: false,
+            });
+            refetch();
+        } catch (error) {
+            // On error, show error alert
+            Swal.fire({
+                title: 'Error!',
+                text: 'Something went wrong while updating your information.',
+                icon: 'error',
+                confirmButtonText: 'Try Again',
+            });
+            console.error('Error updating user info:', error);
         }
     };
 
-    const onSubmit = data => {
-        console.log(data); // Handle the form submission
-        // Add file handling logic if necessary
-    };
 
     return (
         <div className="py-40 2xl:pt-60 px-10">
             <PageTitle
                 heading={'Profile'}
-                subHeading={`Hi! ${userInfo?.companyName}, Here you can manage your profile`}
+                subHeading={`Hi! ${userInfo?.companyName || user?.displayName || " "}, Here you can manage your profile`}
             />
 
             <form className="mt-20" onSubmit={handleSubmit(onSubmit)}>
@@ -106,6 +153,7 @@ const Page = () => {
                             register={register}
                             name={'email'}
                             errors={errors}
+                            disabled={true}
                         />
 
                         <InputField
@@ -117,7 +165,7 @@ const Page = () => {
                             errors={errors}
                         />
 
-                        <div className="form-control relative">
+                        {/* <div className="form-control relative">
                             <label className="label absolute bg-white left-[2%] -top-[50%]">
                                 <span className="label-text text-primary font-normal text-base poppins">Company Logo</span>
                             </label>
@@ -128,7 +176,7 @@ const Page = () => {
                                 name={'companyLogo'}
                                 {...register('companyLogo')}
                             />
-                        </div>
+                        </div> */}
 
                         <SelectField
                             label={'Service State'}
@@ -138,34 +186,72 @@ const Page = () => {
                             name={'serviceState'}
                             errors={errors}
                         />
-
+                        
                         <InputField
-                            label={'Enter Your Service City'}
                             type={'text'}
-                            placeholder={'New York City'}
+                            placeholder={`Enter your service city 1`}
+                            label={`Enter Your Service City 1`}
                             register={register}
-                            name={'serviceCity'}
+                            name={`serviceCity1`}
                             errors={errors}
                         />
+
+                        {
+                            userInfo?.serviceCity2 &&
+                            <InputField
+                                type={'text'}
+                                placeholder={`Enter your service city 2`}
+                                label={`Enter Your Service City 2`}
+                                register={register}
+                                name={`serviceCity2`}
+                                errors={errors}
+                            />
+                        }
+                        {
+                            userInfo?.serviceCity3 &&
+                            <InputField
+                                type={'text'}
+                                placeholder={`Enter your service city 3`}
+                                label={`Enter Your Service City 3`}
+                                register={register}
+                                name={`serviceCity3`}
+                                errors={errors}
+                            />
+                        }
+                        {
+                            userInfo?.serviceCity4 &&
+                            <InputField
+                                type={'text'}
+                                placeholder={`Enter your service city 4`}
+                                label={`Enter Your Service City 4`}
+                                register={register}
+                                name={`serviceCity4`}
+                                errors={errors}
+                            />
+                        }
+
 
                         {Array.from({ length: serviceCityCount }, (_, i) => (
                             <InputField
                                 key={i}
                                 type={'text'}
-                                placeholder={`Enter your service city ${i + 1}`}
-                                label={`Service City ${i + 1}`}
+                                placeholder={`Enter your service city ${i + 2}`}
+                                label={`Enter Your Service City ${i + 2}`}
                                 register={register}
-                                name={`serviceCity${i + 1}`}
+                                name={`serviceCity${i + 2}`}
                                 errors={errors}
                             />
                         ))}
 
-                        <div className="flex items-center gap-5">
-                            <p className="text-primary poppins font-normal text-lg">Add more Service Cities</p>
-                            <svg onClick={() => handleAddField('city')} className="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
-                                <path d="M21.1587 15.5743V25.8634M26.3032 20.7188H16.0141M36.5923 20.7188C36.5923 22.7456 36.1931 24.7525 35.4175 26.625C34.6419 28.4975 33.5051 30.1989 32.0719 31.6321C30.6388 33.0652 28.9374 34.2021 27.0649 34.9777C25.1924 35.7533 23.1854 36.1525 21.1587 36.1525C19.1319 36.1525 17.125 35.7533 15.2525 34.9777C13.38 34.2021 11.6786 33.0652 10.2454 31.6321C8.81227 30.1989 7.67544 28.4975 6.89982 26.625C6.12421 24.7525 5.72501 22.7456 5.72501 20.7188C5.72501 16.6256 7.35105 12.6999 10.2454 9.80557C13.1398 6.9112 17.0654 5.28516 21.1587 5.28516C25.2519 5.28516 29.1775 6.9112 32.0719 9.80557C34.9663 12.6999 36.5923 16.6256 36.5923 20.7188Z" stroke="#878787" strokeWidth="2.57228" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </div>
+                        {
+                            serviceCityCount < 3 &&
+                            <div className="flex items-center gap-5">
+                                <p className="text-primary poppins font-normal text-lg">Add more Service Cities</p>
+                                <svg onClick={() => handleAddField('city')} className="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                    <path d="M21.1587 15.5743V25.8634M26.3032 20.7188H16.0141M36.5923 20.7188C36.5923 22.7456 36.1931 24.7525 35.4175 26.625C34.6419 28.4975 33.5051 30.1989 32.0719 31.6321C30.6388 33.0652 28.9374 34.2021 27.0649 34.9777C25.1924 35.7533 23.1854 36.1525 21.1587 36.1525C19.1319 36.1525 17.125 35.7533 15.2525 34.9777C13.38 34.2021 11.6786 33.0652 10.2454 31.6321C8.81227 30.1989 7.67544 28.4975 6.89982 26.625C6.12421 24.7525 5.72501 22.7456 5.72501 20.7188C5.72501 16.6256 7.35105 12.6999 10.2454 9.80557C13.1398 6.9112 17.0654 5.28516 21.1587 5.28516C25.2519 5.28516 29.1775 6.9112 32.0719 9.80557C34.9663 12.6999 36.5923 16.6256 36.5923 20.7188Z" stroke="#878787" strokeWidth="2.57228" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                        }
 
                         <InputField
                             label={'Years in Business'}
@@ -205,24 +291,44 @@ const Page = () => {
                             errors={errors}
                         />
 
+                        {
+                            userInfo?.socialMedias?.filter(media => media)?.map((city, i) => {
+                                return (
+                                    <InputField
+                                        key={i}
+                                        type={'text'}
+                                        placeholder={`Enter your social media link ${i + 1}`}
+                                        label={`Social Media ${i + 1}`}
+                                        register={register}
+                                        name={`socialMedia${i}`}
+                                        errors={errors}
+                                    />
+                                )
+                            })
+                        }
+
                         {Array.from({ length: socialCount }, (_, i) => (
                             <InputField
                                 key={i}
                                 type={'text'}
-                                placeholder={`Enter your social media link ${i + 1}`}
-                                label={`Social Media ${i + 1}`}
+                                placeholder={`Enter your social media link ${i + userInfo?.socialMedias?.filter(media => media)?.length + 1}`}
+                                label={`Social Media ${i + userInfo?.socialMedias?.filter(media => media)?.length + 1}`}
                                 register={register}
-                                name={`socialMedia${i + 1}`}
+                                name={`socialMedia${i + userInfo?.socialMedias?.filter(media => media)?.length + 1}`}
                                 errors={errors}
                             />
                         ))}
 
-                        <div className="flex items-center gap-5">
-                            <p className="text-primary poppins font-normal text-lg">Add more Social Media</p>
-                            <svg onClick={() => handleAddField('social')} className="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
-                                <path d="M21.1587 15.5743V25.8634M26.3032 20.7188H16.0141M36.5923 20.7188C36.5923 22.7456 36.1931 24.7525 35.4175 26.625C34.6419 28.4975 33.5051 30.1989 32.0719 31.6321C30.6388 33.0652 28.9374 34.2021 27.0649 34.9777C25.1924 35.7533 23.1854 36.1525 21.1587 36.1525C19.1319 36.1525 17.125 35.7533 15.2525 34.9777C13.38 34.2021 11.6786 33.0652 10.2454 31.6321C8.81227 30.1989 7.67544 28.4975 6.89982 26.625C6.12421 24.7525 5.72501 22.7456 5.72501 20.7188C5.72501 16.6256 7.35105 12.6999 10.2454 9.80557C13.1398 6.9112 17.0654 5.28516 21.1587 5.28516C25.2519 5.28516 29.1775 6.9112 32.0719 9.80557C34.9663 12.6999 36.5923 16.6256 36.5923 20.7188Z" stroke="#878787" strokeWidth="2.57228" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </div>
+                        {
+                            socialCount + userInfo?.socialMedias?.filter(media => media)?.length < 4 &&
+                            <div className="flex items-center gap-5">
+                                <p className="text-primary poppins font-normal text-lg">Add more Social Media</p>
+                                <svg onClick={() => handleAddField('social')} className="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                    <path d="M21.1587 15.5743V25.8634M26.3032 20.7188H16.0141M36.5923 20.7188C36.5923 22.7456 36.1931 24.7525 35.4175 26.625C34.6419 28.4975 33.5051 30.1989 32.0719 31.6321C30.6388 33.0652 28.9374 34.2021 27.0649 34.9777C25.1924 35.7533 23.1854 36.1525 21.1587 36.1525C19.1319 36.1525 17.125 35.7533 15.2525 34.9777C13.38 34.2021 11.6786 33.0652 10.2454 31.6321C8.81227 30.1989 7.67544 28.4975 6.89982 26.625C6.12421 24.7525 5.72501 22.7456 5.72501 20.7188C5.72501 16.6256 7.35105 12.6999 10.2454 9.80557C13.1398 6.9112 17.0654 5.28516 21.1587 5.28516C25.2519 5.28516 29.1775 6.9112 32.0719 9.80557C34.9663 12.6999 36.5923 16.6256 36.5923 20.7188Z" stroke="#878787" strokeWidth="2.57228" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                        }
+
 
                         <div className="form-control relative">
                             <label className="label absolute bg-white left-[2%] -top-[8%]">

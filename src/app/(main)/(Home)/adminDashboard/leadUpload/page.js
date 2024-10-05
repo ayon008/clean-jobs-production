@@ -18,9 +18,9 @@ const LeadForm = () => {
         // Handle form submission logic here
     };
     return (
-        <div className='2xl:pt-36 xl:py-28 py-16'>
+        <div className='2xl:pt-36 xl:py-28 py-28'>
             <div className=''>
-                <div className="2xl:w-[60px] 2xl:h-[60px] xl:w-[50px] xl:h-[50px] relative w-[20px] h-[20px] rounded-full bg-primary  mx-auto text-white">
+                <div className="2xl:w-[60px] 2xl:h-[60px] xl:w-[50px] xl:h-[50px] relative w-[30px] h-[30px] rounded-full bg-primary  mx-auto text-white">
                     <span className="absolute top-1/2 right-1/2 transform -translate-y-1/2 translate-x-1/2 md:text-base text-xs font-normal">{firstLetter}</span>
                 </div>
             </div>
@@ -43,7 +43,7 @@ const LeadForm = () => {
                 </div>
                 <div className='2xl:mt-24 xl:mt-16 mt-10'>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className='grid grid-cols-2 gap-10'>
+                        <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-10'>
                             <InputField
                                 label={'Business Name'}
                                 placeholder={'Enter decision maker business name'}
