@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BannerButton from "./BannerButton";
 
 const Banner = () => {
     return (
@@ -15,7 +15,7 @@ const Banner = () => {
                     Effortlessly.
                 </h1>
                 <div className="flex md:flex-row flex-col items-center gap-2 mx-auto w-fit mt-6">
-                    <button className='btn bg-primary rounded-[70px] nunito font-semibold text-white border-none text-lg hover:bg-green-600 px-6'><Link href="/register">Sign Up</Link></button>
+                    <BannerButton />
                     <p className="text-black font-semibold">No Credit Card Required</p>
                 </div>
             </div>

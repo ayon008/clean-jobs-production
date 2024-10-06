@@ -11,7 +11,7 @@ const Footer = () => {
                 <Logo />
                 <div className="flex md:flex-row flex-col items-center md:gap-7 gap-4">
                     <p className="text-base font-medium inter">Ready to get started?</p>
-                    <ButtonSecondary label={'Get Started'} href={'/register'} />
+                    <ButtonSecondary label={'Get Started'} href={'/register'} userHref={'/my-subscription'} />
                 </div>
             </div>
             <div className="flex md:flex-row flex-col md:justify-between md:items-end justify-center">

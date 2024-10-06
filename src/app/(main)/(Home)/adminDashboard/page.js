@@ -17,6 +17,7 @@ const page = () => {
                 <div className='2xl:my-32 xl:my-24 my-10'>
                     <div className='w-full grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-x-6 gap-y-6'>
                         <DashboardCard
+                            href={''}
                             Icon={FaMessage}
                             title="User Message !"
                             description="Check your messages"
@@ -24,6 +25,7 @@ const page = () => {
                         />
 
                         <DashboardCard
+                            href={''}
                             Icon={FaDollarSign}
                             title="Payment Status"
                             description="See the payment status "
@@ -31,18 +33,14 @@ const page = () => {
                         />
 
                         <DashboardCard
+                            href={'/adminDashboard/allUser'}
                             Icon={FaUserData}
-                            title="User details"
+                            title="Users details"
                             description="See the user details"
                             iconMargin="4px"
                         />
                         <DashboardCard
-                            Icon={FaHand}
-                            title="Explore Our Other Services"
-                            description="We offer all kind of IT solutions, check us out"
-                            iconMargin="1px"
-                        />
-                        <DashboardCard
+                            href={'/adminDashboard/allLeads'}
                             Icon={FaStatus}
                             title="Lead Verification Status"
                             description="See verified leads"

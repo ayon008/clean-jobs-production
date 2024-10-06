@@ -28,12 +28,14 @@ const page = () => {
                         />
                         <DashboardCard
                             Icon={FaUpload}
+                            href={'/sellerDashboard/leadUpload'}
                             title="Upload your leads"
                             description="Sell your potential leads through us"
                             iconMargin="4px"
                         />
                         <DashboardCard
                             Icon={FaHand}
+                            href={'/other-services'}
                             title="Explore Our Other Services"
                             description="We offer all kind of IT solutions, check us out"
                             iconMargin="1px"

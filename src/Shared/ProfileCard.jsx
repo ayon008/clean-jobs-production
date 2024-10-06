@@ -6,10 +6,18 @@ import FaProfile from '@/icons/FaProfile';
 import FaExit from '@/icons/FaExit';
 import { MdOutlineNotifications } from 'react-icons/md';
 import useAuth from '@/Hooks/useAuth';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const ProfileCard = ({ sellerDashboard, userDashboard, adminDashboard }) => {
-    const { user } = useAuth();
+    const { user, logOut } = useAuth();
+    const router = useRouter();
     const firstLetter = user?.displayName[0];
+
+    const handleLogOut = async () => {
+        await logOut();
+        router.push('/');
+    }
 
     return (
         <div className='2xl:mt-[50px] xl:mt-[50px] box-shadow rounded-3xl border border-[#246532]'>
@@ -52,18 +60,23 @@ const ProfileCard = ({ sellerDashboard, userDashboard, adminDashboard }) => {
                 </div>
                 <div className='2xl:px-6 xl:px-6 px-3 space-y-6'>
                     <h2 className='text-lg font-bold text-black'>Account</h2>
-                    <div className='flex items-center gap-2'>
-                        <FaProfile />
-                        <h2 className='text-base'>Profile</h2>
+                    <div>
+                        <Link className='flex items-center gap-2' href={'/profile'}>
+                            <FaProfile />
+                            <h2 className='text-base'>Profile</h2>
+                        </Link>
                     </div>
-                    <div className='flex items-center gap-2'>
+
+                    <div onClick={() => handleLogOut()} className='flex items-center gap-2 cursor-pointer'>
                         <FaExit />
                         <h2 className='text-base'>Logout</h2>
                     </div>
+
                     <div className='flex items-center gap-2'>
                         <MdOutlineNotifications size={'24px'} />
                         <h2 className='text-base'>Notification</h2>
                     </div>
+
                 </div>
                 <div className='2xl:px-8 xl:px-6 px-3 space-y-[18px] 2xl:py-12 xl:py-8 py-6'>
                     <div className='bg-[#C7F2AB] px-6 py-5 rounded-[20px] flex items-start gap-3'>

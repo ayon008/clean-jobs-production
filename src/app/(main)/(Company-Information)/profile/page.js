@@ -24,7 +24,7 @@ const Page = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
             companyName: userInfo?.companyName || user?.displayName,
-            email: user?.email,
+            email: userInfo?.email || user?.email,
             companyWebsite: userInfo?.companyWebsite || '',
             serviceState: userInfo?.serviceState || '',
             serviceCity1: userInfo?.serviceCity1 || '',
@@ -35,10 +35,10 @@ const Page = () => {
             numberOfEmployees: userInfo?.numberOfEmployees || '',
             mainContact: userInfo?.mainContact || '',
             phoneNumber: userInfo?.phoneNumber || '',
-            socialMedia1: userInfo?.socialMedias1 || '',
-            socialMedia2: userInfo?.socialMedias2 || '',
-            socialMedia3: userInfo?.socialMedias3 || '',
-            socialMedia4: userInfo?.socialMedias4 || '',
+            socialMedia1: userInfo?.socialMedia1 || '',
+            socialMedia2: userInfo?.socialMedia2 || '',
+            socialMedia3: userInfo?.socialMedia3 || '',
+            socialMedia4: userInfo?.socialMedia4 || '',
             companyDetails: userInfo?.companyDetails || '',
             companyLogo: userInfo?.companyLogo || '',
         }
@@ -63,28 +63,35 @@ const Page = () => {
             numberOfEmployees: userInfo?.numberOfEmployees || '',
             mainContact: userInfo?.mainContact || '',
             phoneNumber: userInfo?.phoneNumber || '',
-            socialMedia1: userInfo?.socialMedias1 || '',
-            socialMedia2: userInfo?.socialMedias2 || '',
-            socialMedia3: userInfo?.socialMedias3 || '',
-            socialMedia4: userInfo?.socialMedias4 || '',
+            socialMedia1: userInfo?.socialMedia1 || '',
+            socialMedia2: userInfo?.socialMedia2 || '',
+            socialMedia3: userInfo?.socialMedia3 || '',
+            socialMedia4: userInfo?.socialMedia4 || '',
             companyDetails: userInfo?.companyDetails || '',
             companyLogo: userInfo?.companyLogo || '',
         });
+        // Cities
+        const initialCities = [userInfo?.serviceCity1, userInfo?.serviceCity2, userInfo?.serviceCity3, userInfo?.serviceCity4]?.filter(city => city);
+        setServiceCityCount(initialCities?.length);
+        // Medias
+        const initialMedias = [userInfo?.socialMedia1, userInfo?.socialMedia2, userInfo?.socialMedia3, userInfo?.socialMedia4]?.filter(media => media);
+        setSocialCount(initialMedias?.length);
     }, [userInfo, user, reset]);
+
+    console.log(serviceCityCount);
+
 
     const handleAddField = (type) => {
         if (type === 'social') {
-            if (socialCount < 3) {
+            if (socialCount < 4) {
                 setSocialCount(prevCount => prevCount + 1);
             }
         } else if (type === 'city') {
-            if (serviceCityCount < 3) {
+            if (serviceCityCount < 4) {
                 setServiceCityCount(prevCount => prevCount + 1);
             }
         }
     };
-    console.log(socialCount);
-
 
     const onSubmit = async (data) => {
         console.log(data);
@@ -186,7 +193,7 @@ const Page = () => {
                             name={'serviceState'}
                             errors={errors}
                         />
-                        
+
                         <InputField
                             type={'text'}
                             placeholder={`Enter your service city 1`}
@@ -197,7 +204,7 @@ const Page = () => {
                         />
 
                         {
-                            userInfo?.serviceCity2 &&
+                            (userInfo?.serviceCity2 || serviceCityCount > 1) &&
                             <InputField
                                 type={'text'}
                                 placeholder={`Enter your service city 2`}
@@ -208,7 +215,7 @@ const Page = () => {
                             />
                         }
                         {
-                            userInfo?.serviceCity3 &&
+                            (userInfo?.serviceCity3 || serviceCityCount > 2) &&
                             <InputField
                                 type={'text'}
                                 placeholder={`Enter your service city 3`}
@@ -219,7 +226,7 @@ const Page = () => {
                             />
                         }
                         {
-                            userInfo?.serviceCity4 &&
+                            (userInfo?.serviceCity4 || serviceCityCount > 3) &&
                             <InputField
                                 type={'text'}
                                 placeholder={`Enter your service city 4`}
@@ -230,21 +237,8 @@ const Page = () => {
                             />
                         }
 
-
-                        {Array.from({ length: serviceCityCount }, (_, i) => (
-                            <InputField
-                                key={i}
-                                type={'text'}
-                                placeholder={`Enter your service city ${i + 2}`}
-                                label={`Enter Your Service City ${i + 2}`}
-                                register={register}
-                                name={`serviceCity${i + 2}`}
-                                errors={errors}
-                            />
-                        ))}
-
                         {
-                            serviceCityCount < 3 &&
+                            serviceCityCount < 4 &&
                             <div className="flex items-center gap-5">
                                 <p className="text-primary poppins font-normal text-lg">Add more Service Cities</p>
                                 <svg onClick={() => handleAddField('city')} className="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
@@ -292,35 +286,52 @@ const Page = () => {
                         />
 
                         {
-                            userInfo?.socialMedias?.filter(media => media)?.map((city, i) => {
-                                return (
-                                    <InputField
-                                        key={i}
-                                        type={'text'}
-                                        placeholder={`Enter your social media link ${i + 1}`}
-                                        label={`Social Media ${i + 1}`}
-                                        register={register}
-                                        name={`socialMedia${i}`}
-                                        errors={errors}
-                                    />
-                                )
-                            })
-                        }
-
-                        {Array.from({ length: socialCount }, (_, i) => (
+                            (userInfo?.socialMedia1 || socialCount > 0) &&
                             <InputField
-                                key={i}
                                 type={'text'}
-                                placeholder={`Enter your social media link ${i + userInfo?.socialMedias?.filter(media => media)?.length + 1}`}
-                                label={`Social Media ${i + userInfo?.socialMedias?.filter(media => media)?.length + 1}`}
+                                placeholder={`Enter your social media link 1`}
+                                label={`Social Media 1`}
                                 register={register}
-                                name={`socialMedia${i + userInfo?.socialMedias?.filter(media => media)?.length + 1}`}
+                                name={`socialMedia1`}
                                 errors={errors}
                             />
-                        ))}
+                        }
+                        {
+                            (userInfo?.socialMedia2 || socialCount > 1) &&
+                            <InputField
+                                type={'text'}
+                                placeholder={`Enter your social media link 2`}
+                                label={`Social Media 2`}
+                                register={register}
+                                name={`socialMedia2`}
+                                errors={errors}
+                            />
+                        }
+                        {
+                            (userInfo?.socialMedia3 || socialCount > 2) &&
+                            <InputField
+                                type={'text'}
+                                placeholder={`Enter your social media link 3`}
+                                label={`Social Media 3`}
+                                register={register}
+                                name={`socialMedia3`}
+                                errors={errors}
+                            />
+                        }
+                        {
+                            (userInfo?.socialMedia4 || socialCount > 3) &&
+                            <InputField
+                                type={'text'}
+                                placeholder={`Enter your social media link 4`}
+                                label={`Social Media 4`}
+                                register={register}
+                                name={`socialMedia4`}
+                                errors={errors}
+                            />
+                        }
 
                         {
-                            socialCount + userInfo?.socialMedias?.filter(media => media)?.length < 4 &&
+                            socialCount < 4 &&
                             <div className="flex items-center gap-5">
                                 <p className="text-primary poppins font-normal text-lg">Add more Social Media</p>
                                 <svg onClick={() => handleAddField('social')} className="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
