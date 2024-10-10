@@ -86,7 +86,7 @@ const Navbar = () => {
         {
             label: 'Services', subLinks: [
                 { href: '/search/exclusive-leads', label: 'Exclusive Leads' },
-                { href: '/search/layups', label: 'LayUps (Warm leads)' },
+                { href: '/search/layUps', label: 'LayUps (Warm leads)' },
                 { href: '/search/opportunities', label: 'Opportunities' },
                 { href: '/single-decision-maker', label: 'Single Decision Maker' },
                 { href: '/decision-makers', label: 'Decision Makers' },

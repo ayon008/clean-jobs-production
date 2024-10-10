@@ -1,13 +1,15 @@
 import Image from 'next/image';
 import image from '@/../public/assets/55024593_9264820 1.png';
 import { FaArrowRight } from 'react-icons/fa';
-const page = () => {
+const page = ({ searchparams }) => {
+    console.log(searchparams);
+    
     // border-4 border-[#246532]
     return (
         <div className="pt-[80px]">
             <div className='grid message h-[600px]'>
                 <div className='px-10 py-20 flex flex-col border-t-2 border-r-2 border-[#246532]'>
-                    <h3 className='poppins text-3xl font-semibold'>Message</h3>
+                    <h3 className='poppins text-3xl font-semibold'>Message <span className='text-primary'>(65)</span></h3>
                     <label className="input input-bordered flex items-center gap-2 bg-[#F8F8F8] mt-6 rounded-lg">
                         <input type="text" className="grow bg-[#F8F8F8]" placeholder="Search" />
                         <svg
@@ -21,10 +23,26 @@ const page = () => {
                                 clipRule="evenodd" />
                         </svg>
                     </label>
-                    <Image src={image} alt="" className='my-auto' />
+                    {/* <Image src={image} alt="" className='my-auto' /> */}
+                    <div className='mt-10'>
+                        <div>
+                            <div className='flex justify-between pb-4 border-b-[1px] border-b-gray-500'>
+                                <div>
+                                    <h3 className="poppins text-xl font-semibold">Sepide Orchide</h3>
+                                    <p className='mt-2 text-gray-400 poppins text-[10px]'>Change the background</p>
+                                </div>
+                                <div>
+                                    <p className='text-gray-400 poppins text-[10px]'>05:47 pm</p>
+                                    <div className='w-[25px] bg-primary text-white rounded-[50%] h-[25px] mt-[10px] ml-auto relative'>
+                                        <span className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className='w-full h-full border-t-2 border-[#246532]'>
-                    <div className='p-10 grid grid-cols-2 h-full'>
+                    <div className='p-10 w-full h-full'>
                         <div className='flex flex-col h-full'>
                             <Image src={image} alt="" className='m-auto' />
                             <label className="input input-bordered flex items-center gap-2 bg-[#F8F8F8] mt-auto rounded-[90px] border-2 border-[#A4DB74]">
@@ -34,7 +52,6 @@ const page = () => {
                                 </div>
                             </label>
                         </div>
-
                     </div>
                 </div>
             </div>

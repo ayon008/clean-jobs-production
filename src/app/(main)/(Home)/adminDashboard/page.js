@@ -46,6 +46,13 @@ const page = () => {
                             description="See verified leads"
                             iconMargin="4px"
                         />
+                        <DashboardCard
+                            Icon={FaUpload}
+                            href={'/adminDashboard/leadUpload'}
+                            title="Upload your leads"
+                            description="Sell your potential leads through us"
+                            iconMargin="4px"
+                        />
                     </div>
                 </div>
             </div>

@@ -1,10 +1,10 @@
 'use client'
 import { createContext, useEffect, useState } from "react";
 import { confirmPasswordReset, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
-import app from "@/js/firebase.init";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { app } from "@/js/firebase.init";
 
 export const AuthContext = createContext();
 
@@ -54,10 +54,8 @@ const AuthProvider = ({ children }) => {
     };
 
     const logOut = () => {
-        setLoader(true);
-        setUser(null);
-        Cookies.remove('userToken');
         router.push('/');
+        Cookies.remove('userToken');
         return signOut(auth);
     }
 
@@ -66,13 +64,15 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const subscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
-                setUser(currentUser);
                 setLoader(false);
                 axiosPublic.post('/userEmail', { email: currentUser.email })
                     .then(res => {
                         console.log(res);
                         const { token } = res?.data;
-                        Cookies.set('userToken', token, { expires: 1 / 24 });
+                        if (token) {
+                            Cookies.set('userToken', token, { expires: 1 / 24 });
+                            setUser(currentUser);
+                        }
                     })
             }
             else if (!currentUser) {

@@ -58,7 +58,7 @@
 }
 
 .message {
-    grid-template-columns: 1fr 3fr !important;
+    grid-template-columns: 1fr 2fr !important;
 }
 
 .navbar a:focus,

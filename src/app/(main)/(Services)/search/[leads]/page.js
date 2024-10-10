@@ -9,13 +9,14 @@ const LeadPage = async ({ params }) => {
 
     try {
         data = await getLeadData(leads);
+        console.log(data);
     } catch (error) {
         console.error('Error fetching lead data:', error);
         return <div className="pt-40 pb-20 px-10">Error loading data</div>; // Handle error gracefully
     }
 
     const filteredData = (state) => {
-        return data?.filter(d => d.job_details.location.state === state)?.length;
+        return data?.filter(d => d.states === state)?.length;
     };
 
     return (

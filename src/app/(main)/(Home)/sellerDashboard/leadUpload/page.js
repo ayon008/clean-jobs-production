@@ -1,22 +1,71 @@
 'use client'
 import useAuth from '@/Hooks/useAuth';
+import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import { usStates } from '@/js/states';
+import uploadAudioToFirebase from '@/js/uploadAudio';
 import FormButton from '@/Shared/FormButton';
 import InputField from '@/Shared/InputField';
 import PageTitle from '@/Shared/PageTitle';
 import SelectField from '@/Shared/SelectField';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const LeadForm = () => {
     const { user } = useAuth();
     const firstLetter = user?.displayName[0];
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const axiosSecure = useAxiosSecure()
 
-    const onSubmit = (data) => {
-        console.log(data);
-        // Handle form submission logic here
+    const onSubmit = async (data) => {
+        // Show the loading Swal when the form is submitted
+        Swal.fire({
+            title: 'Submitting...',
+            text: 'Please wait while we process your request.',
+            icon: 'info',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            didOpen: () => {
+                Swal.showLoading(); // Start loading indicator
+            }
+        });
+
+        const record = data.audio[0];
+        const audio = await uploadAudioToFirebase(record);
+        const date = new Date();
+        if (!audio) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'There was an issue submitting the lead. Please try again later.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+            return
+        }
+
+        // Post the form data to the server
+        await axiosSecure.post('/leads', { ...data, sellerId: user?.uid, companyName: user?.displayName, audio, uploadDate: date, verified: false })
+            .then(response => {
+                // If the request is successful, show success Swal
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Lead has been submitted successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+                reset();
+            })
+            .catch(error => {
+                // If there is an error, show error Swal
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'There was an issue submitting the lead. Please try again later.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            });
     };
+
     return (
         <div className='2xl:pt-36 xl:py-28 py-28'>
             <div className=''>
@@ -44,87 +93,134 @@ const LeadForm = () => {
                 <div className='2xl:mt-24 xl:mt-16 mt-10'>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-10'>
-                            <InputField
-                                label={'Business Name'}
-                                placeholder={'Enter decision maker business name'}
-                                type={'text'}
-                                register={register}
-                                name={'businessName'}
-                                errors={errors}
-                            />
-                            <InputField
-                                label={'Appointment Time'}
-                                placeholder={'8.45 Pm'}
-                                type={'time'}
-                                register={register}
-                                name={'time'}
-                                errors={errors}
-                            />
-                            <SelectField
-                                label={'Address/Location'}
-                                placeholder={'Enter your state'}
-                                type={usStates}
-                                register={register}
-                                name={'states'}
-                                errors={errors}
-                            />
-                            <InputField
-                                label={'City'}
-                                placeholder={'New York City'}
-                                type={'text'}
-                                register={register}
-                                name={'city'}
-                                errors={errors}
-                            />
-                            <InputField
-                                label={'Total cleanable area (sq/ft)'}
-                                placeholder={'Enter cleanable area in sq/ft'}
-                                type={'number'}
-                                register={register}
-                                name={'area'}
-                                errors={errors}
-                            />
-                            <InputField
-                                placeholder={'Enter first name of decision maker'}
-                                label={'First Name'}
-                                type={'text'}
-                                register={register}
-                                name={'firstName'}
-                                errors={errors}
-                            />
-                            <InputField
-                                label={'Last Name'}
-                                placeholder={'Enter your last name'}
-                                type={'text'}
-                                register={register}
-                                name={'lastName'}
-                                errors={errors}
-                            />
-                            <InputField
-                                label={'Cleaning frequency'}
-                                placeholder={'Enter cleaning frequency'}
-                                type={'text'}
-                                register={register}
-                                name={'frequency'}
-                                errors={errors}
-                            />
-                            <InputField
-                                label={'Additional Details'}
-                                placeholder={'Please enter any additional necessary details'}
-                                type={'text'}
-                                register={register}
-                                name={'additionalDetails'}
-                                errors={errors}
-                            />
-                            <InputField
-                                label={'Appointment Date'}
-                                placeholder={'28/10/2024'}
-                                type={'date'}
-                                register={register}
-                                name={'date'}
-                                errors={errors}
-                            />
+                            <div>
+                                <InputField
+                                    label={'Business Name'}
+                                    placeholder={'Enter decision maker business name'}
+                                    type={'text'}
+                                    register={register}
+                                    name={'businessName'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <InputField
+                                    label={'Appointment Time'}
+                                    placeholder={'8.45 Pm'}
+                                    type={'time'}
+                                    register={register}
+                                    name={'time'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <SelectField
+                                    label={'Address/Location'}
+                                    placeholder={'Enter your state'}
+                                    type={usStates}
+                                    register={register}
+                                    name={'states'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <InputField
+                                    label={'City'}
+                                    placeholder={'New York City'}
+                                    type={'text'}
+                                    register={register}
+                                    name={'city'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <InputField
+                                    placeholder={'Enter first name of decision maker'}
+                                    label={'First Name'}
+                                    type={'text'}
+                                    register={register}
+                                    name={'firstName'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <InputField
+                                    label={'Total cleanable area (sq/ft)'}
+                                    placeholder={'Enter cleanable area in sq/ft'}
+                                    type={'number'}
+                                    register={register}
+                                    name={'area'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <InputField
+                                    label={'Last Name'}
+                                    placeholder={'Enter your last name'}
+                                    type={'text'}
+                                    register={register}
+                                    name={'lastName'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <SelectField
+                                    label={'Category'}
+                                    placeholder={'Pick Category'}
+                                    type={['exclusive-leads', 'layUps', 'opportunities']}
+                                    register={register}
+                                    name={'category'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <div className="form-control relative">
+                                    <label className="label absolute bg-white left-[2%] -top-[8%]">
+                                        <span className="label-text text-primary font-normal text-base poppins">Additional Details</span>
+                                    </label>
+                                    <textarea
+                                        type='text'
+                                        placeholder={'Please enter any additional necessary details'}
+                                        rows={8}
+                                        className="textarea textarea-bordered textarea-md w-full rounded-[10px] bg-white border border-[#5C6272] resize-none"
+                                        {...register('additionalDetails', { required: `Additional is required` })}
+                                    ></textarea>
+                                </div>
+                                {errors['additionalDetails'] && <p className="text-red-500 text-sm">{errors['additionalDetails']?.message}</p>}
+                            </div>
 
+                            <div>
+                                <InputField
+                                    label={'Appointment Date'}
+                                    placeholder={'28/10/2024'}
+                                    type={'date'}
+                                    register={register}
+                                    name={'date'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Upload Audio File (file name must be your company Name)</span>
+                                </label>
+                                <input
+                                    type="file"
+                                    accept="audio/*"  // Accept only audio files
+                                    className="file-input file-input-bordered w-full rounded-[10px] bg-white"
+                                    {...register('audio', {
+                                        required: 'Audio file is required',
+                                        validate: {
+                                            // Validate if the file is of audio type
+                                            audioType: (files) => {
+                                                const allowedTypes = ['audio/mp3', 'audio/wav', 'audio/mpeg'];
+                                                return files[0] && allowedTypes.includes(files[0].type) || 'Invalid file type. Only MP3 and WAV files are allowed.';
+                                            }
+                                        }
+                                    })}
+                                />
+                                {errors.audio && <p className="text-red-500 text-sm">{errors.audio.message}</p>}
+                            </div>
+                            <div></div>
                             <FormButton label={'Submit'} />
                         </div>
                     </form>

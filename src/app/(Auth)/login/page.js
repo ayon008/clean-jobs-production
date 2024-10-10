@@ -8,13 +8,25 @@ import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 const Page = ({ searchParams }) => {
     const message = searchParams?.message;
     const router = useRouter();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    const { signIn } = useAuth();
+    const { signIn, user } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
+    const token = Cookies.get('userToken') || '';
+    const [decoded, setDecoded] = useState('');
+
+    useEffect(() => {
+        if (token) {
+            const decoded = jwtDecode(token);
+            setDecoded(decoded);
+        }
+    }, [user, token])
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(prev => !prev);
@@ -43,7 +55,15 @@ const Page = ({ searchParams }) => {
                     timer: 1500,
                 });
                 reset();
-                router.push(`/`);
+                if (decoded?.isAdmin) {
+                    router.push(`/adminDashboard`);
+                }
+                else if (decoded?.isSeller) {
+                    router.push(`/sellerDashboard`);
+                }
+                else {
+                    router.push(`/dashboard`);
+                }
             })
             .catch((err) => {
                 // If there is an error, show an error message

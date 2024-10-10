@@ -13,7 +13,7 @@ const LeadsByCity = ({ data, states }) => {
 
     const filteredData = city
         ? data.filter(d =>
-            d.job_details.location.city.toLowerCase().includes(city.toLowerCase())
+            d?.city?.toLowerCase().includes(city?.toLowerCase())
         )
         : data;
 
