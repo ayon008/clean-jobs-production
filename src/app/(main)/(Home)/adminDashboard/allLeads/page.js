@@ -3,7 +3,9 @@ import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import formatTimestamp from '@/js/convertTime';
 import GetAllLeads from '@/lib/GetAllLeads';
 import SearchState from '@/Shared/SearchState';
+import Dot from '@/ui/Dot';
 import TableHead from '@/ui/TableHead';
+import { all } from 'axios';
 import React from 'react';
 import Swal from 'sweetalert2';
 
@@ -12,6 +14,94 @@ const Page = () => {
     const axiosSecure = useAxiosSecure();
     const { allLeads, refetch, isLoading } = GetAllLeads();
     console.log(allLeads);
+
+    const handleDelete = (id) => {
+        // Show confirmation Swal
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Show loading Swal
+                Swal.fire({
+                    title: 'Deleting...',
+                    text: 'Please wait while we delete the lead.',
+                    icon: 'info',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                // Perform the delete request
+                axiosSecure.delete(`/lead/${id}`)
+                    .then(response => {
+                        // Show success Swal
+                        Swal.fire({
+                            title: 'Deleted!',
+                            text: 'The lead has been deleted successfully.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        });
+                        refetch(); // Refetch the data after deletion
+                    })
+                    .catch(error => {
+                        // Show error Swal
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'There was an error deleting the lead. Please try again.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    });
+            }
+        });
+    };
+
+
+    const handlePrize = (event, id) => {
+        event.preventDefault(); // Prevent form submission
+        const prize = event.target.prize.value;
+        // Show loading Swal
+        Swal.fire({
+            title: 'Updating Prize...',
+            text: 'Please wait while we update the prize.',
+            icon: 'info',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
+        axiosSecure.patch(`/prize/${id}`, { prize: prize })
+            .then(response => {
+                // On success, show success Swal
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'The prize has been updated successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+                // Refetch the data
+                refetch();
+            })
+            .catch(error => {
+                // On error, show error Swal
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'There was an error updating the prize. Please try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            });
+    };
+
+
 
     const handleStatus = (id, action) => {
         // Show loading Swal
@@ -66,7 +156,7 @@ const Page = () => {
                         Lead verification status
                     </h4>
                     <p className="text-[#6941C6] inter text-sm font-medium pt-[3px] px-[10px] bg-[#F9F5FF] rounded-[18px]">
-                        240
+                        {allLeads?.length}
                     </p>
                 </div>
                 <p className="text-[#667085] inter font-normal text-xs text-center mt-2">
@@ -74,12 +164,12 @@ const Page = () => {
                 </p>
             </div>
             <div className='my-9'>
-                <SearchState />
+                {/* <SearchState /> */}
             </div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <TableHead allLeads={true} tableHead={['Uploader', 'Business Name', 'Decision Maker', 'Appointment Date', 'Appointment Time', 'States', 'City', 'Area', 'Upload Date', 'Audio', 'Status', 'Additional Details', 'Category', 'Change Category', 'Update Status']} />
+                    <TableHead allLeads={true} tableHead={['Uploader', 'Business Name', 'Decision Maker', 'Appointment Date', 'Appointment Time', 'States', 'City', 'Area', 'Upload Date', 'Audio', 'Status', 'Additional Details', 'Category', 'Sold', 'Change Category', 'Update Status', 'Prize', 'Set Prize', 'Action']} />
                     <tbody>
                         {
                             allLeads?.map(lead => {
@@ -134,6 +224,22 @@ const Page = () => {
                                             </p>
                                         </td>
                                         <td>
+                                            {
+                                                lead?.sold ?
+                                                    <>
+                                                        <p className="text-red-600
+                             inter text-sm font-medium">Sold</p>
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <Dot width={'w-[30px]'} />
+                                                        <p className="text-[#027A48]
+                             inter text-sm font-medium">Not sold</p>
+                                                    </>
+
+                                            }
+                                        </td>
+                                        <td>
                                             <select onChange={() => handleCategory(event, lead?._id)} defaultValue={lead?.category} className='rounded-[10px] bg-white select select-bordered'>
                                                 <option>exclusive-leads</option>
                                                 <option>layUps</option>
@@ -152,6 +258,22 @@ const Page = () => {
                                                     </button>
                                             }
 
+                                        </td>
+                                        <td>
+                                            {
+                                                !lead?.prize ? 'Not Set' : `$${lead?.prize}`
+                                            }
+                                        </td>
+                                        <td>
+                                            <form onSubmit={() => handlePrize(event, lead?._id)} className='flex items-center justify-center gap-1'>
+                                                <input name='prize' type='text' min={0} defaultValue={lead?.prize} className='rounded-md input input-bordered' />
+                                                <input className='rounded-md btn text-white bg-primary' type='submit' value={'Update'} />
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <button onClick={() => handleDelete(lead?._id)} className='rounded-lg btn btn-outline text-red-600'>
+                                                Delete
+                                            </button>
                                         </td>
                                     </tr>
                                 )

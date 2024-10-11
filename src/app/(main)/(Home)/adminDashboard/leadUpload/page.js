@@ -42,9 +42,8 @@ const LeadForm = () => {
             });
             return
         }
-
         // Post the form data to the server
-        await axiosSecure.post('/leads', { ...data, sellerId: user?.uid, companyName: user?.displayName, audio, uploadDate: date, verified: false })
+        await axiosSecure.post('/leads', { ...data, sellerId: user?.uid, companyName: user?.displayName, audio, uploadDate: date, verified: false, sold: false, sellerPayment: false })
             .then(response => {
                 // If the request is successful, show success Swal
                 Swal.fire({
@@ -95,6 +94,16 @@ const LeadForm = () => {
                         <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-10'>
                             <div>
                                 <InputField
+                                    label={'Lead Name'}
+                                    placeholder={'Enter lead name'}
+                                    type={'text'}
+                                    register={register}
+                                    name={'leadName'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <InputField
                                     label={'Business Name'}
                                     placeholder={'Enter decision maker business name'}
                                     type={'text'}
@@ -103,7 +112,7 @@ const LeadForm = () => {
                                     errors={errors}
                                 />
                             </div>
-                            <div>
+                            <div className='col-start-1 row-start-5'>
                                 <InputField
                                     label={'Appointment Time'}
                                     placeholder={'8.45 Pm'}
@@ -115,7 +124,7 @@ const LeadForm = () => {
                             </div>
                             <div>
                                 <SelectField
-                                    label={'Address/Location'}
+                                    label={'State'}
                                     placeholder={'Enter your state'}
                                     type={usStates}
                                     register={register}
@@ -135,6 +144,16 @@ const LeadForm = () => {
                             </div>
                             <div>
                                 <InputField
+                                    label={'Location'}
+                                    placeholder={'Oakley Avenue, Hammond, IN'}
+                                    type={'text'}
+                                    register={register}
+                                    name={'location'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div className='col-start-1 row-start-2'>
+                                <InputField
                                     placeholder={'Enter first name of decision maker'}
                                     label={'First Name'}
                                     type={'text'}
@@ -153,13 +172,63 @@ const LeadForm = () => {
                                     errors={errors}
                                 />
                             </div>
-                            <div>
+                            <div className='col-start-1 row-start-3'>
                                 <InputField
                                     label={'Last Name'}
                                     placeholder={'Enter your last name'}
                                     type={'text'}
                                     register={register}
                                     name={'lastName'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <InputField
+                                    label={'Opportunity Type'}
+                                    placeholder={'Enter Opportunity Type (standard or non-standard'}
+                                    type={'text'}
+                                    register={register}
+                                    name={'opportunityType'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <InputField
+                                    label={'Type'}
+                                    placeholder={'Office,Restaurant'}
+                                    type={'text'}
+                                    register={register}
+                                    name={'type'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <InputField
+                                    label={'Scope'}
+                                    placeholder={'General Cleaning - Vacuum, dust, mop and clean bathrooms, etc.'}
+                                    type={'text'}
+                                    register={register}
+                                    name={'scope'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <InputField
+                                    label={'Frequency'}
+                                    placeholder={'1 day/week (weekends)'}
+                                    type={'text'}
+                                    register={register}
+                                    name={'frequency'}
+                                    errors={errors}
+                                />
+                            </div>
+                            <div>
+                                <InputField
+                                    label={'Cleaning'}
+                                    placeholder={'Outsourced'}
+                                    type={'text'}
+                                    register={register}
+                                    name={'cleaning'}
                                     errors={errors}
                                 />
                             </div>
@@ -173,7 +242,7 @@ const LeadForm = () => {
                                     errors={errors}
                                 />
                             </div>
-                            <div>
+                            <div className='row-span-4'>
                                 <div className="form-control relative">
                                     <label className="label absolute bg-white left-[2%] -top-[8%]">
                                         <span className="label-text text-primary font-normal text-base poppins">Additional Details</span>
@@ -188,8 +257,7 @@ const LeadForm = () => {
                                 </div>
                                 {errors['additionalDetails'] && <p className="text-red-500 text-sm">{errors['additionalDetails']?.message}</p>}
                             </div>
-
-                            <div>
+                            <div className='col-start-1 row-start-4'>
                                 <InputField
                                     label={'Appointment Date'}
                                     placeholder={'28/10/2024'}
@@ -220,7 +288,8 @@ const LeadForm = () => {
                                 />
                                 {errors.audio && <p className="text-red-500 text-sm">{errors.audio.message}</p>}
                             </div>
-                            <div></div>
+                            <div className='2xl:block xl:block hidden'></div>
+                            <div className='2xl:block xl:block hidden'></div>
                             <FormButton label={'Submit'} />
                         </div>
                     </form>

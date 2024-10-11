@@ -10,6 +10,9 @@ function capitalizeFirstLetter(string) {
 
 const page = async ({ params }) => {
     const { leads, states } = params;
+    const decodeState = decodeURIComponent(states);
+    console.log(decodeState);
+    
     const data = await getLeadByState(leads, states);
     console.log(data);
 
@@ -18,7 +21,7 @@ const page = async ({ params }) => {
             <div>
                 <div className="flex 2xl:flex-row xl:flex-row flex-col items-center gap-4 justify-center">
                     <h4 className="text-xl inter font-medium text-center">
-                        {capitalizeFirstLetter(leads)} in {params.states}
+                        {capitalizeFirstLetter(leads)} in {decodeState}
                     </h4>
                     <p className="text-[#6941C6] inter text-sm font-medium py-[3px] px-[10px] bg-[#F9F5FF] rounded-[18px]">
                         {data?.length} leads

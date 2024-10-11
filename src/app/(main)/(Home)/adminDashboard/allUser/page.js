@@ -13,9 +13,6 @@ const Page = () => {
 
     const makeAdmin = async (id, action) => {
         console.log(id, action);
-        console.log('clicked');
-
-
         // Show loading spinner
         Swal.fire({
             title: 'Processing...',
@@ -106,7 +103,7 @@ const Page = () => {
                                 allUsers?.map((user, i) => {
                                     return (
                                         <tr key={user?._id}>
-                                            <th>{i + 1}</th>
+                                            <th>{user?.companyName}</th>
                                             <td>
                                                 <a href={`mailTo:${user?.email}`}>{user?.email}</a>
                                             </td>

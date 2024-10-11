@@ -23,6 +23,7 @@ export function middleware(request) {
     }
     try {
         const decoded = jwtDecode(token);
+        console.log(decoded);
         const isAdmin = decoded?.isAdmin;
         const isSeller = decoded?.isSeller;
         console.log(isAdmin, isSeller);

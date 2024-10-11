@@ -25,7 +25,7 @@ const Page = () => {
                         />
 
                         <DashboardCard
-                            href={''}
+                            href={'/dashboard/myLeads'}
                             Icon={FaList}
                             title="My Lead List"
                             description="See all the lead you saved"
@@ -46,7 +46,7 @@ const Page = () => {
                             description="Submit if you have a lead list"
                             iconMargin="4px"
                         />
-                        
+
                         <DashboardCard
                             href={''}
                             Icon={FaShoppingCart}

@@ -7,8 +7,9 @@ import { MdOutlineNotifications } from 'react-icons/md';
 import useAuth from "@/Hooks/useAuth";
 import Dropdown from "@/ui/Dropdown";
 import Link from "next/link";
-import Button from "@/ui/Button";
 import ButtonPrimary from "@/ui/ButtonPrimary";
+import jsCookie from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
 const Navbar = () => {
 
@@ -20,6 +21,16 @@ const Navbar = () => {
     const pathName = usePathname();
     const userName = user?.displayName;
     const firstLetter = user?.displayName[0];
+    const cookies = jsCookie.get('userToken');
+    const [decoded, setDecode] = useState({})
+    useEffect(() => {
+        if (cookies) {
+            const decoded = jwtDecode(cookies);
+            setDecode(decoded)
+        }
+    }, [cookies])
+    const { isSeller, isAdmin } = decoded;
+
 
     // Logout function
     const handleLogOut = () => {
@@ -58,7 +69,10 @@ const Navbar = () => {
     const userLinks = [
         {
             label: 'Home', subLinks: [
-                { href: '/dashboard', label: 'Dashboard' }
+                { href: '/dashboard', label: 'Dashboard' },
+                isSeller && { href: '/sellerDashboard', label: 'Seller dashboard' },
+                isAdmin && { href: '/adminDashboard', label: 'Admin dashboard' },
+
             ]
         },
         {
@@ -173,9 +187,9 @@ const Navbar = () => {
                                     userLinks.map(u => {
                                         const { subLinks } = u;
                                         return (
-                                            subLinks.map(s => {
+                                            subLinks.map((s, i) => {
                                                 return (
-                                                    <li key={s}>
+                                                    <li key={i}>
                                                         <Link href={s.href}>{s.label}</Link>
                                                     </li>
                                                 )

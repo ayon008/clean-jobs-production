@@ -1,75 +1,72 @@
 import Dot from "@/ui/Dot";
 import FireIcon from "@/ui/FireIcon";
-import RedDot from "@/ui/RedDot";
-import { FaArrowRight, FaFacebookMessenger, FaPhone, FaPhoneAlt } from "react-icons/fa";
-import image from '@/../public/assets/Ellipse 148.png'
-import Image from "next/image";
-import { MdEmail } from 'react-icons/md';
-import { FaGlobe } from 'react-icons/fa';
-import pImage from '@/../public/assets/primary img.jpg'
+import { FaArrowRight, FaBookmark } from "react-icons/fa";
 import getLeadById from "@/lib/getLeadById";
 import getLeadData from "@/lib/getLeadList";
+import getDateDifference from "@/js/calculateDate";
+import Bookmarks from "@/ui/Bookmarks";
 
 
 export async function generateStaticParams() {
-    const leadTypes = ["exclusive-leads", "layups", "opportunities"];
+    const leadTypes = ["exclusive-leads", "layUps", "opportunities"];
     const params = await Promise.all(
         leadTypes.map(async (type) => {
             const leads = await getLeadData(type);
+            console.log(leads);
             return leads.map(lead => ({
                 leads: type,
-                state: lead.job_details.location.state,
+                states: lead.states,
                 id: lead._id,
             }));
         })
     );
+
+    console.log(params.flat());
     return params.flat();
 }
 
 const page = async ({ params }) => {
     const { leads, states, id } = params;
     const data = await getLeadById(leads, states, id);
-    const { status, job_details } = data;
-    const { location, type, scope, frequency, facility_size, date_sold, notes, schedule } = job_details;
-
-    const isSold = status.toLowerCase() === 'sold';
-    const isAvailable = status.toLowerCase() === 'available';
-
+    
     return (
         <div className="pt-40 pb-20 px-10">
             <div>
-                {isSold && (
-                    <div className="flex items-center bg-red-100 rounded-[20px] py-[3px] px-4 w-fit mx-auto">
-                        <p className="text-red-600 inter text-sm font-medium">Sold</p>
-                    </div>
-                )}
-                {isAvailable && (
-                    <div className="flex items-center bg-[#ECFDF3] rounded-[20px] py-[3px] pl-[10px] pr-[20px] w-fit mx-auto">
-                        <Dot />
-                        <p className="text-[#027A48] inter text-sm font-medium">Available</p>
-                    </div>
-                )}
+                {
+                    data?.sold ?
+                        <div className="flex items-center bg-red-100 rounded-[20px] py-[3px] px-4 w-fit mx-auto">
+                            <p className="text-red-600 inter text-sm font-medium">Sold</p>
+                        </div>
+                        :
+                        <div className="flex items-center justify-center gap-4 w-fit mx-auto">
+                            <div className="flex items-center bg-[#ECFDF3] rounded-[20px] py-[3px] pl-[10px] pr-[20px] w-fit mx-auto">
+                                <Dot width={'w-[30px]'} />
+                                <p className="text-[#027A48] inter text-sm font-medium">Available</p>
+                            </div>
+                            <Bookmarks id={data?._id} />
+                        </div>
+                }
                 <div className="flex justify-center items-end">
                     <h3 className="inter text-7xl font-black text-center mt-6">
-                        {scope} <span className="inter text-3xl text-secondary font-semibold">-{frequency}</span>
+                        {data?.scope} <span className="inter text-3xl text-secondary font-semibold">-{data?.frequency}</span>
                     </h3>
                     <FireIcon width={"30"} />
                 </div>
-                <p className="text-center text-[#585860] font-medium text-2xl mt-4">Posted 5 months ago</p>
-                <div className="mt-10 grid grid-cols-3 gap-10">
-                    <DetailCard title="Location" content={`${location.city}, ${location.state}`} />
-                    <DetailCard title="Type" content={type} />
-                    <DetailCard title="Scope" content={scope} />
+                <p className="text-center text-[#585860] font-medium text-2xl mt-4">{getDateDifference(data?.uploadDate)}</p>
+                <div className="mt-10 grid 2xl:grid-cols-3 xl:grid-cols-3 grid-cols-1 gap-10">
+                    <DetailCard title="Location" content={`${data?.city}, ${data?.states}`} />
+                    <DetailCard title="Type" content={data?.type} />
+                    <DetailCard title="Scope" content={data?.scope} />
                     <DetailCard title="Cleaning" content="Outsourced" />
-                    <DetailCard title="Size" content={`Total: ${facility_size?.total}, Ground Floor: ${facility_size?.ground_floor}, Basement: ${facility_size?.basement}`} />
-                    <DetailCard title="Frequency" content={frequency} />
-                    <DetailCard title="Note" content={notes} />
-                    <DetailCard title="Posted" content={date_sold} />
+                    <DetailCard title="Size" content={`Total: ${data?.area} sq/ft`} />
+                    <DetailCard title="Frequency" content={data?.frequency} />
+                    <DetailCard title="Note" content={data?.additionalDetails} />
+                    <DetailCard title="Posted" content={getDateDifference(data?.uploadDate)} />
                 </div>
-                {isSold ? (
+                {data?.sold ? (
                     <SoldMessage />
                 ) : (
-                    <BuyLeadMessage />
+                    <BuyLeadMessage leads={leads} appointmentDate={data?.date} prize={data?.prize} />
                 )}
             </div>
         </div>
@@ -90,10 +87,10 @@ const SoldMessage = () => (
     </div>
 );
 
-const BuyLeadMessage = () => (
-    <div className="w-1/2 mx-auto mt-10">
-        <h3 className="poppins text-6xl font-semibold text-center">Buy This Lead</h3>
-        <p className="poppins text-xl font-medium text-center mt-5">The preset walkthrough date for this exclusive lead is 1/24/2024. Walkthrough dates and times may possibly be changed after purchasing, but there is no guarantee.</p>
+const BuyLeadMessage = ({ leads, appointmentDate, prize }) => (
+    <div className="xl:w-1/2 2xl:w-1/2 w-full mx-auto mt-16">
+        <h3 className="poppins text-6xl font-semibold text-center">Buy This Lead ${prize}</h3>
+        <p className="poppins text-xl font-medium text-center mt-5">The preset walkthrough date for this {leads} is {appointmentDate}. Walkthrough dates and times may possibly be changed after purchasing, but there is no guarantee.</p>
         <div className="w-3/4 mx-auto mt-10">
             <button className="bg-primary flex items-center gap-2 justify-center w-full rounded-[16px] p-5">
                 <p className="poppins text-lg font-medium text-white">Buy This Lead</p>
