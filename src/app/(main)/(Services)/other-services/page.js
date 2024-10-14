@@ -24,16 +24,16 @@ import Footer from '@/Shared/Footer';
 const page = () => {
     return (
         <div>
-            <div className='2xl:px-40 xl:px-28 bg-white'>
-                <div className='2xl:py-40 xl:py-28'>
-                    <h1 className={`2xl:text-7xl xl:text-5xl ${anton.className}`}>Complete IT Solutions &
+            <div className='2xl:px-40 xl:px-28 px-10 bg-white'>
+                <div className='2xl:py-40 xl:py-28 py-28'>
+                    <h1 className={`2xl:text-7xl xl:text-5xl text-3xl ${anton.className}`}>Complete IT Solutions &
                         Targeted Telemarketing for Every Sector</h1>
-                    <div className='mt-6 grid xl:grid-cols-4 2xl:grid-cols-5 gap-5'>
+                    <div className='mt-6 grid xl:grid-cols-4 2xl:grid-cols-5 grid-cols-2 gap-5'>
                         <div className='flex items-center gap-[10px] rounded-[8.168px] bg-green-100 px-4 py-[10px]'>
                             <FaFrontWeb />
                             <div>
-                                <h1 className='text-[#000] poppins text-sm font-semibold'>Front-End Developer</h1>
-                                <p className='text-[#474747] text-[10px] font-medium poppins'>Crafting Interactive Interfaces</p>
+                                <h1 className='text-[#000] poppins 2xl:text-sm xl:text-sm text-[10px] font-semibold'>Front-End Developer</h1>
+                                <p className='text-[#474747] 2xl:text-[10px] xl:text-[10px] text-[7px] font-medium poppins'>Crafting Interactive Interfaces</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-[10px] rounded-[8.168px] bg-green-100 px-4 py-[10px]'>
@@ -62,8 +62,8 @@ const page = () => {
                                 </defs>
                             </svg>
                             <div>
-                                <h1 className='text-[#000] poppins text-sm font-semibold'>Tele Marketing</h1>
-                                <p className='text-[#474747] text-[10px] font-medium poppins'>Generate leads for Business Growth</p>
+                                <h1 className='text-[#000] poppins 2xl:text-sm xl:text-sm text-[10px] font-semibold'>Tele Marketing</h1>
+                                <p className='text-[#474747] 2xl:text-[10px] xl:text-[10px] text-[7px] font-medium poppins'>Generate leads for Business Growth</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-[10px] rounded-[8.168px] bg-green-100 px-4 py-[10px]'>
@@ -88,8 +88,8 @@ const page = () => {
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M22.4521 12.5095C22.4521 11.9241 22.5391 11.4336 22.7131 11.0302C22.8442 10.7367 23.0263 10.4688 23.2511 10.2391C23.4639 10.0182 23.7196 9.84318 24.0026 9.72487C24.3964 9.56301 24.8189 9.48229 25.2446 9.48755C26.0911 9.48755 26.7714 9.75652 27.2856 10.2786C27.7919 10.8087 28.053 11.5444 28.053 12.4858C28.053 13.4114 27.7999 14.1471 27.2936 14.6692C27.0287 14.9358 26.711 15.1439 26.3608 15.2801C26.0106 15.4164 25.6358 15.4778 25.2605 15.4603C24.8827 15.4785 24.5052 15.4176 24.1524 15.2813C23.7995 15.1451 23.479 14.9366 23.2115 14.6692C22.9486 14.3772 22.7461 14.036 22.6157 13.6653C22.4854 13.2947 22.4297 12.9018 22.4521 12.5095ZM23.6545 12.47C23.6545 13.1266 23.8048 13.617 24.1055 13.9572C24.2476 14.1209 24.4241 14.2511 24.6224 14.3387C24.8207 14.4262 25.0359 14.4688 25.2525 14.4635C25.4693 14.4694 25.6847 14.427 25.883 14.3394C26.0814 14.2519 26.2579 14.1213 26.3996 13.9572C26.7002 13.625 26.8426 13.1266 26.8426 12.4541C26.8426 11.7975 26.7002 11.2991 26.4075 10.9748C26.2623 10.8144 26.0835 10.688 25.8839 10.6046C25.6843 10.5212 25.4687 10.4828 25.2525 10.4922C24.7779 10.4922 24.3823 10.6505 24.0975 10.9827C23.7969 11.315 23.6545 11.8054 23.6545 12.47Z" fill="#424143" />
                             </svg>
                             <div>
-                                <h1 className='text-[#000] poppins text-sm font-semibold'>SEO Expert</h1>
-                                <p className='text-[#474747] text-[10px] font-medium poppins'>Boosting Your Online Visibility</p>
+                                <h1 className='text-[#000] poppins 2xl:text-sm xl:text-sm text-[10px] font-semibold'>SEO Expert</h1>
+                                <p className='text-[#474747] 2xl:text-[10px] xl:text-[10px] text-[7px] font-medium poppins'>Boosting Your Online Visibility</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-[10px] rounded-[8.168px] bg-green-100 px-4 py-[10px]'>
@@ -131,8 +131,8 @@ const page = () => {
                                 </defs>
                             </svg>
                             <div>
-                                <h1 className='text-[#000] poppins text-sm font-semibold'>UI/UX Designer</h1>
-                                <p className='text-[#474747] text-[10px] font-medium poppins'>Designing Engaging Experiences</p>
+                                <h1 className='text-[#000] poppins 2xl:text-sm xl:text-sm text-[10px] font-semibold'>UI/UX Designer</h1>
+                                <p className='text-[#474747] 2xl:text-[10px] xl:text-[10px] text-[7px] font-medium poppins'>Designing Engaging Experiences</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-[10px] rounded-[8.168px] bg-green-100 px-4 py-[10px]'>
@@ -157,12 +157,12 @@ const page = () => {
                                 </defs>
                             </svg>
                             <div>
-                                <h1 className='text-[#000] poppins text-sm font-semibold'>Back-End Developer</h1>
-                                <p className='text-[#474747] text-[10px] font-medium poppins'>Building Powerful & Light Backends</p>
+                                <h1 className='text-[#000] poppins 2xl:text-sm xl:text-sm text-[10px] font-semibold'>Back-End Developer</h1>
+                                <p className='text-[#474747] 2xl:text-[10px] xl:text-[10px] text-[7px] font-medium poppins'>Building Powerful & Light Backends</p>
                             </div>
                         </div>
                     </div>
-                    <div className='2xl:mt-12 xl:mt-10 grid xl:grid-cols-4 2xl:grid-cols-5 gap-[10px]'>
+                    <div className='2xl:mt-12 xl:mt-10 mt-10 grid xl:grid-cols-4 2xl:grid-cols-5 gap-[10px]'>
                         <div className="card card-compact shadow-xl">
                             <figure className='p-[14px]'>
                                 <Image className='h-[174px] rounded-[10px]' src={figmaImage} alt='' />
@@ -347,7 +347,7 @@ const page = () => {
                                 <h1 className={`${anton.className} count`}>01</h1>
                                 <h3 className='poppins 2xl:text-3xl xl:text-2xl font-medium'>Forest website design</h3>
                                 <p className='text-[#000] poppins text-base my-7'>
-                                    I'm a top online marketer and branding expert. I started my career by launching the popular fitness brand Muscle Prodigy. In just a few short years, I built the brand to millions of social media followers and website visitors. I also created award-winning online products with millions of dollars in online sales. you want.
+                                    I&apos;m a top online marketer and branding expert. I started my career by launching the popular fitness brand Muscle Prodigy. In just a few short years, I built the brand to millions of social media followers and website visitors. I also created award-winning online products with millions of dollars in online sales. you want.
                                 </p>
                                 <button className='text-green-400 px-10 text-lg font-medium rounded-lg btn btn-outline hover:bg-green-400 hover:text-white hover:border-none'>
                                     <a href="https://afs-foiling.com/" target='_blank'>Details</a>
@@ -359,7 +359,7 @@ const page = () => {
                                 <h1 className={`${anton.className} count`}>02</h1>
                                 <h3 className='poppins 2xl:text-3xl xl:text-2xl font-medium'>Forest website design</h3>
                                 <p className='text-[#000] poppins text-base my-7'>
-                                    I'm a top online marketer and branding expert. I started my career by launching the popular fitness brand Muscle Prodigy. In just a few short years, I built the brand to millions of social media followers and website visitors. I also created award-winning online products with millions of dollars in online sales. you want.
+                                    I&apos;m a top online marketer and branding expert. I started my career by launching the popular fitness brand Muscle Prodigy. In just a few short years, I built the brand to millions of social media followers and website visitors. I also created award-winning online products with millions of dollars in online sales. you want.
                                 </p>
                                 <button className='text-green-400 px-10 text-lg font-medium rounded-lg btn btn-outline hover:bg-green-400 hover:text-white hover:border-none'>
                                     <a href="https://games.afs-foiling.com/" target='_blank'>Details</a>
@@ -373,7 +373,7 @@ const page = () => {
                                 <h1 className={`${anton.className} count`}>03</h1>
                                 <h3 className='poppins 2xl:text-3xl xl:text-2xl font-medium'>Forest website design</h3>
                                 <p className='text-[#000] poppins text-base my-7'>
-                                    I'm a top online marketer and branding expert. I started my career by launching the popular fitness brand Muscle Prodigy. In just a few short years, I built the brand to millions of social media followers and website visitors. I also created award-winning online products with millions of dollars in online sales. you want.
+                                    I&apos;m a top online marketer and branding expert. I started my career by launching the popular fitness brand Muscle Prodigy. In just a few short years, I built the brand to millions of social media followers and website visitors. I also created award-winning online products with millions of dollars in online sales. you want.
                                 </p>
                                 <button className='text-green-400 px-10 text-lg font-medium rounded-lg btn btn-outline hover:bg-green-400 hover:text-white hover:border-none'>
                                     <a href="https://echo-mall.web.app/" target='_blank'>Details</a>
@@ -396,10 +396,6 @@ const page = () => {
                         <Image src={desing3} alt='' className='rounded-2xl' />
                         <Image src={desing4} alt='' className='rounded-2xl' />
                     </div>
-                </div>
-                <div>
-                    <h3 className='text-primary font-bold poppins 2xl:text-[20px] xl:text-lg uppercase text-center'>Testimonials</h3>
-                    <SectionTitles heading={'What People Says'} />
                 </div>
             </div >
             <Footer />

@@ -1,9 +1,70 @@
+'use client'
 import Image from 'next/image';
 import image from '@/../public/assets/55024593_9264820 1.png';
 import { FaArrowRight } from 'react-icons/fa';
-const page = ({ searchparams }) => {
-    console.log(searchparams);
-    
+import { useState } from 'react';
+import { collection, query, where, getDocs, setDoc, updateDoc, serverTimestamp, getDoc } from "firebase/firestore";
+import { db } from '@/js/firebase.init';
+import useAuth from '@/Hooks/useAuth';
+const Page = () => {
+
+    const [userName, setUserName] = useState('')
+    const [findUser, setUser] = useState(null);
+    const [error, setError] = useState(false);
+
+    const { user } = useAuth();
+
+
+    const handleSearch = async () => {
+        const q = query(collection(db, "users"), where("displayName", "==", userName));
+        try {
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+                setUser(doc.data());
+            });
+        }
+        catch (error) {
+            setError(true)
+        }
+    }
+
+    const handleKey = e => {
+        e.code === 'Enter' &&
+            handleSearch();
+    }
+
+    const handleClick = async () => {
+        const combinedID = user?.uid > findUser?.uid ? user?.uid + findUser?.uid : findUser?.uid + user?.uid;
+        try {
+            const res = await getDoc(doc(db, 'chats', combinedID))
+            if (!res.exists()) {
+                await setDoc(doc(db, "chats", combinedID), {
+                    messages: []
+                })
+                await updateDoc(doc(db, 'userChats', findUser?.uid), {
+                    [combinedID + '.userInfo']: {
+                        uid: findUser.uid,
+                        displayName: findUser.uid,
+                        photoURL: findUser.photoURL
+                    },
+                    [combinedID + '.date']: serverTimestamp()
+                })
+                await updateDoc(doc(db, 'userChats', user?.uid), {
+                    [combinedID + '.userInfo']: {
+                        uid: user.uid,
+                        displayName: user.uid,
+                        photoURL: user.photoURL
+                    },
+                    [combinedID + '.date']: serverTimestamp()
+                })
+            }
+        }
+        catch (error) {
+
+        }
+
+    }
+
     // border-4 border-[#246532]
     return (
         <div className="pt-[80px]">
@@ -11,7 +72,7 @@ const page = ({ searchparams }) => {
                 <div className='px-10 py-20 flex flex-col border-t-2 border-r-2 border-[#246532]'>
                     <h3 className='poppins text-3xl font-semibold'>Message <span className='text-primary'>(65)</span></h3>
                     <label className="input input-bordered flex items-center gap-2 bg-[#F8F8F8] mt-6 rounded-lg">
-                        <input type="text" className="grow bg-[#F8F8F8]" placeholder="Search" />
+                        <input onKeyDown={(e) => handleKey(e)} onChange={(e) => setUserName(e.target.value)} type="text" className="grow bg-[#F8F8F8]" placeholder="Search" />
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 16 16"
@@ -23,8 +84,36 @@ const page = ({ searchparams }) => {
                                 clipRule="evenodd" />
                         </svg>
                     </label>
+
+
+                    {
+                        findUser &&
+                        <div className='mt-10'>
+                            <div>
+                                <div className='flex justify-between pb-4 border-b-[1px] border-b-gray-500'>
+                                    <div>
+                                        <h3 className="poppins text-xl font-semibold">{findUser.displayName}</h3>
+                                        <p className='mt-2 text-gray-400 poppins text-[10px]'>Change the background</p>
+                                    </div>
+                                    <div>
+                                        <p className='text-gray-400 poppins text-[10px]'>05:47 pm</p>
+                                        <div className='w-[25px] bg-primary text-white rounded-[50%] h-[25px] mt-[10px] ml-auto relative'>
+                                            <span className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>2</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    {
+                        error &&
+                        <div className='mt-10 text-center text-red-500'>
+                            User not found
+                        </div>
+                    }
+
                     {/* <Image src={image} alt="" className='my-auto' /> */}
-                    <div className='mt-10'>
+                    <div className='mt-10' onClick={() => handleClick}>
                         <div>
                             <div className='flex justify-between pb-4 border-b-[1px] border-b-gray-500'>
                                 <div>
@@ -60,4 +149,4 @@ const page = ({ searchparams }) => {
     );
 };
 
-export default page;
+export default Page;

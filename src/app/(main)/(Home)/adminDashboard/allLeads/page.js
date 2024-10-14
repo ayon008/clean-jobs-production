@@ -4,8 +4,10 @@ import formatTimestamp from '@/js/convertTime';
 import GetAllLeads from '@/lib/GetAllLeads';
 import SearchState from '@/Shared/SearchState';
 import Dot from '@/ui/Dot';
+import Info from '@/ui/Info';
 import TableHead from '@/ui/TableHead';
 import { all } from 'axios';
+import Link from 'next/link';
 import React from 'react';
 import Swal from 'sweetalert2';
 
@@ -169,7 +171,7 @@ const Page = () => {
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
-                    <TableHead allLeads={true} tableHead={['Uploader', 'Business Name', 'Decision Maker', 'Appointment Date', 'Appointment Time', 'States', 'City', 'Area', 'Upload Date', 'Audio', 'Status', 'Additional Details', 'Category', 'Sold', 'Change Category', 'Update Status', 'Prize', 'Set Prize', 'Action']} />
+                    <TableHead allLeads={true} tableHead={['Uploader', 'Business Name', 'Decision Maker', 'Appointment Date', 'Appointment Time', 'States', 'City', 'Area', 'Upload Date', 'Audio', 'Status', 'Additional Details', 'Category', 'Sold', 'Change Category', 'Update Status', 'Prize', 'Set Prize', 'Action', 'Edit', 'Details']} />
                     <tbody>
                         {
                             allLeads?.map(lead => {
@@ -215,7 +217,7 @@ const Page = () => {
                                         </td>
                                         <td>
                                             <p className='text-xs font-semibold text-black poppins text-center'>
-                                                {lead?.additionalDetails}
+                                                {lead?.additionalDetails?.slice(0, 20)}...
                                             </p>
                                         </td>
                                         <td>
@@ -274,6 +276,16 @@ const Page = () => {
                                             <button onClick={() => handleDelete(lead?._id)} className='rounded-lg btn btn-outline text-red-600'>
                                                 Delete
                                             </button>
+                                        </td>
+                                        <td>
+                                            <button className='rounded-lg btn btn-outline text-green-600'>
+                                                Edit
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <Link href={`/adminDashboard/allLeads/${lead?._id}`}>
+                                                <Info />
+                                            </Link>
                                         </td>
                                     </tr>
                                 )

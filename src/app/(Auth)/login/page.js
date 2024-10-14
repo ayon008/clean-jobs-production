@@ -17,16 +17,6 @@ const Page = ({ searchParams }) => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { signIn, user } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
-    const token = Cookies.get('userToken') || '';
-    const [decoded, setDecoded] = useState('');
-
-    useEffect(() => {
-        if (token) {
-            const decoded = jwtDecode(token);
-            setDecoded(decoded);
-        }
-    }, [user, token])
-
 
     const togglePasswordVisibility = () => {
         setShowPassword(prev => !prev);
@@ -35,6 +25,7 @@ const Page = ({ searchParams }) => {
     const onSubmit = (data) => {
         const email = data.email;
         const password = data.password;
+
         // Show the loading spinner
         Swal.fire({
             title: 'Signing In...',
@@ -47,22 +38,30 @@ const Page = ({ searchParams }) => {
 
         signIn(email, password)
             .then((res) => {
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Signed In Successfully",
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-                reset();
-                if (decoded?.isAdmin) {
-                    router.push(`/adminDashboard`);
-                }
-                else if (decoded?.isSeller) {
-                    router.push(`/sellerDashboard`);
-                }
-                else {
-                    router.push(`/dashboard`);
+                const token = Cookies.get('userToken') || '';
+                let decoded;
+                console.log(token);
+                if (token) {
+                    decoded = jwtDecode(token);
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Signed In Successfully",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+
+                    reset();
+                    console.log(decoded);
+
+                    // Ensure decoded exists before routing
+                    if (decoded?.isAdmin) {
+                        router.push(`/adminDashboard`);
+                    } else if (decoded?.isSeller) {
+                        router.push(`/sellerDashboard`);
+                    } else {
+                        router.push(`/dashboard`);
+                    }
                 }
             })
             .catch((err) => {
@@ -74,6 +73,7 @@ const Page = ({ searchParams }) => {
                 });
             });
     };
+
 
 
     return (

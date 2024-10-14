@@ -22,6 +22,7 @@ const page = () => {
                         />
                         <DashboardCard
                             Icon={FaStatus}
+                            href={'/sellerDashboard/leadStatus'}
                             title="Check lead status"
                             description="See all the lead status you uploaded"
                             iconMargin="4px"

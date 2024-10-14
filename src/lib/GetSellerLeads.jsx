@@ -2,25 +2,24 @@
 import useAxiosSecure from "@/Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
-const GetSavedLead = (uid) => {
+const GetSellerLeads = (sellerId) => {
     const axiosSecure = useAxiosSecure();
-    console.log(uid);
-    const { isLoading, isError, error, data: savedLeads, refetch } = useQuery({
-        queryKey: ['savedLeads'], // Include `uid` in queryKey to refetch if `uid` changes
+
+    const { isLoading, isError, error, data: sellerLeads, refetch } = useQuery({
+        queryKey: ['sellerLeads'], // Include `uid` in queryKey to refetch if `uid` changes
         queryFn: async () => {
             try {
-                const response = await axiosSecure.get(`savedLeads/${uid}`);
+                const response = await axiosSecure.get(`sellerLeads/${sellerId}`);
                 const data = await response.data;
-                console.log(data, 'savedLeads');
+                console.log(data, 'sellerLeads');
                 return data;
             } catch (err) {
                 console.error("Error fetching user data:", err);
                 throw err; // Rethrow the error to be caught by React Query
             }
         },
-        enabled:!!uid
     });
-    return { isLoading: false, savedLeads, refetch };
+    return { isLoading: false, sellerLeads, refetch };
 };
 
-export default GetSavedLead;
+export default GetSellerLeads;

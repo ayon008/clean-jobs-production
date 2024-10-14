@@ -4,7 +4,7 @@ import React from 'react';
 
 const page = () => {
     return (
-        <div className='2xl:px-[70px] xl:px-16 px-8 2xl:my-36 xl:my-28 my-16'>
+        <div className='2xl:px-[70px] xl:px-16 px-8 2xl:my-36 xl:my-28 my-28'>
             <SectionTitles heading={'Choose your leads category'} subHeading={'See all the leads around you & grab opportunities'} />
             <div className='2xl:w-1/2 xl:w-1/2 w-full mx-auto'>
                 <div className='my-10 space-y-6'>

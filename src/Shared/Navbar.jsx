@@ -17,6 +17,8 @@ const Navbar = () => {
 
     // User Info
     const { user, logOut } = useAuth();
+    console.log(user);
+
     const uid = user?.uid;
     const pathName = usePathname();
     const userName = user?.displayName;
@@ -51,9 +53,9 @@ const Navbar = () => {
                 </Link>
                 {subLinks && (
                     <ul className="dropdown-content menu bg-white border z-[1] px-0 py-2 rounded-lg w-80">
-                        {subLinks.map(subLink => (
-                            <li key={subLink.href}>
-                                <Link href={subLink.href} className="text-base inter font-normal hover:bg-[#F9FAFB] rounded-none pl-5">{subLink.label}</Link>
+                        {subLinks?.map(subLink => (
+                            <li key={subLink?.href}>
+                                <Link href={subLink?.href} className="text-base inter font-normal hover:bg-[#F9FAFB] rounded-none pl-5">{subLink?.label}</Link>
                             </li>
                         ))}
                     </ul>
@@ -70,10 +72,9 @@ const Navbar = () => {
         {
             label: 'Home', subLinks: [
                 { href: '/dashboard', label: 'Dashboard' },
-                isSeller && { href: '/sellerDashboard', label: 'Seller dashboard' },
-                isAdmin && { href: '/adminDashboard', label: 'Admin dashboard' },
-
-            ]
+                isSeller ? { href: '/sellerDashboard', label: 'Seller dashboard' } : null,
+                isAdmin ? { href: '/adminDashboard', label: 'Admin dashboard' } : null,
+            ].filter(link => link) // Filter out null or undefined links
         },
         {
             label: 'List', subLinks: [
@@ -183,14 +184,14 @@ const Navbar = () => {
                                     })
                                 }
                                 {
-                                    uid &&
-                                    userLinks.map(u => {
+                                    user &&
+                                    userLinks?.map(u => {
                                         const { subLinks } = u;
                                         return (
-                                            subLinks.map((s, i) => {
+                                            subLinks?.map((s, i) => {
                                                 return (
                                                     <li key={i}>
-                                                        <Link href={s.href}>{s.label}</Link>
+                                                        <Link href={s?.href}>{s?.label}</Link>
                                                     </li>
                                                 )
                                             })

@@ -8,6 +8,8 @@ import 'sweetalert2/dist/sweetalert2.css';
 import { usStates } from '@/js/states';
 import { useRouter } from 'next/navigation';
 import useAxiosPublic from '@/Hooks/useAxiosPublic';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '@/js/firebase.init';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors, isSubmitting }, watch, reset } = useForm();
@@ -39,6 +41,15 @@ const Register = () => {
                 serviceCity2: cities[1]
             });
 
+            await setDoc(doc(db, "users", user?.uid), {
+                uid: user.uid,
+                displayName: user?.displayName,
+                email: user?.email,
+                photoURL: user?.photoURL
+            });
+
+            await setDoc(doc(db, 'usersChat', user?.uid), {})
+
             if (response.data.insertedId) {
                 Swal.fire({
                     position: "center",
@@ -47,14 +58,14 @@ const Register = () => {
                     showConfirmButton: false,
                     timer: 1500,
                 });
-                router.push('/');
+                router.push('/dashboard');
                 reset();
             }
         } catch (error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Registration Failed',
-                text: err.code?.split('auth/')[1] || 'An error occurred during sign-up',
+                text: error.code?.split('auth/')[1] || 'An error occurred during sign-up',
             });
         }
     };

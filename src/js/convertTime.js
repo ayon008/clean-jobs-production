@@ -4,13 +4,10 @@ function formatTimestamp(timestamp) {
     const options = {
         year: 'numeric',
         month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true
+        day: 'numeric'
     };
 
-    return date.toLocaleString('en-US', options);
+    return date.toLocaleDateString('en-US', options);
 }
 
-export default formatTimestamp
+export default formatTimestamp;

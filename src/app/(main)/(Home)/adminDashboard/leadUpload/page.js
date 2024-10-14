@@ -93,14 +93,17 @@ const LeadForm = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-10'>
                             <div>
-                                <InputField
-                                    label={'Lead Name'}
-                                    placeholder={'Enter lead name'}
-                                    type={'text'}
-                                    register={register}
-                                    name={'leadName'}
-                                    errors={errors}
-                                />
+                                <div className="form-control relative">
+                                    <label className="label absolute bg-white left-[2%] -top-[50%]">
+                                        <span className="label-text text-primary font-normal text-base poppins">Lead Name</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter lead name"
+                                        {...register('leadName')}
+                                        className={`input input-bordered rounded-[10px] bg-white border border-[#5C6272]`}
+                                    />
+                                </div>
                             </div>
                             <div>
                                 <InputField
@@ -173,14 +176,30 @@ const LeadForm = () => {
                                 />
                             </div>
                             <div className='col-start-1 row-start-3'>
-                                <InputField
-                                    label={'Last Name'}
-                                    placeholder={'Enter your last name'}
-                                    type={'text'}
-                                    register={register}
-                                    name={'lastName'}
-                                    errors={errors}
-                                />
+                                <div className="form-control relative">
+                                    <label className="label absolute bg-white left-[2%] -top-[50%]">
+                                        <span className="label-text text-primary font-normal text-base poppins">Last Name</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter your last name"
+                                        {...register('lastName')}
+                                        className={`input input-bordered rounded-[10px] bg-white border border-[#5C6272]`}
+                                    />
+                                </div>
+                            </div>
+                            <div className=''>
+                                <div className="form-control relative">
+                                    <label className="label absolute bg-white left-[2%] -top-[50%]">
+                                        <span className="label-text text-primary font-normal text-base poppins">Phone Number</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Phone Number"
+                                        {...register('phoneNumber')}
+                                        className={`input input-bordered rounded-[10px] bg-white border border-[#5C6272]`}
+                                    />
+                                </div>
                             </div>
                             <div>
                                 <InputField
@@ -203,14 +222,17 @@ const LeadForm = () => {
                                 />
                             </div>
                             <div>
-                                <InputField
-                                    label={'Scope'}
-                                    placeholder={'General Cleaning - Vacuum, dust, mop and clean bathrooms, etc.'}
-                                    type={'text'}
-                                    register={register}
-                                    name={'scope'}
-                                    errors={errors}
-                                />
+                                <div className="form-control relative">
+                                    <label className="label absolute bg-white left-[2%] -top-[50%]">
+                                        <span className="label-text text-primary font-normal text-base poppins">Scope</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="General Cleaning - Vacuum, dust, mop and clean bathrooms, etc."
+                                        {...register('scope')}
+                                        className={`input input-bordered rounded-[10px] bg-white border border-[#5C6272]`}
+                                    />
+                                </div>
                             </div>
                             <div>
                                 <InputField
@@ -252,10 +274,9 @@ const LeadForm = () => {
                                         placeholder={'Please enter any additional necessary details'}
                                         rows={8}
                                         className="textarea textarea-bordered textarea-md w-full rounded-[10px] bg-white border border-[#5C6272] resize-none"
-                                        {...register('additionalDetails', { required: `Additional is required` })}
+                                        {...register('additionalDetails')}
                                     ></textarea>
                                 </div>
-                                {errors['additionalDetails'] && <p className="text-red-500 text-sm">{errors['additionalDetails']?.message}</p>}
                             </div>
                             <div className='col-start-1 row-start-4'>
                                 <InputField

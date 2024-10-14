@@ -6,7 +6,7 @@ import FaMessage from '@/icons/FaMessage';
 import FaHand from '@/icons/FaHand';
 import FaStatus from '@/icons/FaStatus';
 import FaUpload from '@/icons/FaUpload';
-import { FaDollarSign } from 'react-icons/fa';
+import { FaAddressBook, FaDollarSign, FaFacebookMessenger, FaMailBulk, FaPhone } from 'react-icons/fa';
 import FaUserData from '@/icons/FaUserData';
 
 const page = () => {
@@ -51,6 +51,27 @@ const page = () => {
                             href={'/adminDashboard/leadUpload'}
                             title="Upload your leads"
                             description="Sell your potential leads through us"
+                            iconMargin="4px"
+                        />
+                        <DashboardCard
+                            Icon={FaMailBulk}
+                            href={'/adminDashboard/subcribedEmail'}
+                            title="Subscribed Email"
+                            description="Sell all the subscribers"
+                            iconMargin="4px"
+                        />
+                        <DashboardCard
+                            Icon={FaAddressBook}
+                            href={'/adminDashboard/contacts'}
+                            title="Contacts"
+                            description="See the people waiting for you"
+                            iconMargin="4px"
+                        />
+                        <DashboardCard
+                            Icon={FaFacebookMessenger}
+                            href={'/adminDashboard/messages'}
+                            title="Messages"
+                            description="Your Messages"
                             iconMargin="4px"
                         />
                     </div>
