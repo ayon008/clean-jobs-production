@@ -32,13 +32,16 @@ const Page = () => {
                             iconMargin="4px"
                         />
 
-                        <DashboardCard
-                            href={'/search'}
-                            Icon={FaNetwork}
-                            title="Find Exclusive Lead in Your Area"
-                            description="See all the leads around you & grab opportunities"
-                            iconMargin="4px"
-                        />
+                        <div className='col-span-2 row-start-1'>
+                            <DashboardCard
+                                href={'/search'}
+                                Icon={FaNetwork}
+                                title="Find Exclusive Lead in Your Area"
+                                description="See all the leads around you & grab opportunities"
+                                iconMargin="4px"
+                            />
+                        </div>
+
                         <DashboardCard
                             href={''}
                             Icon={FaContract}
