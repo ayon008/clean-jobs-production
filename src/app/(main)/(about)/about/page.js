@@ -13,7 +13,10 @@ import SectionTitles from "@/ui/SectionTitles";
 import { FaStar } from "react-icons/fa";
 import rev1 from '@/../public/assets/close-up-young-successful-man-smiling-camera-standing-casual-outfit-against-blue-background 1.svg'
 import rev2 from '@/../public/assets/indoor-picture-cheerful-handsome-young-man-having-folded-hands-looking-directly-smiling-sincerely-wearing-casual-clothes.svg'
-import aboutImage1 from '../../.././../../public/assets/Group 13778.svg'
+import aboutImage1 from '@/../public/assets/Group 13778.svg'
+import ayon from '@/../public/assets/462672421_2310475689286628_7856711266779259180_n.jpg'
+import sneha from '@/../public/assets/462835113_1117568373068364_714874652603614545_n.jpg'
+import shanto from '../../../../../public/assets/451321767_3840503976220793_5243108772079747298_n.jpg'
 
 
 const page = () => {
@@ -131,7 +134,7 @@ const page = () => {
             </div>
 
             <div className="2xl:py-24 xl:py-16 py-10 2xl:px-40 xl:px-28 px-10">
-                <div className="grid 2xl:grid-cols-4 xl:grid-cols-4 grid-cols-2 2xl:gap-8 xl:gap-4 gap-4">
+                <div className="grid 2xl:grid-cols-4 xl:grid-cols-4 grid-cols-2 2xl:gap-8 xl:gap-4 gap-4 items-stretch">
                     <div className="col-span-2">
                         <div className="flex items-center gap-5">
                             <hr className="w-[50px] h-[1px] bg-[#808080] 2xl:block xl:block hidden" />
@@ -140,32 +143,32 @@ const page = () => {
                         <h1 className="2xl:text-6xl xl:text-5xl text-4xl poppins 2xl:my-0 xl:my-0 my-4 inter 2xl:font-medium xl:font-medium font-semibold">Our skilled team will support you.</h1>
                     </div>
                     <div>
-                        <Image src={ryan} alt="" />
+                        <Image className="h-[250px]" height={250} src={ryan} alt="" />
                         <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Ryan Afzal</h2>
                         <p className="text-[#808080]">CEO and Head of telemarketing service</p>
                     </div>
                     <div>
-                        <Image src={ryan} alt="" />
-                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Ryan Afzal</h2>
-                        <p className="text-[#808080]">CEO and Head of telemarketing service</p>
+                        <Image className="h-[250px]" height={250} src={ayon} alt="" />
+                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Shariar Ayon</h2>
+                        <p className="text-[#808080]">Web and Mobile Application Developer & Technical Support Specialist</p>
                     </div>
                     <div>
-                        <Image src={ryan} alt="" />
-                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Ryan Afzal</h2>
-                        <p className="text-[#808080]">CEO and Head of telemarketing service</p>
+                        <Image className="h-[250px] w-full" height={250} src={sneha} alt="" />
+                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Zarin Refa Sneha</h2>
+                        <p className="text-[#808080]">Lead Generation Specialist and Appointment Setter</p>
                     </div>
                     <div>
-                        <Image src={ryan} alt="" />
-                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Ryan Afzal</h2>
-                        <p className="text-[#808080]">CEO and Head of telemarketing service</p>
+                        <Image className="h-[250px]" height={250} src={shanto} alt="" />
+                        <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Shanto Hossain</h2>
+                        <p className="text-[#808080]">SEO Specialist</p>
                     </div>
                     <div>
-                        <Image src={ryan} alt="" />
+                        <Image className="h-[250px]" height={250} src={ryan} alt="" />
                         <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Ryan Afzal</h2>
-                        <p className="text-[#808080]">CEO and Head of telemarketing service</p>
+                        <p className="text-[#171212]">CEO and Head of telemarketing service</p>
                     </div>
                     <div>
-                        <Image src={ryan} alt="" />
+                        <Image className="h-[250px]" height={250} src={ryan} alt="" />
                         <h2 className="text-[#0D0D0D] 2xl:text-2xl xl:text-xl font-semibold 2xl:mt-5 xl:mt-2 mt-[6px]">Ryan Afzal</h2>
                         <p className="text-[#808080]">CEO and Head of telemarketing service</p>
                     </div>

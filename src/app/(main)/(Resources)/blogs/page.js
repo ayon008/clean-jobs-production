@@ -2,8 +2,31 @@ import Image from 'next/image';
 import image from '@/../public/assets/e73b8a25012b43969565404f2fbb8bed.jpg'
 import dp from '@/../public/assets/Ellipse 146.png'
 import Link from 'next/link';
+import { client } from '@/lib/sanity';
 
-const page = () => {
+const page = async () => {
+
+    const blogData = async () => {
+        const query = `
+        *[_type == 'blog'] | order(_createdAt asc) {
+  title,
+    date,
+    authorName,
+     authorImage{
+    asset->{
+      url
+    }
+  }
+}
+        `
+        const data = await client.fetch(query);
+        return data;
+    }
+
+
+    const blogs = await blogData();
+    console.log(blogs);
+
     return (
         <div className="pt-40 pb-20 px-10">
             <h1 className="text-2xl font-bold inter">Stories, News, and Insights for Business Growth</h1>

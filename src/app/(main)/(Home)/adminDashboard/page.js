@@ -6,7 +6,7 @@ import FaMessage from '@/icons/FaMessage';
 import FaHand from '@/icons/FaHand';
 import FaStatus from '@/icons/FaStatus';
 import FaUpload from '@/icons/FaUpload';
-import { FaAddressBook, FaDollarSign, FaFacebookMessenger, FaMailBulk, FaPhone } from 'react-icons/fa';
+import { FaAddressBook, FaBlog, FaDollarSign, FaFacebookMessenger, FaMailBulk, FaPhone } from 'react-icons/fa';
 import FaUserData from '@/icons/FaUserData';
 
 const page = () => {
@@ -72,6 +72,13 @@ const page = () => {
                             href={'/adminDashboard/messages'}
                             title="Messages"
                             description="Your Messages"
+                            iconMargin="4px"
+                        />
+                        <DashboardCard
+                            Icon={FaBlog}
+                            href={'/adminDashboard/addBlogs'}
+                            title="Blogs"
+                            description="Write Blogs"
                             iconMargin="4px"
                         />
                     </div>

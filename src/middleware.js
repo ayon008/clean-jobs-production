@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
 
-const userRoutes = ['/profile', '/search/:leads/:states/:id', '/search', '/search/:leads', '/search/:leads/:states', '/messages'];
+const userRoutes = ['/profile', '/search', '/search/:leads*', '/messages'];
 const adminRoutes = ['/adminDashboard', '/adminDashboard/allLeads', '/adminDashboard/allUser', '/adminDashboard/leadUpload', '/adminDashboard/allLeads/:id', '/adminDashboard/subscriber'];
 const sellerRoutes = ['/sellerDashboard', '/sellerDashboard/leadUpload'];
 
@@ -44,5 +44,5 @@ export function middleware(request) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-    matcher: ['/profile', '/search/:leads/:states/:id', '/search', '/search/:leads', '/search/:leads/:states', '/messages', '/dashBoard', '/adminDashboard', '/adminDashboard/allLeads', '/adminDashboard/allUser', '/adminDashboard/leadUpload', '/sellerDashboard', '/sellerDashboard/leadUpload', '/adminDashboard/allLeads/:id', '/adminDashboard/subscriber', '/adminDashboard/contacts', '/adminDashboard/messages'],
+    matcher: ['/profile', '/search', '/search/:leads*', '/messages', '/dashBoard', '/adminDashboard', '/adminDashboard/allLeads', '/adminDashboard/allUser', '/adminDashboard/leadUpload', '/sellerDashboard', '/sellerDashboard/leadUpload', '/adminDashboard/allLeads/:id', '/adminDashboard/subscriber', '/adminDashboard/contacts', '/adminDashboard/messages'],
 }

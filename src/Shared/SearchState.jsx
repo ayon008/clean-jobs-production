@@ -5,9 +5,13 @@ import { useRouter } from 'next/navigation';
 import React, { useState, useMemo } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
-const SearchState = ({ leads }) => {
+const SearchState = ({ leads, data }) => {
     const router = useRouter();
     const [inputValue, setInputValue] = useState('');
+
+    const filteredData = (state) => {
+        return data?.filter(d => d.states === state)?.length;
+    };
 
     // Memoize filtered states to avoid recalculating on every render
     const filteredStates = useMemo(() => {
@@ -60,8 +64,11 @@ const SearchState = ({ leads }) => {
                     {filteredStates.length ? (
                         filteredStates.map((state) => (
                             <Link key={state} href={`${leads}/${state}`}>
-                                <li className='p-3 hover:bg-[#F7F8F9] rounded'>
+                                <li className='p-3 border-b-2 hover:bg-[#F7F8F9] rounded'>
                                     <h3 className="poppins text-base font-medium">{state}</h3>
+                                    <p className="text-[#64748B] font-semibold poppins text-xs mt-2">
+                                        {filteredData(state) || 0}
+                                    </p>
                                 </li>
                             </Link>
                         ))

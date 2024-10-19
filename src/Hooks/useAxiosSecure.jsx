@@ -16,8 +16,8 @@ const useAxiosSecure = () => {
     axiosSecure.interceptors.request.use(
         (config) => {
             const token = Cookies.get('userToken');
-            console.log(token);
-            console.log(`Bearer ${token}`);
+            // console.log(token);
+            // console.log(`Bearer ${token}`);
             if (token) {
                 config.headers.authorization = `Bearer ${token}`;
             }

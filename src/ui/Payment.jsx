@@ -11,7 +11,7 @@ import PaymentForm from "./PaymentForm";
 
 const stripePromise = loadStripe("pk_test_51QAGCnDjsDu7deU5EE6ZHNBFBeJodBrZJNU491qQlyWPf2E1Bd0Or586NDNqzNBy2ulmX9YOGA6UK3DOSwPZz3oa00801DiwjZ");
 
-export default function Payment({ price }) {
+export default function Payment({ price, product_Id, closeModal }) {
     const [clientSecret, setClientSecret] = useState("");
     const [dpmCheckerLink, setDpmCheckerLink] = useState("");
     const [confirmed, setConfirmed] = useState(false);
@@ -45,7 +45,7 @@ export default function Payment({ price }) {
         <div>
             {clientSecret && (
                 <Elements options={options} stripe={stripePromise}>
-                    <PaymentForm price={price} dpmCheckerLink={dpmCheckerLink} />
+                    <PaymentForm price={price} product_Id={product_Id} dpmCheckerLink={dpmCheckerLink} closeModal={closeModal} />
                 </Elements>
             )}
         </div>

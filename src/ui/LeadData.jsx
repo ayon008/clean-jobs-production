@@ -5,9 +5,9 @@ import getDateDifference from "@/js/calculateDate";
 import Bookmarks from "@/ui/Bookmarks";
 import BuyLeadMessage from "@/ui/BuyLeadMessage";
 
-const page = async ({ params }) => {
+const LeadData = ({ params }) => {
     const { leads, states, id } = params;
-    const data = await getLeadById(leads, states, id);
+    // const data = await getLeadById(leads, states, id);
     const appointmentDate = data?.date;
     const currentDate = new Date(); // Replace with new Date() in production
     const isDisabled = new Date(appointmentDate) < currentDate;
@@ -74,4 +74,4 @@ const SoldMessage = () => (
 
 
 
-export default page;
+export default LeadData;
