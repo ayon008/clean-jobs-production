@@ -76,7 +76,7 @@ const page = () => {
                         />
                         <DashboardCard
                             Icon={FaBlog}
-                            href={'/adminDashboard/addBlogs'}
+                            href={'https://clean-jobs.sanity.studio/'}
                             title="Blogs"
                             description="Write Blogs"
                             iconMargin="4px"

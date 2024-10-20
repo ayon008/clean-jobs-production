@@ -42,19 +42,40 @@ export default {
             title: 'Title Image',
         },
         {
-            name: 'images',
-            type: 'array',
-            title: 'Content Images',
-            of: [{ type: 'image' }],  // Allows multiple images
-            options: {
-                layout: 'grid',  // Optional: displays the images in a grid
-            }
-        },
-        {
             name: 'content',
+            title: 'Content',
             type: 'array',
-            title: 'Content of the blog post.',
-            of: [{ type: 'block' }]
-        }
+            of: [
+                { type: 'block' },
+                {
+                    type: 'object',
+                    name: 'imageGroup',
+                    title: 'Image Group',
+                    fields: [
+                        {
+                            name: 'images',
+                            type: 'array',
+                            title: 'Images',
+                            of: [{ type: 'image' }],
+                            options: {
+                                hotspot: true,
+                            },
+                        },
+                        {
+                            name: 'layout',
+                            type: 'string',
+                            title: 'Layout',
+                            options: {
+                                list: [
+                                    { title: 'Grid', value: 'grid' },
+                                    { title: 'Block', value: 'block' },
+                                ],
+                                layout: 'radio', // Use radio buttons for selection
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
     ]
 }
