@@ -7,7 +7,7 @@ const page = async () => {
     const cookieStore = cookies();
     const userTokenObj = cookieStore.get('userToken');
     const token = userTokenObj?.value;
-    const res = await fetch('http://localhost:5000/contacts', {
+    const res = await fetch('https://clean-jobs-latest-backend.vercel.app/contacts', {
         cache: 'no-cache',
         headers: {
             authorization: `Bearer ${token}`

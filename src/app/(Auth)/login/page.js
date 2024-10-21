@@ -3,7 +3,7 @@ import useAuth from '@/Hooks/useAuth';
 import Logo from '@/Shared/Logo';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Swal from 'sweetalert2/dist/sweetalert2.js'
@@ -17,6 +17,7 @@ const Page = ({ searchParams }) => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { signIn, user } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(prev => !prev);
@@ -37,12 +38,21 @@ const Page = ({ searchParams }) => {
         });
 
         signIn(email, password)
-            .then((res) => {
-                const token = Cookies.get('userToken') || '';
-                let decoded;
-                console.log(token);
+            .then(async (res) => {
+                let token = Cookies.get('userToken');
+                if (!token) {
+                    await new Promise((resolve, reject) => {
+                        const checkToken = setInterval(() => {
+                            token = Cookies.get('userToken');
+                            if (token) {
+                                clearInterval(checkToken);
+                                resolve(token);
+                            }
+                        }, 100);
+                    })
+                }
                 if (token) {
-                    decoded = jwtDecode(token);
+                    let decoded = jwtDecode(token);
                     Swal.fire({
                         position: "center",
                         icon: "success",
@@ -53,7 +63,6 @@ const Page = ({ searchParams }) => {
 
                     reset();
                     console.log(decoded);
-
                     // Ensure decoded exists before routing
                     if (decoded?.isAdmin) {
                         router.push(`/adminDashboard`);
@@ -65,6 +74,7 @@ const Page = ({ searchParams }) => {
                 }
             })
             .catch((err) => {
+                console.log(err);
                 // If there is an error, show an error message
                 Swal.fire({
                     icon: 'error',

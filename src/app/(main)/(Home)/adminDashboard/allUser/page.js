@@ -9,9 +9,7 @@ import Swal from 'sweetalert2';
 const Page = () => {
     const { allUsers, refetch } = GetAllUsers();
     const axiosSecure = useAxiosSecure();
-    console.log(allUsers);
-
-    const makeAdmin = async (id, action) => {
+    const makeAdmin = async (id, action, email) => {
         console.log(id, action);
         // Show loading spinner
         Swal.fire({
@@ -25,7 +23,6 @@ const Page = () => {
 
         try {
             const response = await axiosSecure.patch(`/makeAdmin/${id}`, { isAdmin: action });
-
             // Close the loading spinner
             Swal.close();
 
@@ -38,6 +35,8 @@ const Page = () => {
             });
             refetch()
         } catch (error) {
+            console.log(error);
+
             // Close the loading spinner
             Swal.close();
 
@@ -52,7 +51,7 @@ const Page = () => {
     };
 
     const makeSeller = async (id, action) => {
-        const loading = Swal.fire({
+        Swal.fire({
             title: 'Processing...',
             text: 'Please wait while we update the admin status.',
             allowOutsideClick: false,
@@ -170,7 +169,7 @@ const Page = () => {
                                             <td>
                                                 {
                                                     !user?.isAdmin ?
-                                                        <button onClick={() => makeAdmin(user?._id, true)} className="rounded-[10px] btn btn-outline text-green-500 hover:text-white hover:bg-green-500 hover:border-none">
+                                                        <button onClick={() => makeAdmin(user?._id, true, user?.email)} className="rounded-[10px] btn btn-outline text-green-500 hover:text-white hover:bg-green-500 hover:border-none">
                                                             Make Admin
                                                         </button>
                                                         :
