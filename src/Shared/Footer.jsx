@@ -30,15 +30,15 @@ const Footer = () => {
                 </aside>
                 <aside className="w-fit 2xl:mt-0 xl:mt-0 mt-10">
                     <div className="flex items-center gap-10">
-                        <a href="/facebook">
+                        <Link href="/facebook">
                             <FaFacebookF color="#246532" size={'1.5rem'} />
-                        </a>
-                        <a href="/twitter">
+                        </Link>
+                        <Link href="/twitter">
                             <FaTwitter color="#246532" size={'1.5rem'} />
-                        </a>
-                        <a href="/instagram">
+                        </Link>
+                        <Link href="/instagram">
                             <FaInstagram color="#246532" size={'1.5rem'} />
-                        </a>
+                        </Link>
                     </div>
                 </aside>
             </div>
