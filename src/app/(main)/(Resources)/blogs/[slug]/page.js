@@ -41,16 +41,16 @@ const getData = async (params) => {
 const page = async ({ params }) => {
     const data = await getData(params.slug) || {};
     return (
-        <div className="pb-20 pt-40 px-10">
-            <h2 className="text-5xl inter font-bold text-black text-center">{data?.title}</h2>
-            <p className="mt-10 text-center flex justify-center items-center gap-2"><FaRegCalendar className="mt-1" size={'1.2rem'} /><span className="inter text-2xl font-semibold">{formatTimestamp(data?.date)}</span></p>
+        <div className="2xl:pt-40 xl:pt-40 pt-28 pb-20 px-10">
+            <h2 className="2xl:text-5xl xl:text-5xl text-3xl inter font-bold text-black text-center">{data?.title}</h2>
+            <p className="mt-10 text-center flex justify-center items-center gap-2"><FaRegCalendar className="mt-1" size={'1.2rem'} /><span className="inter 2xl:text-2xl xl:text-2xl text-xl font-semibold">{formatTimestamp(data?.date)}</span></p>
             <Image priority layout="responsive" src={urlFor(data?.titleImage).url()} width={950} height={665} className="my-10 w-full h-auto" alt="" />
-            <div className="px-16">
+            <div className="2xl:px-16 xl:px-16">
                 <div className="flex items-center gap-2 mb-10">
                     <Image src={urlFor(data?.authorImage).url()} width={30} height={1552} className='w-[50px] h-auto rounded-full' alt='' />
                     <p className="inter text-xl font-semibold">By {data?.authorName}</p>
                 </div>
-                <div className="prose lg:prose-xl prose-indigo">
+                <div className="prose 2xl:prose-xl xl:prose-xl prose-indigo">
                     <PortableText value={data?.content} components={{
                         types: {
                             imageGroup: ({ value }) => {

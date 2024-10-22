@@ -10,6 +10,7 @@ import Link from "next/link";
 import ButtonPrimary from "@/ui/ButtonPrimary";
 import jsCookie from "js-cookie";
 import { jwtDecode } from "jwt-decode";
+import Notification from "@/ui/Notification";
 
 const Navbar = () => {
 
@@ -117,7 +118,8 @@ const Navbar = () => {
 
     const navEnds = uid ? (
         <>
-            <MdOutlineNotifications className="md:text-2xl text-lg" />
+            {/* <MdOutlineNotifications className="md:text-2xl text-lg" /> */}
+            <Notification />
             <div className="flex items-center gap-2">
                 <div className="md:w-[32px] relative md:h-[32px] w-[20px] h-[20px] rounded-full bg-primary text-white">
                     <span className="absolute top-1/2 right-1/2 transform -translate-y-1/2 translate-x-1/2 md:text-base text-xs font-normal">{firstLetter}</span>
