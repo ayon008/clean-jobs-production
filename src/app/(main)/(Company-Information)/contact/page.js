@@ -15,11 +15,11 @@ import LinkedIn from '@/../public/assets/Linkedin.svg'
 import ContactForm from '@/ui/ContactForm';
 import ContactUserForm from '@/ui/ContactUserForm';
 import SectionTitles from '@/ui/SectionTitles';
-import fb from '../../../../../public/assets/Frame (8).svg'
-import insta from '../../../../../public/assets/Frame (10).svg'
-import linked from '../../../../../public/assets/Frame (11).svg'
-import twitt from '../../../../../public/assets/Frame (12).svg'
-import youtube from '../../../../../public/assets/Frame (13).svg'
+import fb from '@/../public/assets/Frame (8).svg'
+import insta from '@/../public/assets/Frame (10).svg'
+import linked from '@/../public/assets/Frame (11).svg'
+import twitt from '@/../public/assets/Frame (12).svg'
+import youtube from '@/../public/assets/Frame (13).svg'
 import Map from '@/ui/Map';
 import Footer from '@/Shared/Footer';
 
@@ -106,12 +106,12 @@ const page = () => {
                             </div>
                             <div className='2xl:mt-10 xl:mt-10 mt-8 flex items-center gap-6'>
                                 <h2 className='text-[#0D0D0D] font-medium 2xl:text-2xl xl:text-2xl text-xl'>Follow Us :</h2>
-                                <div className='flex items-center gap-[15px]'>
+                                {/* <div className='flex items-center gap-[15px]'>
                                     <Image src={facebook} alt='' />
                                     <Image src={instagram} alt='' />
                                     <Image src={twitter} alt='' />
                                     <Image src={LinkedIn} alt='' />
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         <div className='bg-[#F9F9FB] 2xl:p-10 xl:p-8 p-6 rounded-[30px]'>
