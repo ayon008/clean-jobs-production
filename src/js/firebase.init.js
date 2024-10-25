@@ -8,13 +8,14 @@ import { getDatabase, ref, onValue } from 'firebase/database';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyACPUcxIXKle2dsntzIo-1cnuvXNDM2zxg",
-    authDomain: "clean-jobs-production.firebaseapp.com",
-    projectId: "clean-jobs-production",
-    storageBucket: "clean-jobs-production.appspot.com",
-    messagingSenderId: "42988735499",
-    appId: "1:42988735499:web:660ea72b34dbd6004fcb0e"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
