@@ -9,7 +9,7 @@ import PaymentForm from "./PaymentForm";
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
 
-const stripePromise = loadStripe("pk_test_51QAGCnDjsDu7deU5EE6ZHNBFBeJodBrZJNU491qQlyWPf2E1Bd0Or586NDNqzNBy2ulmX9YOGA6UK3DOSwPZz3oa00801DiwjZ");
+const stripePromise = loadStripe("pk_live_51QAGCnDjsDu7deU5liE5MA5FTWWWNCXLZSrou3P6v1nGLsqUcuVD1OpbSFapn1UrHOkGzh8XlduGDP3W8m3mWMno00ZXhdRFv9");
 
 export default function Payment({ price, product_Id, closeModal }) {
     const [clientSecret, setClientSecret] = useState("");
