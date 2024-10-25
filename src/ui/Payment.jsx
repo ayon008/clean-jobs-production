@@ -41,8 +41,10 @@ export default function Payment({ price, product_Id, closeModal }) {
         appearance,
     };
 
+
     return (
         <div>
+            xx
             {clientSecret && (
                 <Elements options={options} stripe={stripePromise}>
                     <PaymentForm price={price} product_Id={product_Id} dpmCheckerLink={dpmCheckerLink} closeModal={closeModal} />
