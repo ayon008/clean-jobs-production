@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import contact from '@/../public/assets/Frame (6).svg'
-import FormButton from '@/Shared/FormButton';
 import Image from 'next/image';
 import FaTick from '@/icons/FaTick';
 import image from '@/../public/assets/image 36.png'
@@ -9,7 +8,6 @@ import FaAddress from '@/icons/FaAddress';
 import FaPhone from '@/icons/FaPhone';
 import FaEmail from '@/icons/FaEmail';
 import facebook from '@/../public/assets/Facebook.svg'
-import twitter from '@/../public/assets/twitter.svg'
 import LinkedIn from '@/../public/assets/Linkedin.svg'
 import ContactForm from '@/ui/ContactForm';
 import ContactUserForm from '@/ui/ContactUserForm';
