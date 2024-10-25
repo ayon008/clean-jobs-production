@@ -1,31 +1,45 @@
-import React from 'react';
-import { MdOutlineNotifications } from 'react-icons/md';
 import { useEffect, useState } from 'react';
-import io from 'socket.io-client';
+import Pusher from 'pusher-js';
+import { MdOutlineNotifications } from 'react-icons/md';
 
-const Notification = () => {
+const NotificationIcon = () => {
     const [newBlog, setNewBlog] = useState(null);
+    const [showNotification, setShowNotification] = useState(false);
+
+    console.log(newBlog, showNotification)
+
     useEffect(() => {
-        const socket = io('https://clean-jobs-latest-backend.vercel.app/');
-        socket.on('new-blog', (data) => {
-            setNewBlog(data.title);
-            alert(`New blog post uploaded: ${data.title}`);
+        // Initialize Pusher client
+        const pusher = new Pusher('7a71ab81cc1c36e25c6a', {
+            cluster: 'ap2',
+        });
+
+        const channel = pusher.subscribe('blog-channel');
+        channel.bind('sanityWebhook', (data) => {
+            setNewBlog(data);
+            setShowNotification(true);
         });
 
         return () => {
-            socket.disconnect();
+            pusher.unsubscribe('blog-channel');
         };
     }, []);
 
-    console.log(newBlog);
-    
-
     return (
         <div>
-            <MdOutlineNotifications className="md:text-2xl text-lg" />
-            {/* <div>New blog post: {newBlog}</div> */}
+            <button className="notification-icon">
+                <MdOutlineNotifications className="md:text-2xl text-lg" />
+            </button>
+            {showNotification && newBlog && (
+                <div className="notification-popup">
+                    <h3>New Blog Published</h3>
+                    <p>{newBlog.title}</p>
+                    <button onClick={() => setShowNotification(false)}>Close</button>
+                </div>
+            )}
         </div>
     );
 };
 
-export default Notification;
+export default NotificationIcon;
+

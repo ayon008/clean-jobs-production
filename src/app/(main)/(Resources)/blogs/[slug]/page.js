@@ -3,17 +3,8 @@ import Image from "next/image";
 import { client, role, urlFor } from "@/lib/sanity";
 import formatTimestamp from "@/js/convertTime";
 import { PortableText } from "next-sanity";
-import { blogData } from "../page";
 
-export const revalidate = 1
-
-export async function generateStaticParams() {
-    const blogs = await blogData();
-    return blogs.map((blog) => ({
-        slug: blog.slug,
-    }))
-}
-
+export const revalidate = 0;
 const getData = async (params) => {
     const query = `
       *[_type == 'blog' && slug.current == '${params}']{

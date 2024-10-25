@@ -2,7 +2,7 @@ import { client } from '@/lib/sanity';
 import BlogCards from '@/ui/BlogCards';
 
 
-export const revalidate = 1
+export const revalidate = 0;
 
 
 export const blogData = async () => {
