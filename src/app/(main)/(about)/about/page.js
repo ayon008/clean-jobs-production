@@ -231,7 +231,7 @@ const page = () => {
                                 ))
                             }
                         </div>
-                        <p className="text-[#808080] 2xl:text-lg xl:text-base text-center">Their lead generation services are top-tier! We saw a huge boost in qualified leads, and the integration with our CRM was seamless. If you need reliable, high-quality leads, Clean Jobs is the way to go.</p>
+                        <p className="text-[#808080] 2xl:text-lg xl:text-base text-center">Their lead generation services are top-tier! We saw a huge boost in qualified leads, and the integration with our CRM was seamless. If you need reliable, high-quality leads, Janitorial Appointments is the way to go.</p>
                         <div className="flex items-start justify-center gap-2">
                             <Image src={rev1} alt="" />
                             <div>

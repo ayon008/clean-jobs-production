@@ -11,7 +11,7 @@ export const inter = Inter({
 })
 
 export const metadata = {
-  title: 'Clean Jobs',
+  title: 'Janitorial Appointments',
   description: 'Clean,Green,Reliable',
 }
 

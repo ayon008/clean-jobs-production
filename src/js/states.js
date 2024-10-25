@@ -16,7 +16,7 @@ const usStates = [
 
 const data = [
     {
-        text: "CleanJob transformed our business! We used to struggle with finding consistent work, but now we're busier than ever. The platform is easy to use and the leads are high quality.",
+        text: "Janitorial Appointments transformed our business! We used to struggle with finding consistent work, but now we're busier than ever. The platform is easy to use and the leads are high quality.",
         author: "John Doe",
         rating: 5,
         companyName: "Sparkling Clean Co.",
@@ -24,7 +24,7 @@ const data = [
         image: image1,
     },
     {
-        text: "I was skeptical at first, but CleanJob exceeded my expectations. Within a month, I secured five new contracts and saw a significant increase in revenue. Highly recommend!",
+        text: "I was skeptical at first, but Janitorial Appointments exceeded my expectations. Within a month, I secured five new contracts and saw a significant increase in revenue. Highly recommend!",
         author: "Jane Smith",
         rating: 5,
         companyName: "Green Clean Solutions",
@@ -32,7 +32,7 @@ const data = [
         image: image2,
     },
     {
-        text: "Thanks to CleanJob, our small cleaning company has grown exponentially. We now have a steady stream of clients and our team is always busy. It's a game-changer!",
+        text: "Thanks to Janitorial Appointments, our small cleaning company has grown exponentially. We now have a steady stream of clients and our team is always busy. It's a game-changer!",
         author: "Michael Johnson",
         rating: 5,
         companyName: "Shiny Homes Cleaning",
@@ -40,7 +40,7 @@ const data = [
         image: image3,
     },
     {
-        text: "CleanJob has been a lifesaver for our business. The platform is user-friendly and the support team is fantastic. We've doubled our client base in just three months.",
+        text: "Janitorial Appointments has been a lifesaver for our business. The platform is user-friendly and the support team is fantastic. We've doubled our client base in just three months.",
         author: "Emily Brown",
         rating: 5,
         companyName: "Eco-Friendly Cleaners",
@@ -48,7 +48,7 @@ const data = [
         image: image4,
     },
     {
-        text: "We've tried other lead generation services before, but none compare to CleanJob. The quality of leads is top-notch and the return on investment is incredible. Our business has never been better.",
+        text: "We've tried other lead generation services before, but none compare to Janitorial Appointments. The quality of leads is top-notch and the return on investment is incredible. Our business has never been better.",
         author: "David Wilson",
         rating: 5,
         companyName: "Spotless Spaces",
@@ -56,7 +56,7 @@ const data = [
         image: image5,
     },
     {
-        text: "CleanJob makes it easy to find new clients and manage our workload. We've seen a consistent flow of opportunities and have been able to grow our business sustainably.",
+        text: "Janitorial Appointments makes it easy to find new clients and manage our workload. We've seen a consistent flow of opportunities and have been able to grow our business sustainably.",
         author: "Sarah Miller",
         rating: 4,
         companyName: "Premier Cleaning Services",

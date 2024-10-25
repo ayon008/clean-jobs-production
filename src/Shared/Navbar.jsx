@@ -69,19 +69,20 @@ const Navbar = () => {
         { href: '/about', label: 'About' },
     ];
 
+
     const userLinks = [
         {
-            label: 'Home', subLinks: [
-                { href: '/dashboard', label: 'Dashboard' },
-                isSeller ? { href: '/sellerDashboard', label: 'Seller dashboard' } : null,
-                isAdmin ? { href: '/adminDashboard', label: 'Admin dashboard' } : null,
-            ].filter(link => link) // Filter out null or undefined links
-        },
-        {
-            label: 'List', subLinks: [
-                { href: '/leadlists', label: 'Make your own list' },
-            ]
-        },
+            label: 'Dashboard',
+            ...(isAdmin || isSeller ? {} : { href: "/dashboard" }), // Include href only for non-admin/seller users
+            ...(isAdmin || isSeller ? {
+                subLinks: [
+                    { href: '/dashboard', label: 'Dashboard' },
+                    ...(isSeller ? [{ href: '/sellerDashboard', label: 'Seller dashboard' }] : []),
+                    ...(isAdmin ? [{ href: '/adminDashboard', label: 'Admin dashboard' }] : []),
+                ]
+            } : {}),
+        }
+        ,
         {
             label: 'Resources', subLinks: [
                 { href: '/blogs', label: 'Blog' },
@@ -113,7 +114,8 @@ const Navbar = () => {
 
     const guestLinks = [
         { href: '/blogs', label: 'Blogs' },
-        { href: '/contact', label: 'Contact' }
+        { href: '/contact', label: 'Contact' },
+        { href: '/search', label: 'Leads' }
     ];
 
     const navEnds = uid ? (

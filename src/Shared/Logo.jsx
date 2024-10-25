@@ -8,9 +8,9 @@ const Logo = () => {
             <Image src={logo} alt="logo" className="w-[25px] h-[40px]" />
             <div className="text-left">
                 <span className="md:text-lg text-xs font-bold">
-                    <span className="text-primary">Clean</span>Jobs
+                    <span className="text-primary">Janitorial</span>Appointments
                 </span>
-                <p className="md:text-xs text-[8px] text-secondary font-normal">Clean, Green, Reliable</p>
+                <p className="md:text-xs text-[8px] text-secondary font-normal">Reliable Janitorial Leads & Appointments</p>
             </div>
         </Link>
     );
