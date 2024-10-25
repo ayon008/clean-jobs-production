@@ -9,7 +9,7 @@ const useAxiosSecure = () => {
     const router = useRouter();
 
     const axiosSecure = axios.create({
-        baseURL: 'https://clean-jobs-latest-backend.vercel.app/', // Adjust this to your actual base URL
+        baseURL: 'https://clean-job-backend-final.vercel.app/', // Adjust this to your actual base URL
     });
 
     // Request interceptor
