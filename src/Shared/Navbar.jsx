@@ -1,9 +1,7 @@
 'use client'
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useSpring, animated } from "@react-spring/web";
 import Logo from "./Logo";
-import { MdOutlineNotifications } from 'react-icons/md';
 import useAuth from "@/Hooks/useAuth";
 import Dropdown from "@/ui/Dropdown";
 import Link from "next/link";
@@ -11,15 +9,14 @@ import ButtonPrimary from "@/ui/ButtonPrimary";
 import jsCookie from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import Notification from "@/ui/Notification";
+import NavComponent from "@/ui/NavComponent";
+import { useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
-
     // TO_DO : Toggle Ul in mobile device and active route
-
     // User Info
     const { user, logOut } = useAuth();
-    console.log(user);
-
     const uid = user?.uid;
     const pathName = usePathname();
     const userName = user?.displayName;
@@ -33,7 +30,6 @@ const Navbar = () => {
         }
     }, [cookies])
     const { isSeller, isAdmin } = decoded;
-
 
     // Logout function
     const handleLogOut = () => {
@@ -115,7 +111,7 @@ const Navbar = () => {
     const guestLinks = [
         { href: '/blogs', label: 'Blogs' },
         { href: '/contact', label: 'Contact' },
-        { href: '/search', label: 'Leads' }
+        { href: '/leads', label: 'Leads' }
     ];
 
     const navEnds = uid ? (
@@ -147,86 +143,152 @@ const Navbar = () => {
     );
 
     const [scrolled, setScrolled] = useState(false);
-    const props = useSpring({
-        backgroundColor: scrolled ? '#ffffff' : 'rgba(0, 0, 0, 0)',
-        boxShadow: scrolled ? '0px 8px 20px rgba(0, 0, 0, 0.2)' : '0px 0px 0px rgba(0, 0, 0, 0)'
-    });
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const handleScroll = () => {
-                setScrolled(window.scrollY > 50);
-            };
-            handleScroll(); // Ensure the scroll state is set on load
-            window.addEventListener('scroll', handleScroll);
+        let lastScrollTop = 0;
+        const handleScroll = () => {
+            const currentScrollTop = window.scrollY;
+            setScrolled(currentScrollTop < lastScrollTop && currentScrollTop > 80);
+            lastScrollTop = currentScrollTop;
+        };
 
-            return () => {
-                window.removeEventListener('scroll', handleScroll);
-            };
-        }
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
+
+
     return (
-        <animated.div style={props} className="navbar h-[60px] bg-inherit fixed inset-0 top-0 z-50 justify-between py-10">
-            <div className="navbar-start w-fit">
-                <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
-                        </svg>
+        <div className="">
+            <NavComponent />
+            <div className={`navbar h-[80px] bg-inherit top-[48px] z-50 justify-between py-10`}>
+                <div className="navbar-start w-fit items-center">
+                    <div className="dropdown">
+                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </div>
+                        <div>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-20 mt-3 p-2 shadow w-[340px] max-h-[60vh]">
+                                <>
+                                    {
+                                        commonLinks.map(c => {
+                                            return (
+                                                <li key={c}>
+                                                    <Link href={c.href}>{c.label}</Link>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                    {
+                                        user &&
+                                        userLinks?.map(u => {
+                                            const { subLinks } = u;
+                                            return (
+                                                subLinks?.map((s, i) => {
+                                                    return (
+                                                        <li key={i}>
+                                                            <Link href={s?.href}>{s?.label}</Link>
+                                                        </li>
+                                                    )
+                                                })
+                                            )
+                                        })
+                                    }
+                                    {
+                                        guestLinks.map(g => {
+                                            return (
+                                                <li key={g}>
+                                                    <Link href={g.href}>{g.label}</Link>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </>
+                            </ul>
+                        </div>
                     </div>
-                    <div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-20 mt-3 p-2 shadow w-[340px] max-h-[60vh]">
-                            <>
-                                {
-                                    commonLinks.map(c => {
-                                        return (
-                                            <li key={c}>
-                                                <Link href={c.href}>{c.label}</Link>
-                                            </li>
-                                        )
-                                    })
-                                }
-                                {
-                                    user &&
-                                    userLinks?.map(u => {
-                                        const { subLinks } = u;
-                                        return (
-                                            subLinks?.map((s, i) => {
-                                                return (
-                                                    <li key={i}>
-                                                        <Link href={s?.href}>{s?.label}</Link>
-                                                    </li>
-                                                )
-                                            })
-                                        )
-                                    })
-                                }
-                                {
-                                    guestLinks.map(g => {
-                                        return (
-                                            <li key={g}>
-                                                <Link href={g.href}>{g.label}</Link>
-                                            </li>
-                                        )
-                                    })
-                                }
-                            </>
+                    <Logo />
+                    <div className="hidden lg:flex 2xl:ml-12 ml-6">
+                        <ul className="menu menu-horizontal px-1 text-lg text-[#252C32] inter">
+                            {renderLinks(commonLinks)}
+                            {uid ? renderLinks(userLinks) : renderLinks(guestLinks)}
                         </ul>
                     </div>
                 </div>
-                <Logo />
-                <div className="hidden lg:flex 2xl:ml-12 ml-6">
-                    <ul className="menu menu-horizontal px-1 text-lg text-[#252C32] inter">
-                        {renderLinks(commonLinks)}
-                        {uid ? renderLinks(userLinks) : renderLinks(guestLinks)}
-                    </ul>
+                <div className="navbar-end lg:flex md:gap-6 gap-2 w-fit">
+                    {navEnds}
                 </div>
             </div>
-            <div className="navbar-end lg:flex md:gap-6 gap-2 w-fit">
-                {navEnds}
-            </div>
-        </animated.div>
+            <motion.div
+                initial={{ top: -96 }}
+                animate={{ top: scrolled ? 0 : -96 }}
+                transition={{ duration: 0.4, ease: "easeInOut", delay: 0.01 }}
+                className={`navbar h-[80px] bg-white shadow-xl fixed w-full z-50 justify-between py-10`}
+            >
+                <div className="navbar-start w-fit items-center">
+                    <div className="dropdown">
+                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </div>
+                        <div>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-20 mt-3 p-2 shadow w-[340px] max-h-[60vh]">
+                                <>
+                                    {
+                                        commonLinks.map(c => {
+                                            return (
+                                                <li key={c}>
+                                                    <Link href={c.href}>{c.label}</Link>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                    {
+                                        user &&
+                                        userLinks?.map(u => {
+                                            const { subLinks } = u;
+                                            return (
+                                                subLinks?.map((s, i) => {
+                                                    return (
+                                                        <li key={i}>
+                                                            <Link href={s?.href}>{s?.label}</Link>
+                                                        </li>
+                                                    )
+                                                })
+                                            )
+                                        })
+                                    }
+                                    {
+                                        guestLinks.map(g => {
+                                            return (
+                                                <li key={g}>
+                                                    <Link href={g.href}>{g.label}</Link>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </>
+                            </ul>
+                        </div>
+                    </div>
+                    <Logo />
+                    <div className="hidden lg:flex 2xl:ml-12 ml-6">
+                        <ul className="menu menu-horizontal px-1 text-lg text-[#252C32] inter">
+                            {renderLinks(commonLinks)}
+                            {uid ? renderLinks(userLinks) : renderLinks(guestLinks)}
+                        </ul>
+                    </div>
+                </div>
+                <div className="navbar-end lg:flex md:gap-6 gap-2 w-fit">
+                    {navEnds}
+                </div>
+            </motion.div>
+        </div>
     );
 };
 

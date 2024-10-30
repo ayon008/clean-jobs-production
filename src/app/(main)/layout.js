@@ -11,9 +11,10 @@ export const inter = Inter({
 })
 
 export const metadata = {
-  title: 'Janitorial Appointments',
-  description: 'Clean,Green,Reliable',
+  title: 'Janitorial Appointment Services | Find Reliable Cleaning Leads',
+  description: 'Discover reliable janitorial appointment services and cleaning leads tailored for your business needs. Connect with decision-makers and maximize your cleaning opportunities effortlessly.',
 }
+
 
 export const anton = Anton({
   subsets: ['latin'],  // The subsets of the font you want to load

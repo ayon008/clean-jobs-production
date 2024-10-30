@@ -1,17 +1,12 @@
 import Image from 'next/image';
-import logo from "../../public/assets/Vector.png";
 import Link from 'next/link';
+import logo from '../../public/assets/Janitorial.png'
+
 
 const Logo = () => {
     return (
-        <Link href="/" className="btn btn-ghost">
-            <Image src={logo} alt="logo" className="w-[25px] h-[40px]" />
-            <div className="text-left">
-                <span className="md:text-lg text-xs font-bold">
-                    <span className="text-primary">Janitorial</span>Appointments
-                </span>
-                <p className="md:text-xs text-[8px] text-secondary font-normal">Reliable Janitorial Leads & Appointments</p>
-            </div>
+        <Link href="/" className="btn btn-ghost h-full">
+            <Image src={logo} alt="logo" className="w-auto h-[70px]" />
         </Link>
     );
 };

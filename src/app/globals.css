@@ -10,6 +10,11 @@
     color: #246532 !important;
 }
 
+.card {
+    background-color: #85FFBD;
+    background-image: linear-gradient(45deg, #246532 0%, #85FFBD 100%);
+}
+
 .bg-primary {
     background-color: #246532 !important;
 }
@@ -40,6 +45,17 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
 
 .custom-row {
     display: grid !important;
@@ -166,6 +182,116 @@ input[type="checkbox"]:checked~.collapse-content {
     background-color: #F9F9FB;
     border: none !important;
     /* Background color for content when checked */
+}
+
+
+/* styles/animations.css */
+@keyframes zoomInOut {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.zoom-animation {
+    display: inline-block;
+    /* Ensures animation applies on span tags */
+    animation: zoomInOut 1.5s ease-in-out infinite;
+}
+
+.bn-primary:hover {
+    @apply bg-deep-blue;
+}
+
+.bn-secondary:hover {
+    @apply bg-orange text-white;
+}
+
+.icon:hover {
+    @apply bg-orange-1;
+}
+
+.bn-primary:hover {
+    background-color: #0B286D !important;
+}
+
+.bn-secondary:hover {
+    background-color: #E16710 !important;
+    color: white !important;
+}
+
+.icon:hover {
+    background-color: #FF8C3A !important;
+}
+
+
+.banner-1 {
+    position: relative;
+    /* Position the banner to allow absolute positioning of overlay */
+    background-image: url('../../public/assets/1904c9e7a4e1664e4e229a2f3c915594.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 600px;
+    width: 100%;
+    overflow: hidden;
+    /* Prevent overflow for the overlay */
+}
+
+.banner-1::before {
+    content: '';
+    position: absolute;
+    /* Absolutely position the overlay */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
+    /* Blackish overlay */
+    z-index: 1;
+    /* Position above the background image */
+}
+
+
+.banner-2 {
+    position: relative;
+    /* Position the banner to allow absolute positioning of overlay */
+    background-image: url('../../public/assets/clay-banks-BY-R0UNRE7w-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 600px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner-3 {
+    position: relative;
+    background-image: url('../../public/assets/c4fff5f6b137dec9009b9e4e2c05c82f.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 600px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner-text {
+    line-height: 60px !important;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+    font-family: swiper-icons;
+    color: white;
+    text-transform: none !important;
+    letter-spacing: 0;
+    font-variant: initial;
+    line-height: 1;
 }
 
 
