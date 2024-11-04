@@ -3,6 +3,7 @@ import '../globals.css'
 import AuthProvider from '@/Providers/AuthProvider'
 import Navbar from '@/Shared/Navbar'
 import QueryProvider from '@/Providers/QueryProvider'
+import AOSProvider from '@/Providers/AOSProvider'
 
 
 export const inter = Inter({
@@ -41,10 +42,12 @@ export default function RootLayout({ children }) {
       <body className={`${inter.variable} ${poppins.variable} ${nunito.variable}`}>
         <main className='overflow-hidden min-h-screen max-w-[1920px] mx-auto bg-white'>
           <AuthProvider>
-            <QueryProvider>
-              <Navbar />
-              {children}
-            </QueryProvider>
+            <AOSProvider>
+              <QueryProvider>
+                <Navbar />
+                {children}
+              </QueryProvider>
+            </AOSProvider>
           </AuthProvider>
         </main>
       </body>

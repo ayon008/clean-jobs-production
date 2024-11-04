@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 const Banner = () => {
     return (
-        <div className='relative'>
+        <div className='relative z-30 pt-20'>
             <Swiper
                 navigation={true}
                 autoplay={{
@@ -30,7 +30,7 @@ const Banner = () => {
                 <SwiperSlide>
                     <div className="banner-2 flex flex-col h-full">
                         <div className='absolute inset-0 bg-black opacity-60'></div>
-                        <div className='m-auto z-40 w-3/4'>
+                        <div className='m-auto z-30 w-3/4' data-aos="fade-down">
                             <h1 className='text-white text-center font-bold poppins 2xl:text-6xl xl:text-5xl text-3xl leading-[100px]'>Find <span className=''>Qualified, Exclusive Janitorial Leads</span> <br /> available in Your Area!</h1>
                             <p className='my-6 inter font-semibold text-center text-xl text-white opacity-80'>A reliable and stress-free appointment-setting service designed for janitors.<br />
                                 Partner with the trusted provider of quality janitorial job opportunities.</p>
@@ -49,7 +49,7 @@ const Banner = () => {
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className="banner-1 flex flex-col h-full">
-                        <div className='my-auto 2xl:pl-40 xl:pl-40 z-40 w-1/2'>
+                        <div className='my-auto 2xl:pl-40 xl:pl-40 z-30 w-1/2'>
                             <h1 className='text-white font-bold poppins 2xl:text-6xl xl:text-5xl text-3xl'>Unlock Cleaning <br /><span className='text-green-600 banner-text'>Opportunities</span> with Ease</h1>
                             <p className='my-6 inter text-xl font-semibold text-white opacity-60'>Connect with key decision-makers and receive valuable opportunities delivered straight to your inbox—automatically!</p>
                             <div className='flex items-center gap-6'>
@@ -66,7 +66,7 @@ const Banner = () => {
                 <SwiperSlide>
                     <div className="banner-3 flex flex-col h-full">
                         <div className='absolute inset-0 bg-black opacity-60'></div>
-                        <div className='m-auto z-40 w-3/4'>
+                        <div className='m-auto z-30 w-3/4'>
                             <h1 className='text-white text-center font-bold poppins 2xl:text-6xl xl:text-5xl text-3xl leading-[100px]'>EXPANDING YOUR BUSINESS IS OUR GOAL!</h1>
                             <p className='my-6 text-xl inter font-semibold text-white opacity-90 text-center'>The Most Dependable Company for Cleaning & Janitorial Leads!
                                 <br />

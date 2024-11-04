@@ -10,7 +10,7 @@ import FaNetwork from '@/icons/FaNetwork';
 
 const Page = () => {
     return (
-        <div className='dashboard max-w-[1920px] mx-auto 2xl:gap-14 xl:gap-10 gap-5 2xl:px-[70px] xl:px-16 px-8 2xl:my-36 xl:my-28 my-16'>
+        <div className='dashboard max-w-[1920px] mx-auto 2xl:gap-14 xl:gap-10 gap-5 2xl:px-[70px] xl:px-16 px-8 2xl:my-20 xl:my-16 my-12'>
             <div className=''>
                 <Profiled />
                 <div className='2xl:my-32 xl:my-24 my-10'>

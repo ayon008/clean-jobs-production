@@ -163,7 +163,7 @@ const Navbar = () => {
     return (
         <div className="">
             <NavComponent />
-            <div className={`navbar h-[80px] bg-inherit top-[48px] z-50 justify-between py-10`}>
+            <div className={`navbar h-[80px] bg-inherit bg-white absolute top-[48px] z-50 justify-between py-10`}>
                 <div className="navbar-start w-fit items-center">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -172,7 +172,7 @@ const Navbar = () => {
                             </svg>
                         </div>
                         <div>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-20 mt-3 p-2 shadow w-[340px] max-h-[60vh]">
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 z-50 p-2 shadow w-[340px] max-h-[60vh]">
                                 <>
                                     {
                                         commonLinks.map(c => {
@@ -237,7 +237,7 @@ const Navbar = () => {
                             </svg>
                         </div>
                         <div>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-20 mt-3 p-2 shadow w-[340px] max-h-[60vh]">
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-40 mt-3 p-2 shadow w-[340px] max-h-[60vh]">
                                 <>
                                     {
                                         commonLinks.map(c => {
